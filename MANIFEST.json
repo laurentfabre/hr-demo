@@ -1,0 +1,569 @@
+{
+  "version": 1,
+  "source_commit": "3a1b880ae6756c7368a2ee07d1fc39220c5478fe",
+  "created_at": "2026-10-08T06:57:20.547519+00:00",
+  "synthetic": true,
+  "scope": "Enterprise supporting release, not full A/G certification",
+  "files": [
+    {
+      "path": ".gitignore",
+      "sha256": "fb8ba8fd8b32f2febc7ac07cdd7232a93d95b5192e78cb0f6b86575585b1930f"
+    },
+    {
+      "path": "README.md",
+      "sha256": "ce1530283266ed4bc577b7d1c0260764af94af0d2a1c6705b7732f646b37e3fc"
+    },
+    {
+      "path": "app/.build/hr_demo-0.0.0+20261008064328-py3-none-any.whl",
+      "sha256": "b681ee11bc07c66e49da2446ecc5e08f67296314d24d60ea51bb467ddbf1f2f6"
+    },
+    {
+      "path": "app/.build/requirements.txt",
+      "sha256": "ac7545a34999fe3b34e51eba9aefc0a35cb6d9bc82343bd6a7c4fd9203b7f43f"
+    },
+    {
+      "path": "app/README.md",
+      "sha256": "ce1530283266ed4bc577b7d1c0260764af94af0d2a1c6705b7732f646b37e3fc"
+    },
+    {
+      "path": "app/package.json",
+      "sha256": "a55ea97618fbed35e46e45ccb60ddcb5f535f6a4d0842b3bbd9f5118b6be35d0"
+    },
+    {
+      "path": "app/pyproject.toml",
+      "sha256": "981e5501dbf39a0bbd2d1b7c63b1e0412cc3860bc6f0ecca4de7f13d23fc8ed6"
+    },
+    {
+      "path": "app/src/hr_demo/__dist__/.gitignore",
+      "sha256": "cdbcae15105d6b781e620813c79c7e868740d4e9cc53ce6f5fcbbc12387adf4b"
+    },
+    {
+      "path": "app/src/hr_demo/__dist__/assets/agent-workspace-J__tlRW_.js",
+      "sha256": "b3282aa9c9276cfc51d751e349b04733b18b80a7d65d5415d76d92572808c38a"
+    },
+    {
+      "path": "app/src/hr_demo/__dist__/assets/ask-BCmeXsDr.js",
+      "sha256": "0d195617884b1aa211f164159340c42446e52a111d42cb7df925b5fc880ab169"
+    },
+    {
+      "path": "app/src/hr_demo/__dist__/assets/briefing-BFlVC8Wa.js",
+      "sha256": "45310d030c5275f33e404b9b2cc3fc941daee3ad7aa7ccb76ccc1de214d950ea"
+    },
+    {
+      "path": "app/src/hr_demo/__dist__/assets/check-CjpARFgy.js",
+      "sha256": "0f811bb663ce152e14a3b4971e6cd4bd358648b8801e1b332b12e825a788d356"
+    },
+    {
+      "path": "app/src/hr_demo/__dist__/assets/dnb-GLTk5M1w.js",
+      "sha256": "807283680badbd0704838ba7f5ce9819da6437d09909b2738e9c0d3e76248c38"
+    },
+    {
+      "path": "app/src/hr_demo/__dist__/assets/dnb-hsAYZlgD.css",
+      "sha256": "d42f450c44534b995e6f593ea0f646b39b252909e03d9eb7c394ef3e8c090501"
+    },
+    {
+      "path": "app/src/hr_demo/__dist__/assets/enterprise-CiYkyIE0.js",
+      "sha256": "b4b0a13506ea8504398c553d7224dd5632433fa1a0d3ad5739715b217756457c"
+    },
+    {
+      "path": "app/src/hr_demo/__dist__/assets/enterprise-D1WvgJ7h.css",
+      "sha256": "7c87c43e4aad6b6a7591d3a60cbbf82ec8842497a64129fc734a29ecb3ec5999"
+    },
+    {
+      "path": "app/src/hr_demo/__dist__/assets/enterprise-meMT8oJz.js",
+      "sha256": "f75623f676a1c448b592d10669b116795833330e2ddf2e62962355f84b691cdf"
+    },
+    {
+      "path": "app/src/hr_demo/__dist__/assets/enterprise-r6ogm7Ia.js",
+      "sha256": "cd3580f9d57347421086fc6df7de205b480b0fca75e620625649b832d5cb32d8"
+    },
+    {
+      "path": "app/src/hr_demo/__dist__/assets/index-DtKbKyYs.js",
+      "sha256": "f4359aa499ce79147e7e6528bb74fecf959f9069e6347457023c377e5b64cdaa"
+    },
+    {
+      "path": "app/src/hr_demo/__dist__/assets/index-kGmWzf5U.css",
+      "sha256": "dc06acadc9f8d0ee08f714e57995b3d0718aed49ad1460019637850d771f33cf"
+    },
+    {
+      "path": "app/src/hr_demo/__dist__/assets/loader-circle-D4rwiO4F.js",
+      "sha256": "e5cdf9b70a564f166d6123fa02feb4bc41ad48bf82b77ed14ffcdee15a1860e3"
+    },
+    {
+      "path": "app/src/hr_demo/__dist__/assets/pages-DISyTyVD.js",
+      "sha256": "f4338a9d2ceb32a674d0604a7004143c976cb3e72fbb2daf4960218e858c261d"
+    },
+    {
+      "path": "app/src/hr_demo/__dist__/assets/people-ops-BW2Rj10g.js",
+      "sha256": "dbc70ff924e7181625828c767c0e62ebc3868571264555ae6c070370f45b014d"
+    },
+    {
+      "path": "app/src/hr_demo/__dist__/assets/refresh-cw-CN_Vox2G.js",
+      "sha256": "049c5892ef04a4cd07fe5e4c4b41f64532381cb4cdab088f67acd33b72595cf2"
+    },
+    {
+      "path": "app/src/hr_demo/__dist__/assets/retention-BqWHbutK.js",
+      "sha256": "56721f40c43ebe96f1e094ed8df4b7865468d4c79e753e8c47c3ab35e55c3ed2"
+    },
+    {
+      "path": "app/src/hr_demo/__dist__/assets/routes-meMT8oJz.js",
+      "sha256": "f75623f676a1c448b592d10669b116795833330e2ddf2e62962355f84b691cdf"
+    },
+    {
+      "path": "app/src/hr_demo/__dist__/assets/search-BOUnxYcq.js",
+      "sha256": "f4e0e1e2ddd51114d0c49f6b0ff3266b7988aec652b434f985008e747c67d10b"
+    },
+    {
+      "path": "app/src/hr_demo/__dist__/assets/send-C-9M6wEk.js",
+      "sha256": "5fc0fde914a4cca67cfce1950011b20b2c6d1f9fdb4f2f5aa67c38f2024d1468"
+    },
+    {
+      "path": "app/src/hr_demo/__dist__/assets/studio-DvimyVgi.js",
+      "sha256": "ba6f6eb7a331659e9bab5e79d29ae7e157eb190a528dfb75221a3794e35425e4"
+    },
+    {
+      "path": "app/src/hr_demo/__dist__/assets/talent-CPdSbjD4.js",
+      "sha256": "9ef4e3185ebfe52acabfa466d0f116ecd08fd32303a7e02b91c1c8706088aee2"
+    },
+    {
+      "path": "app/src/hr_demo/__dist__/assets/trust-DVFbAled.js",
+      "sha256": "1788e546bb1437c529ddb5027032b2c53956d432b5d3d41063703f7c6619e009"
+    },
+    {
+      "path": "app/src/hr_demo/__dist__/assets/upload-BVryyRaY.js",
+      "sha256": "1d81fa579b233a80335ecfadd81b64d750d20e28cd048b5e893aeb025024c9a5"
+    },
+    {
+      "path": "app/src/hr_demo/__dist__/assets/workforce-p6Ya5fXo.js",
+      "sha256": "f3b84140dfa6c01650d7a61c0938f5ea0d94383e0bac5e3cb87225e40a70267a"
+    },
+    {
+      "path": "app/src/hr_demo/__dist__/index.html",
+      "sha256": "283eb1b8767534111965980ce469d0d792de0fffc334c1644440a6b71919aa48"
+    },
+    {
+      "path": "app/src/hr_demo/__dist__/logo.svg",
+      "sha256": "3810b8ea669ac2dd826af6c6e70aa4051eeffe96989eab184e4ac9b5fb055307"
+    },
+    {
+      "path": "app/src/hr_demo/__init__.py",
+      "sha256": "e0f615798d184f29e3764968415a3a1a0b786d20a85e96f6e0863c8d224c1600"
+    },
+    {
+      "path": "app/src/hr_demo/_metadata.py",
+      "sha256": "12348d10168482abaac0ceebf5c7fd8a33ee5b8bd43f8c44b6bd23b13c20cd66"
+    },
+    {
+      "path": "app/src/hr_demo/_metadata.pyi",
+      "sha256": "a2fb9ee307c0664d87b3033310d951f9f38797dc8373fcf7d47c4671cea63f00"
+    },
+    {
+      "path": "app/src/hr_demo/_version.py",
+      "sha256": "86cedc64bd86fc9679264d459bb9d6fa4c7e2ba9a014d2d618cc88596306cf8d"
+    },
+    {
+      "path": "app/src/hr_demo/_version.pyi",
+      "sha256": "1b14386462cf40e6cdf76416fc76fc2093c4b9820d367d7ce858eb468bccd3d8"
+    },
+    {
+      "path": "app/src/hr_demo/backend/agents.py",
+      "sha256": "bc289c66561f2c725e2ffcf050aa97d75818a53eede1c2c918b450cf0ec8bda5"
+    },
+    {
+      "path": "app/src/hr_demo/backend/app.py",
+      "sha256": "58d0a6f361558b199b44c8fd188ec3b00392f29ed09bc2cb79b66e82dc86d220"
+    },
+    {
+      "path": "app/src/hr_demo/backend/auth.py",
+      "sha256": "77a0ab2ac7aec9d2f17ef238219ba5430eff34d253789443b877f74c99813fb3"
+    },
+    {
+      "path": "app/src/hr_demo/backend/core/__init__.py",
+      "sha256": "04eb0671b9dcc9587d4a49c26892e5aeb96f3094300cd765261854c01740fc16"
+    },
+    {
+      "path": "app/src/hr_demo/backend/core/_base.py",
+      "sha256": "9b8316c93f8989b4f4cd4d0529a3f7265bd276b57daf19f8f42c69c81ad94bc3"
+    },
+    {
+      "path": "app/src/hr_demo/backend/core/_config.py",
+      "sha256": "1d9087449451073827173bb4166ba44e2d7af36dc6a9b43a38479248c8e804f6"
+    },
+    {
+      "path": "app/src/hr_demo/backend/core/_defaults.py",
+      "sha256": "043f1098932d31c183e50d695985de260a1440911e6b12e8bc204a59f4fccd1a"
+    },
+    {
+      "path": "app/src/hr_demo/backend/core/_factory.py",
+      "sha256": "e6abf5eb397952096c7d8e4e05160d547dfb76b9b2a377954293ebe0fef5772e"
+    },
+    {
+      "path": "app/src/hr_demo/backend/core/_headers.py",
+      "sha256": "15e31250755c0054f46c10ade5880834ce21aeed5570eb4fe7bbe5558d8fefb9"
+    },
+    {
+      "path": "app/src/hr_demo/backend/core/_static.py",
+      "sha256": "c004f66e021cbc23f267f6a8d339cf5d228ecd2cd889eaa6f7b39a1b0722b8ca"
+    },
+    {
+      "path": "app/src/hr_demo/backend/core/dependencies.py",
+      "sha256": "de62eca0b495b061aa0222f2be0c1b79994519eafd299f014584cce4908c4aeb"
+    },
+    {
+      "path": "app/src/hr_demo/backend/dnb_agents.py",
+      "sha256": "7b73e75d93a93027a5dead37f05278f69d45d9b4da13b1b0b34fef6bb0f90c7d"
+    },
+    {
+      "path": "app/src/hr_demo/backend/enterprise.py",
+      "sha256": "2ef497462b3ef1f8b9648d35935b973d32d2ba788334905393d3d06038089a40"
+    },
+    {
+      "path": "app/src/hr_demo/backend/enterprise_models.py",
+      "sha256": "933b3195e9b07787743fb845e47c86080036f353060db2d157c5381e33b030ab"
+    },
+    {
+      "path": "app/src/hr_demo/backend/genie_chat.py",
+      "sha256": "123a9aa8668eb4bc0e44dd33152f2b8152d75139c88192d79b75e1288459e347"
+    },
+    {
+      "path": "app/src/hr_demo/backend/models.py",
+      "sha256": "75db7120680f4fdc84738ce4d51183a0d8d8df8cc50fb956aeac942145722081"
+    },
+    {
+      "path": "app/src/hr_demo/backend/router.py",
+      "sha256": "92a5561f98d76a37c4d1ea3ba0a927f52efab28ca4a503a702baad31d76a39d7"
+    },
+    {
+      "path": "app/src/hr_demo/backend/store.py",
+      "sha256": "afab4bebf149d557155ebfe53d9d3bc2ebb70b0cf695af40752c01c54fc2b6f2"
+    },
+    {
+      "path": "app/src/hr_demo/data/__init__.py",
+      "sha256": "333e9a216aea9905d012bc02b6ba88841def6a6eb4712c7707b942ee374c26f3"
+    },
+    {
+      "path": "app/src/hr_demo/data/agent_briefings.json",
+      "sha256": "d4d5414e07443302b85cfaa9a0d9abde891fb338e6f2d9172361c83f57eb140d"
+    },
+    {
+      "path": "app/src/hr_demo/data/dnb.py",
+      "sha256": "aecbe87410986474b78dcfef434c80c327793424776e147c466bdd7b43f514cf"
+    },
+    {
+      "path": "app/src/hr_demo/data/documents.json",
+      "sha256": "1951cddfe69d87260f700b0eb258977d59227c1852f7c22f5356313da3cd2f95"
+    },
+    {
+      "path": "app/src/hr_demo/data/enterprise.py",
+      "sha256": "11f20637790baae51fb0927f401f9e9cda02d638768afdeeb1b88cfb8c0b5c10"
+    },
+    {
+      "path": "app/src/hr_demo/data/snapshot.json",
+      "sha256": "bc7e6a2121b2893af2f6f0d72de5c630f5a2570263359daa1d44824cd5ee98eb"
+    },
+    {
+      "path": "app/src/hr_demo/ui/components/apx/logo.tsx",
+      "sha256": "a90fbdf8a4b5a6891d4fdd570fcc688d9473baf56684955c124dcce5b18303c1"
+    },
+    {
+      "path": "app/src/hr_demo/ui/components/apx/mode-toggle.tsx",
+      "sha256": "7280ba7a7eae66fcdb1e1a48abb4fd44723842a23f80ee14b8ed173bc573aad6"
+    },
+    {
+      "path": "app/src/hr_demo/ui/components/apx/navbar.tsx",
+      "sha256": "d1da7a64f2bcc96189d45301ff6e2c68fc5370c54d52148decff115e6bc4a31d"
+    },
+    {
+      "path": "app/src/hr_demo/ui/components/apx/theme-provider.tsx",
+      "sha256": "222890373d6d90518d5d95efcbfd392b9219cd1d63cfafd01bdf0e4163dd0981"
+    },
+    {
+      "path": "app/src/hr_demo/ui/components/backgrounds/bubble.tsx",
+      "sha256": "eca29a0a07f46691db2dd0d6601e0c9aaee13e5aa3338eb47369bcfd57c71790"
+    },
+    {
+      "path": "app/src/hr_demo/ui/components/cockpit/actions.tsx",
+      "sha256": "e0b4b42cdd54ecb50d4f7f2a1b343e0a605f7f369d0141065cb56921248e73b5"
+    },
+    {
+      "path": "app/src/hr_demo/ui/components/cockpit/agent-workspace.tsx",
+      "sha256": "e618e05103aefc74a51b2b5449e4458e167d72657943c424a74c4fcc622dfd4b"
+    },
+    {
+      "path": "app/src/hr_demo/ui/components/cockpit/assistant.tsx",
+      "sha256": "7e52437430b341c288038ee28f409e381f665cd490be042f61e881e0c6f7165c"
+    },
+    {
+      "path": "app/src/hr_demo/ui/components/cockpit/briefing.tsx",
+      "sha256": "7863d8dce208bbae2c8e4ab6949ee935df1f56fc2467bb4c9e307fbbe826a711"
+    },
+    {
+      "path": "app/src/hr_demo/ui/components/cockpit/context.tsx",
+      "sha256": "e1f4f91203cc41f0e747abea1fb077189be729d90cd90fd43288f5ca2cb915ad"
+    },
+    {
+      "path": "app/src/hr_demo/ui/components/cockpit/dnb.tsx",
+      "sha256": "5da5d2ff86c9bb1195cfc226b86ac01d5db5177c5f379138b723f336c1bc979b"
+    },
+    {
+      "path": "app/src/hr_demo/ui/components/cockpit/elements.tsx",
+      "sha256": "a730aa999bc6268f553a590fb76b3d0eda7e4f22cc2f777573e8e36092ed0ef2"
+    },
+    {
+      "path": "app/src/hr_demo/ui/components/cockpit/enterprise.tsx",
+      "sha256": "7553eca552e4947b278e56540e0c66236db25f857df544270177e9a470a02204"
+    },
+    {
+      "path": "app/src/hr_demo/ui/components/cockpit/genie.tsx",
+      "sha256": "0d96de35f15dc3e7ed0878163c6d3ead8c0459d176ef6e0fa11fba6e6e7eeccb"
+    },
+    {
+      "path": "app/src/hr_demo/ui/components/cockpit/loading-bar.tsx",
+      "sha256": "ddb7f4f309c174df8db6b52c1ab559933c75fb934c6f93aa528c51430f18c477"
+    },
+    {
+      "path": "app/src/hr_demo/ui/components/cockpit/markdown.tsx",
+      "sha256": "87df4b8c6eb17d5af35d2e876a8553ce76626f775399ed625cff3bbd32efa150"
+    },
+    {
+      "path": "app/src/hr_demo/ui/components/cockpit/pages.tsx",
+      "sha256": "da5bd30ebcfb050798fd284e4ccba126eb21a7534f242b001c87008edf559b17"
+    },
+    {
+      "path": "app/src/hr_demo/ui/components/cockpit/shell.tsx",
+      "sha256": "931e624ced57599d0600d6eba9cde23bd349e976ec7e86f6922597fd43f16c84"
+    },
+    {
+      "path": "app/src/hr_demo/ui/components/cockpit/sources.tsx",
+      "sha256": "ff79000d3f4f1072f26cd8d578440e6c30d30316d14da80d5a731cedac1d4f66"
+    },
+    {
+      "path": "app/src/hr_demo/ui/components/cockpit/studio.tsx",
+      "sha256": "e44cc82a2d22529e850966bb5e306092cbf1d4d07f8b3102d32ec3e7ef8d129d"
+    },
+    {
+      "path": "app/src/hr_demo/ui/components/cockpit/tour.tsx",
+      "sha256": "9270a076e1fa60f0d6c96487eaf4e545c875fe6f3931a370259ddec1d29942d5"
+    },
+    {
+      "path": "app/src/hr_demo/ui/components/cockpit/trust.tsx",
+      "sha256": "78b0049c035f8ea58bc71a4eb24f25d55bfe54b1e494353d83322c35a6c6c3ab"
+    },
+    {
+      "path": "app/src/hr_demo/ui/components/ui/avatar.tsx",
+      "sha256": "e78b35ed76c67d8ff50603fbe0dfa4fe600097bd860d89e65beea3e16683dad8"
+    },
+    {
+      "path": "app/src/hr_demo/ui/components/ui/badge.tsx",
+      "sha256": "dab689d836ad3292b41e7f4986b4e68e5d45c6903e4aeaae8972a82d4aebec29"
+    },
+    {
+      "path": "app/src/hr_demo/ui/components/ui/button.tsx",
+      "sha256": "c2b999a96781e6c932632bd089095368e973bf5602e1b1a62156b7d2b43f1e84"
+    },
+    {
+      "path": "app/src/hr_demo/ui/components/ui/card.tsx",
+      "sha256": "525c4bb2c051987be64df0e92e1d90174912b219bf541e24ffbc4a3406de49e8"
+    },
+    {
+      "path": "app/src/hr_demo/ui/components/ui/input.tsx",
+      "sha256": "6299a6a387dc55e528aec4342deaea0b83f1ea3a365c135a31a18ee55334f441"
+    },
+    {
+      "path": "app/src/hr_demo/ui/components/ui/separator.tsx",
+      "sha256": "995c54f1c5c688f712a675fe35d55bcada2b31dba561dcc71553a1ad601e59ec"
+    },
+    {
+      "path": "app/src/hr_demo/ui/components/ui/sheet.tsx",
+      "sha256": "363f8e06aa5b53c6475f445117f60fa9294be79e9e4f1f5bf70886800188124e"
+    },
+    {
+      "path": "app/src/hr_demo/ui/components/ui/sidebar.tsx",
+      "sha256": "e3e0c366a37a05a34d2b63b36b57ba9693f4444e1bb5bc8edc69374614ca86d0"
+    },
+    {
+      "path": "app/src/hr_demo/ui/components/ui/skeleton.tsx",
+      "sha256": "87608e7cc815ad3d88e0b9de6c402bb37b58ea1b38636cf69709da1baff6e334"
+    },
+    {
+      "path": "app/src/hr_demo/ui/components/ui/tooltip.tsx",
+      "sha256": "5dae09d44c0c60c58da21b33c09e61deb61aea4289a2d1a7a96807fd73dc4e38"
+    },
+    {
+      "path": "app/src/hr_demo/ui/hooks/use-mobile.ts",
+      "sha256": "ad0936f84f1df79d3697bfbff9c18f8ad58431c1cbaf2359c6a853b0fcc9f28b"
+    },
+    {
+      "path": "app/src/hr_demo/ui/index.html",
+      "sha256": "9cdb051fde36fe4d35f7c01b31fcae79ca1ec426c1b1968947d6d9a15bb00b9c"
+    },
+    {
+      "path": "app/src/hr_demo/ui/lib/api.ts",
+      "sha256": "7146bd06a7edcc468d8675915f2cf7fa49cce846d53a683830a7157ebf73ff5a"
+    },
+    {
+      "path": "app/src/hr_demo/ui/lib/cockpit-errors.ts",
+      "sha256": "3979f02f2e24fccbc41559ae8426839fcfcd8ab2c20bb4467928c368060d3987"
+    },
+    {
+      "path": "app/src/hr_demo/ui/lib/cockpit-types.ts",
+      "sha256": "15565fa53f1645fa831902d37c8fc07095fb9f8670bb18fa3e4bd140d28bf728"
+    },
+    {
+      "path": "app/src/hr_demo/ui/lib/enterprise.ts",
+      "sha256": "c8ba4a1d37ade62993625337372b09fb90dc6bcbb4fc37ce65a9204992d59a2c"
+    },
+    {
+      "path": "app/src/hr_demo/ui/lib/preference-storage.ts",
+      "sha256": "70a7dbefc428923bff5968a02b95a51f9ed146ae633a2deaca27d7c36d55790f"
+    },
+    {
+      "path": "app/src/hr_demo/ui/lib/selector.ts",
+      "sha256": "f7788c92b2fd00175205f43bb0fde56a013f5d52e178a6c2e713152519429533"
+    },
+    {
+      "path": "app/src/hr_demo/ui/lib/studio.ts",
+      "sha256": "27cdfd691c626f52e96b520660032d8347478671e067d5f930edf91a1be6bffe"
+    },
+    {
+      "path": "app/src/hr_demo/ui/lib/utils.ts",
+      "sha256": "d1f1e0d62cb8d8d1e04c26e14de842d8a151f75812d81b046c65b5d1fe8e4b27"
+    },
+    {
+      "path": "app/src/hr_demo/ui/main.tsx",
+      "sha256": "213e2dde667774dbd29900a758402926043b2dd3c9dbb8a0b06e354fd3e2273e"
+    },
+    {
+      "path": "app/src/hr_demo/ui/public/logo.svg",
+      "sha256": "3810b8ea669ac2dd826af6c6e70aa4051eeffe96989eab184e4ac9b5fb055307"
+    },
+    {
+      "path": "app/src/hr_demo/ui/routes/__root.tsx",
+      "sha256": "743fb71db8358690277f28d716e2cf6f37158b9403328098ef145caa187ac613"
+    },
+    {
+      "path": "app/src/hr_demo/ui/routes/agent-workspace.tsx",
+      "sha256": "c4cfffcf1a4b02e15deb23578d06063ebda4a5c90e441ef64ea328dfae3db033"
+    },
+    {
+      "path": "app/src/hr_demo/ui/routes/ask.tsx",
+      "sha256": "c2b185d8c4efe0c630e0d52996678b5fa91f2f28f173c6d9470879989de2e233"
+    },
+    {
+      "path": "app/src/hr_demo/ui/routes/briefing.tsx",
+      "sha256": "aaab2a9ffb1d08ef0a60f57407d6580cbcc5158c9f4c32d86c26f4c1ffff6fc1"
+    },
+    {
+      "path": "app/src/hr_demo/ui/routes/dnb.tsx",
+      "sha256": "e6c9e40065329a96585afe989f08c9e66b249d11da371502e9fb9a4d3c64b485"
+    },
+    {
+      "path": "app/src/hr_demo/ui/routes/enterprise.tsx",
+      "sha256": "52527fad6d193cb281c3937854383b2fb67af67d270759e825ae8b3fb3446327"
+    },
+    {
+      "path": "app/src/hr_demo/ui/routes/index.tsx",
+      "sha256": "6d80f22d78314fd3d104a46715cb1a4eee58e39c8eb40ade5358dc02c3f6d3d2"
+    },
+    {
+      "path": "app/src/hr_demo/ui/routes/people-ops.tsx",
+      "sha256": "30834ad447c8e15b8c94ddd54ecbb41a6aeaeb7edc55e6a2e4bc9fbdb2b96d12"
+    },
+    {
+      "path": "app/src/hr_demo/ui/routes/retention.tsx",
+      "sha256": "7ea7990aa1632fc25c5c297e2d5be69846e8afef76e2ffab6606b9e31759a692"
+    },
+    {
+      "path": "app/src/hr_demo/ui/routes/studio.tsx",
+      "sha256": "b27f932f52d4a4d0c60203f6da523575a951620dd86a3ad763f18a8ac26bb451"
+    },
+    {
+      "path": "app/src/hr_demo/ui/routes/talent.tsx",
+      "sha256": "9c0c20c01818ec45121e99fe15f173304f67a5f9d1cdac7675dcefdf02dbbfbc"
+    },
+    {
+      "path": "app/src/hr_demo/ui/routes/trust.tsx",
+      "sha256": "07db7d715eb57c079f878c787bb7a4e6515758b03523a90655b2ef28164befdb"
+    },
+    {
+      "path": "app/src/hr_demo/ui/routes/workforce.tsx",
+      "sha256": "1a3cace35fe7ebb187c533c6570d4e14eef2218a0503c61d393c29a0cc5dad29"
+    },
+    {
+      "path": "app/src/hr_demo/ui/styles/cockpit.css",
+      "sha256": "810956ee6a08d72281ebf0d583c39a3a5184da643936d22a842468f8b77e36e4"
+    },
+    {
+      "path": "app/src/hr_demo/ui/styles/dnb.css",
+      "sha256": "9a54d1627f0bd09ce42469b96a51975a113260aac256cc723e6f54d2b1d4d6d1"
+    },
+    {
+      "path": "app/src/hr_demo/ui/styles/enterprise.css",
+      "sha256": "cc0b264545bf3a6c0b705524917f77906d8413726d8dd12d728dd0da24b6e76f"
+    },
+    {
+      "path": "app/src/hr_demo/ui/styles/globals.css",
+      "sha256": "a098bda6545416d576d7e8751357ea0f8a8cac5984a061e7c0c2ba95d6c06070"
+    },
+    {
+      "path": "app/src/hr_demo/ui/styles/studio.css",
+      "sha256": "970379174c1a456fe6aea749745a2cd54c81e8c7f57512f43fcb2571e3c44ef9"
+    },
+    {
+      "path": "app/src/hr_demo/ui/types/routeTree.gen.ts",
+      "sha256": "c97313679c29392b8a61cf8fc91d9f3bad70a8742cd917fac4def6966705c743"
+    },
+    {
+      "path": "app/src/hr_demo/ui/types/vite-env.d.ts",
+      "sha256": "de7ebc2e5200a061bb8fbc40c9e21ca2e90c7214c152450b43b82c70b3b47e82"
+    },
+    {
+      "path": "app/tests/test_enterprise.py",
+      "sha256": "70e056a560068a11e9301d0e8b4152ca639cabe469919c43a26f541a29c7af9e"
+    },
+    {
+      "path": "app/tools/deploy.py",
+      "sha256": "07b242be676b68ce51f6a954897951018daf58f04e732516594290334c3216e9"
+    },
+    {
+      "path": "app/tsconfig.json",
+      "sha256": "db7cd7d784525921653c7e9402c504ea15e4fffe785216a6d34126feabf9f40d"
+    },
+    {
+      "path": "delivery/FIELD_GUIDE.md",
+      "sha256": "60dee15f59f341eccffc0338d6cef18b16e68fccebe4f406e3b0b51a7d8ec77b"
+    },
+    {
+      "path": "delivery/README.md",
+      "sha256": "ce1530283266ed4bc577b7d1c0260764af94af0d2a1c6705b7732f646b37e3fc"
+    },
+    {
+      "path": "delivery/manage.py",
+      "sha256": "0c1f594da42931efa4251632450227d17602844f3c3cf3fb781cf17bb28fbc08"
+    },
+    {
+      "path": "delivery/package.py",
+      "sha256": "d99f0513daa455e3b72a4fd43809fb7442508e7a4be22fcd32cfbece1be91312"
+    },
+    {
+      "path": "delivery/release.gitignore",
+      "sha256": "fb8ba8fd8b32f2febc7ac07cdd7232a93d95b5192e78cb0f6b86575585b1930f"
+    },
+    {
+      "path": "delivery/simulate_sources.py",
+      "sha256": "8d726fdb4280edb40680380fe38bd867ff095ec77bd51a9f7c755d881d50692c"
+    },
+    {
+      "path": "delivery/target.example.json",
+      "sha256": "a785f47f9a01778c0aa43e6e8ea185073f24816f4d1d1547f6efc92b020232d5"
+    },
+    {
+      "path": "delivery/tool_client.py",
+      "sha256": "f206bdb07bf9fba44f283075c4f4e670f6b0aa30d73c6690e57301e9258ac6a1"
+    },
+    {
+      "path": "target.example.json",
+      "sha256": "a785f47f9a01778c0aa43e6e8ea185073f24816f4d1d1547f6efc92b020232d5"
+    }
+  ]
+}

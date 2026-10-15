@@ -1,0 +1,26 @@
+{
+  "document-candidate-001": {
+    "content": "Synthetic job evidence — candidate-001\nSkill: distributed systems\nSynthetic project: designed a queue-based service and documented retry semantics.\n",
+    "content_sha256": "d0b0b0395e64fea2fbfb9e6619592f677e9c7bba5d04a0b9ca8408e98d1d05a9",
+    "document_id": "document-candidate-001",
+    "synthetic": true
+  },
+  "document-candidate-002": {
+    "content": "Synthetic job evidence — candidate-002\nSkill: API design\nSynthetic project: published versioned API contracts with pagination and error examples.\n",
+    "content_sha256": "2f8e6ddddc4ea73fb824b12e149b9cb9e5ad2795cec5d00503dffaaae342d593",
+    "document_id": "document-candidate-002",
+    "synthetic": true
+  },
+  "document-candidate-003": {
+    "content": "Synthetic job evidence — candidate-003\nSkill: data engineering\nSynthetic project: implemented event-time processing with duplicate detection.\n",
+    "content_sha256": "c8c4d5f7de9e956d5476f288d8070d9cec8c2db7c71187dfd20571d97e4ab3af",
+    "document_id": "document-candidate-003",
+    "synthetic": true
+  },
+  "document-candidate-004": {
+    "content": "Synthetic job evidence — candidate-004\nSkill: service reliability\nSynthetic project: defined service objectives and tested dependency outage recovery.\n",
+    "content_sha256": "95fafa7ca82b65ec714c1d59287a81f0d09794d0b900d19fe5ae0bb1d385b9e0",
+    "document_id": "document-candidate-004",
+    "synthetic": true
+  }
+}

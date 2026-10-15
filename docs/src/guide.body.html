@@ -1,0 +1,459 @@
+<div id="doc">
+<header class="hero">
+  <div class="arc a1"></div><div class="arc a2"></div><div class="arc a3"></div>
+  <svg class="spark" style="top:52px;right:340px;width:34px;height:34px" viewBox="0 0 100 100"><path d="M50 0 C54 34 66 46 100 50 C66 54 54 66 50 100 C46 66 34 54 0 50 C34 46 46 34 50 0Z" fill="#FF3621" opacity=".85"/></svg>
+  <svg class="spark" style="top:150px;right:120px;width:20px;height:20px" viewBox="0 0 100 100"><path d="M50 0 C54 34 66 46 100 50 C66 54 54 66 50 100 C46 66 34 54 0 50 C34 46 46 34 50 0Z" fill="#FABFBA"/></svg>
+  <svg class="spark" style="top:96px;right:470px;width:16px;height:16px" viewBox="0 0 100 100"><path d="M50 0 C54 34 66 46 100 50 C66 54 54 66 50 100 C46 66 34 54 0 50 C34 46 46 34 50 0Z" fill="#FF5F46" opacity=".7"/></svg>
+  <div class="wrap">
+    <div class="brandbar">
+      <span class="sic" style="font-weight:800;font-size:26px;letter-spacing:.04em;color:#fff">HR Demo</span>
+      <span class="x">×</span>
+      <img class="dbx" alt="Databricks" src="__DBX_LOGO__">
+    </div>
+    <p class="eyebrow">Field guide · People Intelligence on Databricks</p>
+    <h1>The HR demo: <span class="em">every detail</span>, and how to present it</h1>
+    <p>A bilingual (FR/EN) Databricks App for HR leaders. It covers governed self-service, workforce capacity decisions, group reconciliation after an acquisition, Genie agents and an audited, human-reviewed action loop. All data is synthetic, and you can deploy it to your own workspace in about 30 minutes.</p>
+    <div class="meta">
+      <span class="chip"><b>Databricks Apps</b>&nbsp; FastAPI + React (APX)</span>
+      <span class="chip"><b>Lakebase</b>&nbsp; revisions · decisions · audit</span>
+      <span class="chip"><b>Genie + Supervisor</b>&nbsp; Agent Bricks</span>
+      <span class="chip"><b>FR / EN</b>&nbsp; light &amp; dark</span>
+      <span class="chip"><b>100% synthetic</b>&nbsp; no real PII</span>
+    </div>
+  </div>
+</header>
+
+<nav class="subnav">
+  <div class="wrap">
+    <a href="#overview">Overview</a>
+    <a href="#architecture">Architecture</a>
+    <a href="#tour">App tour</a>
+    <a href="#enterprise">Enterprise story</a>
+    <a href="#cockpit">Cockpit flow</a>
+    <a href="#agents">Genie &amp; DNB</a>
+    <a href="#studio">Studio</a>
+    <a href="#talk">Talk track</a>
+    <a href="#objections">Objections</a>
+    <a href="#deploy">Deploy</a>
+    <a href="#recovery">Reset &amp; fallback</a>
+    <a href="#limits">Limits</a>
+  </div>
+</nav>
+
+<!-- 01 -->
+<section id="overview">
+  <div class="wrap">
+    <span class="kicker">01 — Overview</span>
+    <h2>One app, <span class="em">six experiences</span>, one honest story</h2>
+    <p class="lead">The core message: <b>“An HR question, a useful answer, and only the data you are authorized to see.”</b> Every experience shows the same pattern: governed data, then an explainable answer, then a human-reviewed decision with an audit trail. Pick the entry point that matches your buyer.</p>
+    <div class="stats reveal">
+      <div class="stat"><div class="num orange">3</div><div class="lbl">Enterprise buyer stories (CFO/CHRO/CIO)</div></div>
+      <div class="stat"><div class="num">20</div><div class="lbl">DNB HR questions on 4 Genie agents + 1 Supervisor</div></div>
+      <div class="stat"><div class="num">4</div><div class="lbl">Fictional personas: CPO, HRBP, TA lead, People Analytics</div></div>
+      <div class="stat"><div class="num">12</div><div class="lbl">Routes, all in FR and EN, with guided tours</div></div>
+      <div class="stat"><div class="num proof">0</div><div class="lbl">Real employee records or writes to an HR system</div></div>
+    </div>
+    <div class="grid reveal" style="margin-top:22px">
+      <div class="card lake"><div class="sub">Default · /enterprise</div><h3>Enterprise &amp; Global</h3><p>Aster Group (fictional), 6 entities (DE FR GB IN JP US). Three decision stories on one Lakebase dataset: ingest a source revision, reconcile, explain with a live model, review and commit a capacity plan, then model value and TCO.</p></div>
+      <div class="card lake"><div class="sub">/agent-workspace</div><h3>Simulated agent workspace</h3><p>A Dust-style interface that makes <b>real</b> authenticated HTTP calls to the app's read-only tool contract. Use it to answer “we already have an agent UI”.</p></div>
+      <div class="card cloud"><div class="sub">/dnb</div><h3>DNB Top 20 &amp; Agents</h3><p>20 curated questions for Digital Natives. Each one routes to one of 4 dedicated Genie spaces on UC Metric Views. A native Supervisor handles cross-domain questions.</p></div>
+      <div class="card cloud"><div class="sub">/studio</div><h3>Demo Studio</h3><p>20 FR/EN playbooks, 5 fictional industry presets, a capacity/cost lab, a presenter playlist and JSON/Markdown exports. Use it to tailor the story to an account.</p></div>
+      <div class="card core"><div class="sub">/briefing · /retention · /talent · /workforce · /people-ops</div><h3>Historical four-domain cockpit</h3><p>“Care Coordination Platform”: 84 fictional employees and 11 roles. Retention, hiring, workforce planning and HR operations, with an approve → commit → audit loop.</p></div>
+      <div class="card core"><div class="sub">/ask · /trust</div><h3>Genie Agent &amp; Trust</h3><p>Live Genie questions with follow-ups, Markdown tables and source queries. Trust shows the real session identity, denied requests and the audit log.</p></div>
+    </div>
+    <div class="callout">
+      <span class="tag">Golden rule</span>
+      <p>The persona picker (Claire/Sofia/Mehdi/Alex) is a <b>presentation preview only</b> and never grants permissions. Authorization comes from the real Databricks Apps identity. Say this out loud: it is the most important trust moment in the demo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 02 -->
+<section id="architecture">
+  <div class="wrap">
+    <span class="kicker">02 — Architecture</span>
+    <h2>What actually runs, and <span class="em">what is simulated</span></h2>
+    <p class="lead">Everything you click is executed for real: SQL, Lakebase transactions, model calls, Genie and the audit trail. Only two inputs are simulated, and both are labeled in the app: the GCP source export and the Dust-style interface.</p>
+    <div class="flow reveal">
+      <div class="lane"><div class="lh">Sources</div>
+        <div class="node sim">Simulated GCP export<small>delivery/simulate_sources.py → JSON upload</small></div>
+        <div class="node">Packaged synthetic snapshot<small>deterministic generator + reference SQL</small></div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="lane"><div class="lh">Databricks App</div>
+        <div class="node core2">FastAPI backend<small>server-side scope, contract validation, idempotent upsert</small></div>
+        <div class="node core2">React UI (shadcn)<small>12 routes · FR/EN · tours · dark mode</small></div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="lane"><div class="lh">Data &amp; state</div>
+        <div class="node lakeb">Lakebase Postgres<small>source revisions, rejected batches, proposals, decisions, audit</small></div>
+        <div class="node lakeb">Unity Catalog + SQL warehouse<small>4 Metric Views, synthetic cohort tables</small></div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="lane"><div class="lh">AI</div>
+        <div class="node ai">FMAPI chat model<small>grounded explanation of the current revision</small></div>
+        <div class="node ai">Genie spaces + Supervisor<small>DNB specialists · historical Genie</small></div>
+      </div>
+    </div>
+    <div class="table-scroll reveal">
+      <table>
+        <thead><tr><th>Concern</th><th>How the demo handles it</th></tr></thead>
+        <tbody class="feat">
+          <tr><td>Identity</td><td>Databricks Apps authenticates the caller. A deployment-owned binding maps the presenter's IdP email to their workspace user ID, and unmatched identities are denied. There is no email-domain wildcard.</td></tr>
+          <tr><td>Scope</td><td><code>enterprise.access</code> assigns entities, a reader/editor role and a tenant per identity. Queries run as the <b>App service principal</b> with server-side entity filtering. This is not Genie OBO or database row-level security.</td></tr>
+          <tr><td>Actions</td><td>Propose → explicit review (expires after 15 min) → commit to the <b>synthetic queue</b> → read back. Nothing is ever written to Workday, GCP, Dust or another HR system.</td></tr>
+          <tr><td>Source ingestion</td><td>Payload hash binding, contract validation and a transactional upsert create a new revision. Bad batches are recorded without changing accepted rows, and a new revision invalidates uncommitted approvals.</td></tr>
+          <tr><td>Evidence</td><td>The <b>Technical evidence</b> tab shows the executed SQL and parameters, revision hash, lineage, p50/p95 latency, tokens and the identity audit.</td></tr>
+          <tr><td>Tool contract</td><td><code>GET /api/enterprise/tools/manifest</code> and <code>POST /api/enterprise/tools/query</code> form a read-only contract with no arbitrary SQL and no write path. OpenAPI is published at <code>/api/openapi.json</code>.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 03 -->
+<section id="tour">
+  <div class="wrap">
+    <span class="kicker">03 — App tour</span>
+    <h2>Every route, <span class="em">what to show</span></h2>
+    <p class="lead">Present on a desktop viewport. Mobile has no horizontal overflow, but floating controls can overlap content. Use FR/EN and the theme toggle in the top bar, and click <b>Guide me / Me guider</b> for the current persona's tour.</p>
+    <div class="table-scroll reveal">
+      <table>
+        <thead><tr><th>Route</th><th>What it is</th><th>Show this</th><th>Needs</th></tr></thead>
+        <tbody class="feat">
+          <tr><td><code>/enterprise</code> (also <code>/</code>)</td><td>Enterprise &amp; Global, 3 stories</td><td>New rehearsal → France / 2026-09 → ingest demand increase → ask the data → propose, review and commit → Value &amp; costs</td><td>Lakebase + chat model</td></tr>
+          <tr><td><code>/agent-workspace</code></td><td>Dust-style simulated interface</td><td>Pick Aster France SAS and ask “What needs local HR review?”, then open the tool trace</td><td>Lakebase + model</td></tr>
+          <tr><td><code>/dnb</code></td><td>DNB Top 20 &amp; Agents</td><td>Pick a scenario, region and month, open a question card, then ask the Supervisor a cross-domain question</td><td>4 Genie spaces + Supervisor</td></tr>
+          <tr><td><code>/studio</code></td><td>Demo Studio</td><td>My studio → industry preset → reorder playbooks → Present my story</td><td>Nothing (local only)</td></tr>
+          <tr><td><code>/briefing</code></td><td>Cockpit overview</td><td>84 employees, 11 roles, 6 overdue cases, and the saved Genie/Supervisor briefing per persona with sources</td><td>Packaged data</td></tr>
+          <tr><td><code>/retention</code></td><td>Retention</td><td>Attrition of 14.2% vs 8.1% and 18 aggregate pay-compression exposures. These are cohort signals, never individual predictions.</td><td>Packaged data</td></tr>
+          <tr><td><code>/talent</code></td><td>Talent acquisition</td><td>11 roles, 72-day vs 48-day median fill, and 4 fictional profiles with cited evidence and gaps. There is no ranking.</td><td>Packaged data</td></tr>
+          <tr><td><code>/workforce</code></td><td>Scenario planning</td><td>Retain 5 / hire 4 / redeploy 2: €390k within a €450k budget closes the gap from 13.5 to 4.3 FTE-months. Then approve and commit.</td><td>Lakebase</td></tr>
+          <tr><td><code>/people-ops</code></td><td>HR operations</td><td>6 overdue cases (2 onboarding, 2 mobility, 2 payroll) and the reflected action state</td><td>Lakebase</td></tr>
+          <tr><td><code>/ask</code></td><td>Historical Genie agent</td><td>“Compare les trois options et leur coût.” → Markdown table, sources and the recommended next action</td><td>Genie space</td></tr>
+          <tr><td><code>/trust</code></td><td>Trust &amp; sources</td><td>Real session identity, persona preview vs permissions, and a test refusal that shows up in the audit</td><td>Lakebase</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="shots reveal">
+      <figure><img loading="lazy" src="img/cockpit-trust.jpg" alt="Trust and sources page"><figcaption><b>/trust</b>: authenticated presenter, persona preview disclaimer, test refusals</figcaption></figure>
+      <figure><img loading="lazy" src="img/ent-dark.jpg" alt="Enterprise dark mode"><figcaption><b>Dark mode</b>: every route supports both themes</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 04 -->
+<section id="enterprise">
+  <div class="wrap">
+    <span class="kicker">04 — Enterprise &amp; Global (default)</span>
+    <h2>Three buyer stories on <span class="em">one connected workflow</span></h2>
+    <p class="lead">All three stories share the same synthetic dataset and API. Before you click anything, choose the story that matches the person in the room.</p>
+    <div class="table-scroll reveal">
+      <table>
+        <thead><tr><th>Story</th><th>Buyer &amp; trigger</th><th>Decision</th><th>Measurable evaluation</th></tr></thead>
+        <tbody class="feat">
+          <tr><td>Fund the capacity that protects delivery</td><td>CFO, CHRO, COO. Committed delivery exceeds capacity.</td><td>Hire vs redeploy budget trade-off</td><td>Reconciled gap, agreed cost/effect assumptions, reviewed action readback</td></tr>
+          <tr><td>Reconcile the group after an acquisition</td><td>CHRO, CFO, data platform. An acquisition or reorganization.</td><td>Common group definitions with local continuity</td><td>Employee/contractor bridge, FX, fiscal calendar, effective-dated rollup</td></tr>
+          <tr><td>Answer in the employee's existing workspace</td><td>CIO, CHRO, security. HR depends on data specialists.</td><td>Governed tools in the existing agent interface</td><td>Two authenticated scopes, cited policy, source availability, latency, maintenance effort</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>The 5-minute executive path</h3>
+    <ol class="steps reveal">
+      <li><span class="t">0:00–0:45</span><b>Confirm the decision.</b> Ask for the buyer's decision and one measurable baseline. Then click <b>New rehearsal</b>, which preserves all prior history.</li>
+      <li><span class="t">0:45–1:30</span><b>Scope.</b> Select France and 2026-09. Point at the capacity gap (FTE-months) and the “Revision 1 · lakebase” badge.</li>
+      <li><span class="t">1:30–2:30</span><b>Change the data.</b> Click <b>Ingest France demand increase</b>. The revision increments and the FR gap moves from 43 to 73 FTE-months. For the Group story, open <b>Group &amp; sources</b> and show the definition bridge instead.</li>
+      <li><span class="t">2:30–3:45</span><b>Explain and decide.</b> Click <b>Ask the data</b> for a live, revision-grounded answer. Then fill the capacity proposal and its rationale, review it explicitly, commit it, and show the readback.</li>
+      <li><span class="t">3:45–5:00</span><b>Value.</b> On <b>Value &amp; costs</b>, compare four alternatives and show the low/high range. Staff time is never counted as cash. Agree the next decision.</li>
+    </ol>
+    <div class="callout ok"><span class="tag">10 and 20 minutes</span><p><b>10 min:</b> also show source rejection and recovery on <b>Group &amp; sources</b> (upload a bad batch, then <b>Recover baseline source</b>) and an external-tool read on <code>/agent-workspace</code>. <b>20 min:</b> also show the HQ vs local identity proof (FR reader cannot read DE or write), the <b>Technical evidence</b> tab, the day-two ownership table and an evaluation plan you fill in together on the <b>Account brief</b> tab.</p></div>
+
+    <div class="shots reveal">
+      <figure class="tall"><img loading="lazy" src="img/ent-enterprise-overview-en.jpg" alt="Enterprise overview"><figcaption><b>Decision tab</b>: 6,960 employees, capacity gap by entity/team, explanation and capacity proposal</figcaption></figure>
+      <figure><img loading="lazy" src="img/ent-reviewed-decision.jpg" alt="Reviewed decision"><figcaption><b>Reviewed decision</b>: proposal → explicit review → commit → readback</figcaption></figure>
+      <figure><img loading="lazy" src="img/ent-live-explanation.jpg" alt="Live explanation"><figcaption><b>Live explanation</b> grounded in the current revision and scope</figcaption></figure>
+      <figure><img loading="lazy" src="img/ent-global-reconciliation.jpg" alt="Global reconciliation"><figcaption><b>Group &amp; sources</b>: reconciliation, FX, fiscal calendar, simulated GCP upload</figcaption></figure>
+      <figure><img loading="lazy" src="img/ent-value-case.jpg" alt="Value case"><figcaption><b>Value &amp; costs</b>: four alternatives, realization range, staff time ≠ cash</figcaption></figure>
+      <figure><img loading="lazy" src="img/ent-account-brief.jpg" alt="Account brief"><figcaption><b>Account brief</b>: discovery, evaluation plan, public references, export</figcaption></figure>
+      <figure class="tall"><img loading="lazy" src="img/ent-technical-evidence.jpg" alt="Technical evidence"><figcaption><b>Technical evidence</b>: executed SQL, revision hash, lineage, latency/tokens, identity audit</figcaption></figure>
+      <figure><img loading="lazy" src="img/ent-simulated-agent.jpg" alt="Simulated agent workspace"><figcaption><b>/agent-workspace</b>: Dust-style simulation with real tool calls and a tool trace</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 05 -->
+<section id="cockpit">
+  <div class="wrap">
+    <span class="kicker">05 — Historical four-domain cockpit</span>
+    <h2>The <span class="em">20-minute</span> HR leadership flow</h2>
+    <p class="lead">This is the original People Ops / HR storyline. Personas switch in this order: Claire (CPO) → Sofia (HRBP France) → Mehdi (TA lead) → Claire → Alex (People Analytics). It opens with a useful aggregate answer, then shows a <b>denied, audited</b> unauthorized request.</p>
+    <div class="table-scroll reveal">
+      <table>
+        <thead><tr><th>Time</th><th>Route</th><th>Show</th></tr></thead>
+        <tbody class="feat">
+          <tr><td>0–2 min</td><td><code>/briefing</code></td><td>84 fictional employees, 11 roles and 6 overdue cases. Then show the saved Genie/Supervisor summary for the persona, expand its sources, and explain the AI review and the required human approval.</td></tr>
+          <tr><td>2–4 min</td><td><code>/trust</code></td><td>Inspect the real session, switch the persona preview, request an individual-risk detail and show the <b>denial in the audit</b>.</td></tr>
+          <tr><td>4–7 min</td><td><code>/retention</code></td><td>Historical attrition of 14.2% vs 8.1% and 18 aggregate pay-compression exposures. The 1.8× capacity ratio is an <b>assumption</b>, not a prediction.</td></tr>
+          <tr><td>7–10 min</td><td><code>/talent</code></td><td>11 roles and a 72-day median fill vs 48. Open the 4 fictional profiles' cited evidence and visible gaps. There is <b>no ranking</b>.</td></tr>
+          <tr><td>10–15 min</td><td><code>/workforce</code></td><td>Compare the 3 options. The blended plan (retain 5 / hire 4 / redeploy 2) costs €390k against a €450k budget and cuts the gap from 13.5 to 4.3 FTE-months. Enter a rationale, review, approve and commit, then refresh to show state and audit.</td></tr>
+          <tr><td>15–17 min</td><td><code>/people-ops</code></td><td>Six overdue cases (2 onboarding, 2 mobility, 2 payroll). Filter the queue.</td></tr>
+          <tr><td>17–20 min</td><td><code>/ask</code> → <code>/trust</code></td><td>Compare the options in Genie and inspect its sources. Close with the workshop ask (see Talk track).</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13.5px;color:var(--muted)">UI limits: proposal rationale 10–600 characters, review notes 4–600. Approvals expire after 15 minutes, after which you need a fresh proposal and review. Rehearsal notes must say <code>AUTOMATED TEST - no actual human approval</code> when automated.</p>
+    <div class="shots reveal">
+      <figure><img loading="lazy" src="img/cockpit-briefing.jpg" alt="Briefing"><figcaption><b>/briefing</b>: capacity alert and per-persona saved briefing</figcaption></figure>
+      <figure><img loading="lazy" src="img/cockpit-retention.jpg" alt="Retention"><figcaption><b>/retention</b>: cohort-level signals only</figcaption></figure>
+      <figure><img loading="lazy" src="img/cockpit-talent.jpg" alt="Talent"><figcaption><b>/talent</b>: cited evidence and gaps, no score</figcaption></figure>
+      <figure><img loading="lazy" src="img/cockpit-workforce.jpg" alt="Workforce"><figcaption><b>/workforce</b>: 3-option comparison and approval</figcaption></figure>
+      <figure><img loading="lazy" src="img/cockpit-people-ops.jpg" alt="People ops"><figcaption><b>/people-ops</b>: overdue queue and reflected action</figcaption></figure>
+      <figure><img loading="lazy" src="img/cockpit-ask.jpg" alt="Ask"><figcaption><b>/ask</b>: questions and insights</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 06 -->
+<section id="agents">
+  <div class="wrap">
+    <span class="kicker">06 — Genie agents &amp; DNB Top 20</span>
+    <h2>Four specialists, <span class="em">one Supervisor</span></h2>
+    <p class="lead">The 20 questions are curated from Logfood research on Digital Native Businesses: 9 field themes, 10 adaptations and 1 editorial extension. They are <b>not</b> adoption rankings. Each Genie space sits on one UC Metric View over a 216-row synthetic cohort table (scenario × region × department × month, Jan–Jun 2026).</p>
+    <div class="table-scroll reveal">
+      <table>
+        <thead><tr><th>Genie specialist</th><th>Questions</th><th>Governed source</th><th>Covers</th></tr></thead>
+        <tbody class="feat">
+          <tr><td>Workforce &amp; costs</td><td>DNB01–05</td><td><code>dnb_workforce_metrics</code></td><td>Capacity gaps, headcount plan, distribution, aggregate personnel cost</td></tr>
+          <tr><td>Talent acquisition</td><td>DNB06–10</td><td><code>dnb_talent_metrics</code></td><td>Funnels, time-to-fill, offers, sourcing cost, internal mobility. Never candidate ranking.</td></tr>
+          <tr><td>Retention &amp; experience</td><td>DNB11–15</td><td><code>dnb_retention_metrics</code></td><td>Cohort attrition, survey participation, manager span, learning. No individual risk.</td></tr>
+          <tr><td>People operations</td><td>DNB16–20</td><td><code>dnb_operations_metrics</code></td><td>Support SLAs, onboarding, payroll exceptions, policy self-service, reconciliation</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout"><span class="tag">Smoking gun</span><p>The Engineering / EMEA hotspot begins in <b>April</b>. In the baseline scenario, the Supervisor calls all four tools and returns a <b>30 FTE gap, 66 days mean fill, 2.79% monthly attrition and 13 overdue cases</b>. Present it as an association, not a cause. Genie answers come with the actual SQL, rows and statement/conversation IDs. The Supervisor exposes the specialists' returned tables.</p></div>
+    <div class="shots reveal">
+      <figure class="tall"><img loading="lazy" src="img/dnb-desktop-fr.jpg" alt="DNB top 20"><figcaption><b>/dnb</b>: 20 questions, filters sent to the live agents</figcaption></figure>
+      <figure><img loading="lazy" src="img/dnb-supervisor-fr.jpg" alt="Supervisor answer"><figcaption><b>Supervisor</b>: cross-domain answer with specialist evidence</figcaption></figure>
+      <figure><img loading="lazy" src="img/genie-answer-en.jpg" alt="Genie answer"><figcaption><b>/ask</b>: live Genie answer with a table, sources and next action (loading can take about a minute)</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 07 -->
+<section id="studio">
+  <div class="wrap">
+    <span class="kicker">07 — Demo Studio</span>
+    <h2>Tailor the story <span class="em">before the meeting</span></h2>
+    <p class="lead">On <b>My studio / Mon studio</b>, pick a fictional industry and name, reorder the playbooks and choose a 5, 10 or 20-minute format. <b>Present my story</b> opens a five-beat presentation (Escape exits). The capacity lab lets you edit retain/hire/redeploy counts, unit costs, effects and budget. A simulation is an option for discussion and never an approval. Export to JSON to reuse a configuration, or to a Markdown presenter brief.</p>
+    <div class="shots reveal">
+      <figure><img loading="lazy" src="img/studio-library.jpg" alt="Studio library"><figcaption><b>20 playbooks</b>, filterable by domain, source, product and depth</figcaption></figure>
+      <figure><img loading="lazy" src="img/studio-configure.jpg" alt="Studio configure"><figcaption><b>My studio</b>: preset, playlist and capacity lab</figcaption></figure>
+      <figure><img loading="lazy" src="img/studio-experience.jpg" alt="Studio experience"><figcaption><b>Present my story</b>: five-beat presenter mode</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 08 -->
+<section id="talk">
+  <div class="wrap">
+    <span class="kicker">08 — Talk track</span>
+    <h2>Lines that <span class="em">keep you honest</span></h2>
+    <p class="lead">These sentences were reviewed for the HR audience. Use them verbatim on sensitive moments. Each one is available in FR and EN.</p>
+    <div class="table-scroll reveal">
+      <table>
+        <thead><tr><th>Moment</th><th>English</th><th>Français</th></tr></thead>
+        <tbody class="feat">
+          <tr><td>Opening</td><td>“An HR question, a useful answer, only the data you are authorized to see.”</td><td>« Une question RH, une réponse utile, uniquement les données autorisées. »</td></tr>
+          <tr><td>Sources</td><td>“These systems are examples; the data is synthetic and the customer's actual tools are unconfirmed.”</td><td>« Ces systèmes sont des exemples ; les données sont synthétiques et les outils du client ne sont pas confirmés. »</td></tr>
+          <tr><td>Denied detail</td><td>“This identity cannot access those details. The request was denied and recorded in the audit trail.”</td><td>« Cette identité n'a pas accès à ces détails ; la demande est refusée et tracée. »</td></tr>
+          <tr><td>Retention</td><td>“This signal concerns a team; it does not predict whether an individual will leave.”</td><td>« Ce signal concerne une équipe ; il ne prédit pas le départ d'une personne. »</td></tr>
+          <tr><td>Pay compression</td><td>“A signal to investigate, not a demonstrated cause of departures.”</td><td>« C'est un signal à examiner, pas une cause démontrée des départs. »</td></tr>
+          <tr><td>Candidates</td><td>“Here are the documented skills and the gaps to check; the recruiter makes the decision.”</td><td>« Voici les compétences documentées et les points à vérifier ; la décision reste au recruteur. »</td></tr>
+          <tr><td>Action</td><td>“This approval updates the demo's action queue and preserves its audit trail; it does not change any external HR system.”</td><td>« Cette validation met à jour la file d'actions de la démonstration et conserve sa trace ; elle ne modifie aucun système RH externe. »</td></tr>
+          <tr><td>Closing ask</td><td>“Shall we agree on a follow-up workshop to define the HR access matrix and validate its mapping to source-system permissions?”</td><td>« Convenons-nous d'un atelier de suivi pour définir la matrice d'accès RH et valider la correspondance avec les permissions des systèmes sources ? »</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="pc reveal">
+      <div class="col pros"><h5>Always</h5><ul>
+        <li>Say <b>“synthetic”</b> early. The banner stays visible on every page.</li>
+        <li>Keep retention signals at <b>team/cohort</b> level.</li>
+        <li>Label modeled results as <b>modeled</b>: ROI, FX and capacity effects are assumptions.</li>
+        <li>Say <b>live</b> vs <b>recorded</b> explicitly when you switch to a fallback.</li>
+        <li>Remind the room that a human approves, and that the approval expires.</li>
+      </ul></div>
+      <div class="col cons"><h5>Never</h5><ul>
+        <li>Claim that the persona picker grants access.</li>
+        <li>Show individual flight-risk scores, candidate rankings or personal salary comparisons.</li>
+        <li>Call it a Dust or GCP integration. Both are simulated; only the HTTP contract is real.</li>
+        <li>Present a vendor name (Workday, Lucca, Greenhouse…) as the customer's actual stack.</li>
+        <li>Treat country filters as proof of data residency or legal compliance.</li>
+      </ul></div>
+    </div>
+    <h3>Discovery questions</h3>
+    <div class="grid reveal">
+      <div class="card"><p>What business event makes this urgent? · Which data is missing, versus already available? · Which source or metric definitions disagree?</p></div>
+      <div class="card"><p>Which interface must remain (HRIS, Dust, Slack…)? · What is the current cost and maintenance effort?</p></div>
+      <div class="card"><p>Who owns the budget, metric, source, access and run? · What result would justify moving forward, and by when?</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 -->
+<section id="objections">
+  <div class="wrap">
+    <span class="kicker">09 — Objections</span>
+    <h2>Evidence-based <span class="em">answers</span></h2>
+    <div class="table-scroll reveal">
+      <table>
+        <thead><tr><th>Concern</th><th>Response</th></tr></thead>
+        <tbody class="feat">
+          <tr><td>Our HR suite already reports this</td><td>Keep the suite when one source and standard definitions are enough. Demonstrate the incremental cross-system or operational requirement before adding a platform.</td></tr>
+          <tr><td>We already have BI</td><td>Compare on the same dataset and metric. Test missing source data, shared definitions, permissions and action readback, not aesthetics.</td></tr>
+          <tr><td>We built an MCP</td><td>Keep the working tool if it meets the need. Measure maintenance, cross-source semantics, rights and cost on the same bounded case.</td></tr>
+          <tr><td>We use Dust</td><td>Keep the chosen interface. The demo simulates Dust; the authenticated HTTP tool contract is real. Validate actual tenant compatibility before claiming an integration.</td></tr>
+          <tr><td>What about run effort?</td><td>Walk through one new table, a failed batch, a metric change and an access update. Name the owner and record the actual minutes. Do not promise zero engineering.</td></tr>
+          <tr><td>Is the ROI real?</td><td>All demo benefits are modeled. Replace the estimates with the customer's baseline, show low/high realization and delay, and separate staff capacity from cash.</td></tr>
+          <tr><td>Is it globally compliant?</td><td>Show the actual execution location and assigned access. Country filters and synthetic policies do not prove residency or employment-law compliance.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>Public references (link them, don't over-claim)</h3>
+    <div class="refs reveal">
+      <a class="ref-card" href="https://www.databricks.com/customers/dxc/lakebase" target="_blank" rel="noopener"><div class="co">DXC · Lakebase <span class="ar">↗</span></div><div class="rr">130,000 consultants. Processing went from about 2 hours to 7 minutes per 1,000 consultants. Competency workflow with reviewed Workday updates.</div></a>
+      <a class="ref-card" href="https://www.databricks.com/customers/la-county" target="_blank" rel="noopener"><div class="co">LA County <span class="ar">↗</span></div><div class="rr">Over 112,000 employees. Pipelines feed reporting in 10 minutes or less, down from weeks. Do not invent a hiring-time reduction.</div></a>
+    </div>
+  </div>
+</section>
+
+<!-- 10 -->
+<section id="deploy">
+  <div class="wrap">
+    <span class="kicker">10 — Deploy it in your workspace</span>
+    <h2>From clone to <span class="em">live demo</span></h2>
+    <p class="lead">The repo ships the prebuilt wheel and frontend, so deployment needs no Node, no APX and no access to the authoring repository. Use an FEVM or another non-production workspace with a <b>dedicated</b> Lakebase database. Never use a production HR database.</p>
+    <h3>Prerequisites</h3>
+    <ul class="checks">
+      <li>Python 3.11+, <code>uv</code>, Databricks CLI ≥ 1.19, and an explicitly selected, authenticated profile (<code>databricks auth login --profile &lt;p&gt;</code>)</li>
+      <li>A Lakebase project, branch, endpoint and dedicated database (for example <code>hr_demo</code>)</li>
+      <li>A READY chat endpoint on FMAPI for the live explanation, for example <code>databricks-claude-opus-4-7</code></li>
+      <li>Optional: a SQL warehouse, Genie spaces and a Supervisor for <code>/ask</code>, <code>/dnb</code> and live briefings (see below)</li>
+    </ul>
+    <h3>Steps</h3>
+<pre class="code"><span class="c"># 1. Install</span>
+git clone &lt;this-repo&gt; hr-demo &amp;&amp; cd hr-demo
+uv sync --project app
+
+<span class="c"># 2. Target config (never commit it: *.local.json is gitignored, never store a token)</span>
+cp target.example.json target.local.json
+<span class="c">#   profile, app_name (lowercase, &lt;=26 chars), presenter_user_id + presenter_user_name</span>
+<span class="c">#   (from: databricks current-user me --profile &lt;p&gt;), lakebase_resource, lakebase_connection,</span>
+<span class="c">#   enterprise.model_endpoint. PGUSER is filled in by "provision".</span>
+
+<span class="c"># 3. Lifecycle (use a NEW --out file for each run: prior evidence is never overwritten)</span>
+PY=app/.venv/bin/python; P=&lt;profile&gt;; C=target.local.json
+$PY delivery/manage.py preflight --profile $P --config $C --out runs/01-preflight.json
+$PY delivery/manage.py provision --profile $P --config $C --out runs/02-provision.json
+$PY delivery/manage.py deploy    --profile $P --config $C --out runs/03-deploy.json
+$PY delivery/manage.py verify    --profile $P --config $C --out runs/04-verify.json</pre>
+    <div class="table-scroll reveal">
+      <table>
+        <thead><tr><th>Command</th><th>What it does</th></tr></thead>
+        <tbody class="feat">
+          <tr><td><code>preflight</code></td><td>Checks that the authenticated user matches the configured presenter, that the Lakebase endpoint exists and that the model endpoint is READY.</td></tr>
+          <tr><td><code>provision</code></td><td>Creates the App if it is absent, then binds the Lakebase database (CAN_CONNECT_AND_CREATE) and the model (CAN_QUERY) and writes the App service principal into <code>PGUSER</code>. It never creates or deletes a Lakebase project.</td></tr>
+          <tr><td><code>deploy</code></td><td>Renders <code>app.yml</code> env from the config, uploads the wheel, requirements and config to your workspace folder, and deploys the App.</td></tr>
+          <tr><td><code>verify</code></td><td>Calls <code>/api/enterprise/catalog</code> as you and expects 3 stories and the configured scope.</td></tr>
+          <tr><td><code>reset</code></td><td>Creates a new rehearsal run through the API. Previous runs, approvals and audit are kept.</td></tr>
+          <tr><td><code>stop</code> / <code>teardown --confirm-app &lt;name&gt;</code></td><td>Stops the App's compute (data kept), or deletes only an App that this workflow created. Shared databases, warehouses and models are never touched.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>Optional: turn on Genie, DNB and live briefings</h3>
+    <p>Without these keys, <code>/enterprise</code>, <code>/agent-workspace</code>, <code>/studio</code> and the cockpit routes work fully. <code>/briefing</code> shows the packaged, reviewed summaries. Add these blocks to <code>target.local.json</code> and re-run <code>deploy</code>:</p>
+<pre class="code">"agents": {
+  "genie_space_id": "&lt;32-hex historical Genie space&gt;",
+  "genie_url": "https://&lt;host&gt;/genie/rooms/&lt;id&gt;",
+  "supervisor_endpoint": "&lt;supervisor serving endpoint&gt;",
+  "tables": ["catalog.schema.table", "..."]
+},
+"dnb_agents": {
+  "supervisor_endpoint": "&lt;DNB supervisor endpoint&gt;",
+  "specialists": {
+    "workforce":  {"space_id": "&lt;32-hex&gt;", "tables": ["cat.schema.dnb_workforce_metrics"]},
+    "talent":     {"space_id": "&lt;32-hex&gt;", "tables": ["cat.schema.dnb_talent_metrics"]},
+    "retention":  {"space_id": "&lt;32-hex&gt;", "tables": ["cat.schema.dnb_retention_metrics"]},
+    "operations": {"space_id": "&lt;32-hex&gt;", "tables": ["cat.schema.dnb_operations_metrics"]}
+  }
+}</pre>
+    <div class="callout"><span class="tag">Provisioning scripts</span><p><code>platform/dnb_setup.py</code> (metric views, 4 Genie spaces, Supervisor) and <code>platform/genie_setup.py</code> (historical aggregate Genie + Supervisor) are the <b>original authoring scripts</b>. They are hardcoded to the author's FEVM profile, catalog/schema and repo layout, so read <code>platform/README.md</code> and adapt them before running. Grant the App service principal CAN_RUN on each Genie space, CAN_QUERY on the Supervisor endpoints and SELECT on the tables.</p></div>
+    <h3>More identities (HQ vs local proof)</h3>
+    <p>Map extra users in <code>presenter_bindings</code> (IdP email → workspace ID) and give them a scope in <code>enterprise.access</code>, keyed by workspace user ID. For example: <code>{"&lt;id&gt;": {"entities": ["FR"], "role": "reader", "tenant": "aster"}}</code>. Entities are DE, FR, GB, IN, JP and US. The presenter defaults to editor on all entities. Sign in as the FR reader to show that DE is denied and that writes are refused.</p>
+    <h3>Rebuild from source (optional)</h3>
+    <p>Install Node 24+ and <a href="https://github.com/databricks-solutions/apx" target="_blank" rel="noopener">APX</a>, then run <code>npm install &amp;&amp; apx build</code> in <code>app/</code> and run <code>deploy</code> again. Lockfiles are deliberately excluded, so dependencies resolve from your registry.</p>
+  </div>
+</section>
+
+<!-- 11 -->
+<section id="recovery">
+  <div class="wrap">
+    <span class="kicker">11 — Before, during and after</span>
+    <h2>Rehearse, reset, <span class="em">fall back</span></h2>
+    <div class="grid reveal">
+      <div class="card lake"><div class="sub">T-30 min</div><h3>Pre-flight</h3><p>Start the App (FEVM Apps compute may be stopped), run <code>verify</code>, open <code>/enterprise</code> and click <b>New rehearsal</b>. Ask one Genie question to warm it up (the first answer can take about a minute). Use a desktop viewport and pick the language.</p></div>
+      <div class="card cloud"><div class="sub">During</div><h3>If something breaks</h3><p>If the model is unavailable, the SQL stays inspectable and the failure is explicit, so retry. If the session is lost, switch to the recorded walkthrough and say: “I'm switching to a prerecorded capture of the synthetic demo.” Never present playback as live.</p></div>
+      <div class="card core"><div class="sub">After</div><h3>Reset &amp; cost</h3><p><code>manage.py reset</code> creates a fresh run for the next demo, and <code>manage.py stop</code> stops App compute. Keep Lakebase autoscaling small (the reference instance uses 0.5–1 CU). Delete the App with <code>teardown</code> when you are done.</p></div>
+    </div>
+    <div class="vids reveal">
+      <a class="vid" href="enterprise-walkthrough-recorded-2026-10-08.webm" target="_blank" rel="noopener"><div class="thumb"><div class="play"></div><div class="tl">Recorded mode · 2026-10-08</div></div><div class="vb"><div class="vt">Enterprise walkthrough (automated run)</div><div class="vd">Fallback recording from a real deployed run. Its approvals are automated tests, not human approvals.</div></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- 12 -->
+<section id="limits">
+  <div class="wrap">
+    <span class="kicker">12 — Limits &amp; repo map</span>
+    <h2>What this demo <span class="em">does not prove</span></h2>
+    <div class="pc reveal">
+      <div class="col pros"><h5>Proven by execution</h5><ul>
+        <li>Clean install, tests and the full preflight → teardown lifecycle from the packaged runtime wheel, in an isolated workspace App/database</li>
+        <li>HQ vs FR scoped identities, denial audit, rejected-batch recovery</li>
+        <li>Bounded load test: 7,200 rows, concurrency 4, HTTP p50 295 ms / p95 312 ms</li>
+        <li>All 20 DNB benchmarks match the reference SQL. The Supervisor uses all 4 tools.</li>
+      </ul></div>
+      <div class="col cons"><h5>Not proven / out of scope</h5><ul>
+        <li>Any customer's data, HRIS, Dust tenant or GCP connection</li>
+        <li>Data residency, legal compliance, or source-permission propagation</li>
+        <li>Measured ROI. All value figures are modeled.</li>
+        <li>Full mobile usability. Arbitrary Genie wordings are answered correctly only probabilistically.</li>
+      </ul></div>
+    </div>
+    <div class="table-scroll reveal">
+      <table>
+        <thead><tr><th>Path</th><th>Contents</th></tr></thead>
+        <tbody class="feat">
+          <tr><td><code>docs/index.html</code></td><td>This guide, with screenshots in <code>docs/img/</code> and the recorded fallback video</td></tr>
+          <tr><td><code>app/</code></td><td>APX app: <code>src/hr_demo/backend</code> (FastAPI), <code>src/hr_demo/ui</code> (React), <code>src/hr_demo/data</code> (synthetic data), <code>.build/</code> (prebuilt wheel), <code>tools/deploy.py</code></td></tr>
+          <tr><td><code>delivery/</code></td><td><code>manage.py</code> lifecycle, <code>simulate_sources.py</code> (GCP export), <code>tool_client.py</code> (external agent), <code>FIELD_GUIDE.md</code>, <code>README.md</code></td></tr>
+          <tr><td><code>platform/</code></td><td>Reference Genie/DNB provisioning scripts (adapt before use)</td></tr>
+          <tr><td><code>target.example.json</code></td><td>Target configuration template</td></tr>
+          <tr><td><code>MANIFEST.json</code></td><td>SHA-256 of every packaged file and the source commit</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footlogos">
+      <span style="font-weight:800;color:#fff">HR Demo</span>
+      <span style="color:rgba(255,255,255,.4)">×</span>
+      <img class="dbx" alt="Databricks" src="__DBX_LOGO__">
+    </div>
+    <div class="fnote">Databricks internal · Synthetic data only · Questions: Laurent Fabre · 2026</div>
+  </div>
+</footer>
+</div>

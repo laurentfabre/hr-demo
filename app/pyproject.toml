@@ -1,0 +1,59 @@
+[project]
+name = "hr-demo"
+dynamic = ["version"]
+description = "Four-domain synthetic HR decision cockpit with human review and audit"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.119.0",
+    "pydantic-settings>=2.11.0",
+    "uvicorn>=0.37.0",
+    "databricks-sdk[openai]>=0.74.0",
+    "psycopg[binary]>=3.2.0",
+]
+
+[dependency-groups]
+dev = [
+    "ty>=0.0.12",
+    "httpx>=0.28.1",
+    "pyyaml>=6.0.2",
+]
+
+[tool.apx.metadata]
+app-name = "hr-demo"
+app-slug = "hr_demo"
+app-entrypoint = "hr_demo.backend.app:app"
+api-prefix = "/api"
+metadata-path = "src/hr_demo/_metadata.py"
+
+[tool.apx.ui]
+root = "src/hr_demo/ui"
+
+[tool.ty.environment]
+extra-paths = ["../.."]
+
+[tool.apx.ui.registries]
+"@animate-ui" = "https://animate-ui.com/r/{name}.json"
+"@ai-elements" = "https://registry.ai-sdk.dev/{name}.json"
+"@svgl" = "https://svgl.app/r/{name}.json"
+
+[build-system]
+requires = ["hatchling", "uv-dynamic-versioning>=0.7.0"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+source = "uv-dynamic-versioning"
+
+[tool.uv-dynamic-versioning]
+vcs = "git"
+fallback-version = "0.0.0"
+
+[tool.hatch.build.hooks.version]
+path = "src/hr_demo/_version.py"
+template = '''
+version = "{version}"
+'''
+
+[tool.hatch.build]
+artifacts = ["src/hr_demo/__dist__", "src/hr_demo/_metadata.py"]
+exclude = ["src/hr_demo/ui"]

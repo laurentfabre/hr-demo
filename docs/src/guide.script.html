@@ -1,0 +1,18 @@
+<div id="lightbox"><img alt=""></div>
+<script>
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('reveal-in')});}
+  else{var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('reveal-in');io.unobserve(e.target)}})},{threshold:.08});els.forEach(function(e){io.observe(e)});}
+  var navlinks={};document.querySelectorAll('nav.subnav a').forEach(function(a){navlinks[a.getAttribute('href').slice(1)]=a;});
+  var secs=document.querySelectorAll('section[id]');
+  if('IntersectionObserver' in window){var spy=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){
+    Object.keys(navlinks).forEach(function(k){navlinks[k].classList.remove('active')});
+    if(navlinks[e.target.id])navlinks[e.target.id].classList.add('active');}})},{rootMargin:"-45% 0px -50% 0px"});
+    secs.forEach(function(s){spy.observe(s)});}
+  var lb=document.getElementById('lightbox'),li=lb.querySelector('img');
+  document.querySelectorAll('.shots img').forEach(function(img){img.addEventListener('click',function(){li.src=img.src;li.alt=img.alt;lb.classList.add('on');lb.scrollTop=0;});});
+  lb.addEventListener('click',function(){lb.classList.remove('on')});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')lb.classList.remove('on')});
+})();
+</script>

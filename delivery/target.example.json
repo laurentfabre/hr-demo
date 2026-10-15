@@ -1,0 +1,24 @@
+{
+  "profile": "CHOOSE_EXPLICITLY",
+  "app_name": "hr-enterprise-demo",
+  "presenter_user_id": "RESOLVE_FROM_SELECTED_WORKSPACE",
+  "presenter_user_name": "presenter@example.invalid",
+  "warehouse_id": "OPTIONAL_FOR_HISTORICAL_GENIE",
+  "lakebase_resource": {
+    "branch": "projects/SELECTED/branches/SELECTED",
+    "database": "projects/SELECTED/branches/SELECTED/databases/SELECTED"
+  },
+  "lakebase_connection": {
+    "PGHOST": "SELECTED_ENDPOINT_HOST",
+    "PGPORT": "5432",
+    "PGDATABASE": "hr_demo",
+    "PGUSER": "RESOLVED_BY_PROVISION",
+    "HR_DEMO_LAKEBASE_ENDPOINT": "projects/SELECTED/branches/SELECTED/endpoints/SELECTED"
+  },
+  "enterprise": {
+    "model_endpoint": "CHOOSE_A_READY_CHAT_ENDPOINT",
+    "access": {}
+  },
+  "presenter_bindings": {},
+  "subject_bindings": {}
+}

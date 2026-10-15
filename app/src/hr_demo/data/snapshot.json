@@ -1,0 +1,464 @@
+{
+  "as_of": "2026-09-14T00:00:00Z",
+  "candidates": [
+    {
+      "candidate_id": "candidate-001",
+      "citations": [
+        {
+          "content_sha256": "d0b0b0395e64fea2fbfb9e6619592f677e9c7bba5d04a0b9ca8408e98d1d05a9",
+          "document_id": "document-candidate-001",
+          "passage": "Synthetic project: designed a queue-based service and documented retry semantics."
+        }
+      ],
+      "consent_valid": true,
+      "display_name": "Fictional profile 1",
+      "gaps": [
+        "production load-test evidence"
+      ],
+      "role_title": "Engineering role",
+      "skills": [
+        "distributed systems"
+      ]
+    },
+    {
+      "candidate_id": "candidate-002",
+      "citations": [
+        {
+          "content_sha256": "2f8e6ddddc4ea73fb824b12e149b9cb9e5ad2795cec5d00503dffaaae342d593",
+          "document_id": "document-candidate-002",
+          "passage": "Synthetic project: published versioned API contracts with pagination and error examples."
+        }
+      ],
+      "consent_valid": true,
+      "display_name": "Fictional profile 2",
+      "gaps": [
+        "incident response example"
+      ],
+      "role_title": "Engineering role",
+      "skills": [
+        "API design"
+      ]
+    },
+    {
+      "candidate_id": "candidate-003",
+      "citations": [
+        {
+          "content_sha256": "c8c4d5f7de9e956d5476f288d8070d9cec8c2db7c71187dfd20571d97e4ab3af",
+          "document_id": "document-candidate-003",
+          "passage": "Synthetic project: implemented event-time processing with duplicate detection."
+        }
+      ],
+      "consent_valid": true,
+      "display_name": "Fictional profile 3",
+      "gaps": [
+        "service ownership evidence"
+      ],
+      "role_title": "Engineering role",
+      "skills": [
+        "data engineering"
+      ]
+    },
+    {
+      "candidate_id": "candidate-004",
+      "citations": [
+        {
+          "content_sha256": "95fafa7ca82b65ec714c1d59287a81f0d09794d0b900d19fe5ae0bb1d385b9e0",
+          "document_id": "document-candidate-004",
+          "passage": "Synthetic project: defined service objectives and tested dependency outage recovery."
+        }
+      ],
+      "consent_valid": true,
+      "display_name": "Fictional profile 4",
+      "gaps": [
+        "schema evolution example"
+      ],
+      "role_title": "Engineering role",
+      "skills": [
+        "service reliability"
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "case_id": "case-de-mobility",
+      "category": "mobility",
+      "due_at": "2026-09-12T00:00:00Z",
+      "scope_label": "Care Coordination Platform · Berlin",
+      "status": "in_progress"
+    },
+    {
+      "case_id": "case-de-onboarding",
+      "category": "onboarding",
+      "due_at": "2026-09-12T00:00:00Z",
+      "scope_label": "Care Coordination Platform · Berlin",
+      "status": "in_progress"
+    },
+    {
+      "case_id": "case-de-payroll",
+      "category": "payroll",
+      "due_at": "2026-09-12T00:00:00Z",
+      "scope_label": "Care Coordination Platform · Berlin",
+      "status": "in_progress"
+    },
+    {
+      "case_id": "case-fr-mobility",
+      "category": "mobility",
+      "due_at": "2026-09-12T00:00:00Z",
+      "scope_label": "Care Coordination Platform · Paris",
+      "status": "in_progress"
+    },
+    {
+      "case_id": "case-fr-onboarding",
+      "category": "onboarding",
+      "due_at": "2026-09-12T00:00:00Z",
+      "scope_label": "Care Coordination Platform · Paris",
+      "status": "in_progress"
+    },
+    {
+      "case_id": "case-fr-payroll",
+      "category": "payroll",
+      "due_at": "2026-09-12T00:00:00Z",
+      "scope_label": "Care Coordination Platform · Paris",
+      "status": "in_progress"
+    }
+  ],
+  "definitions": [
+    {
+      "definition_en": "Distinct employees active at the reference date within the displayed scope.",
+      "definition_fr": "Nombre de collaborateurs distincts actifs à la date de référence dans le périmètre affiché.",
+      "id": "headcount",
+      "label_en": "Active headcount",
+      "label_fr": "Effectif actif",
+      "source": "validation/reference_query.sql",
+      "unit": "employees"
+    },
+    {
+      "definition_en": "Voluntary exits during the preceding 365 days divided by average daily headcount over that period, multiplied by 100. No individual probability.",
+      "definition_fr": "Départs volontaires sur les 365 jours précédents, divisés par l'effectif quotidien moyen de cette période, multipliés par 100. Aucune probabilité individuelle.",
+      "id": "attrition",
+      "label_en": "Historical voluntary attrition",
+      "label_fr": "Départs volontaires historiques",
+      "source": "validation/reference_query.sql",
+      "unit": "%"
+    },
+    {
+      "definition_en": "Median calendar days from opening to filling for roles filled during the preceding 365 days.",
+      "definition_fr": "Médiane des jours calendaires entre ouverture et pourvoi des postes pourvus durant les 365 jours précédents.",
+      "id": "time_to_fill",
+      "label_en": "Median time to fill",
+      "label_fr": "Délai médian de recrutement",
+      "source": "validation/reference_query.sql",
+      "unit": "days"
+    },
+    {
+      "definition_en": "Aggregate count of employees with at least 24 months of tenure whose pay is at most 105% of the median of at least three peers with under 12 months of tenure in the same country, job family and level. Synthetic association, not causation. Unavailable when coverage is incomplete.",
+      "definition_fr": "Nombre agrégé de collaborateurs ayant au moins 24 mois d'ancienneté dont la rémunération est au plus 105 % de la médiane d'au moins trois pairs ayant moins de 12 mois d'ancienneté, à pays, famille de métier et niveau identiques. Association synthétique, sans causalité. Résultat indisponible si la couverture est incomplète.",
+      "id": "pay_compression",
+      "label_en": "Pay compression association",
+      "label_fr": "Association de compression salariale",
+      "source": "validation/reference_query.sql",
+      "unit": "employees"
+    },
+    {
+      "definition_en": "Positive assumed demand-minus-capacity gap over 90 days per active FTE, relative to the same measure for the synthetic company including the cohort. A scenario assumption, not a trained-model prediction.",
+      "definition_fr": "Écart positif entre demande et capacité supposées sur 90 jours, par ETP actif, rapporté au même indicateur de l'entreprise synthétique incluant la cohorte. Hypothèse de scénario, pas une prédiction issue d'un modèle entraîné.",
+      "id": "assumed_capacity_ratio",
+      "label_en": "Assumed capacity ratio",
+      "label_fr": "Ratio de capacité sous hypothèses",
+      "source": "validation/reference_query.sql",
+      "unit": "×"
+    },
+    {
+      "definition_en": "Sum over six calendar months of positive monthly demand-minus-capacity gaps after assumed intervention effects. One FTE-month is one full-time person's capacity for one month. Raw values use milli-FTE-months.",
+      "definition_fr": "Somme sur six mois calendaires des écarts mensuels positifs entre demande et capacité, après les effets supposés des interventions. Un ETP-mois correspond à la capacité d'une personne à temps plein pendant un mois. Valeurs sources en milli-ETP-mois.",
+      "id": "scenario_gap",
+      "label_en": "Scenario capacity gap",
+      "label_fr": "Écart de capacité du scénario",
+      "source": "validation/reference_query.sql",
+      "unit": "FTE-months"
+    },
+    {
+      "definition_en": "Intervention counts multiplied by synthetic unit costs: retain €10,000, hire €70,000, redeploy €30,000. Raw values use cents. A proposal for human review; no executed HR action.",
+      "definition_fr": "Nombre d'interventions multiplié par leur coût unitaire synthétique : fidéliser 10 000 €, recruter 70 000 €, mobilité 30 000 €. Valeurs sources en centimes. Proposition soumise à revue humaine, sans action RH exécutée.",
+      "id": "scenario_cost",
+      "label_en": "Assumed scenario cost",
+      "label_fr": "Coût supposé du scénario",
+      "source": "validation/reference_query.sql",
+      "unit": "EUR"
+    },
+    {
+      "definition_en": "Scoped requisitions marked critical and open at the reference date.",
+      "definition_fr": "Nombre de postes du périmètre marqués critiques, ouverts à la date de référence.",
+      "id": "critical_open_roles",
+      "label_en": "Critical open roles",
+      "label_fr": "Postes critiques ouverts",
+      "source": "validation/reference_query.sql",
+      "unit": "roles"
+    },
+    {
+      "definition_en": "Opened, unresolved cases whose due time is strictly before the reference date. Displayed details exclude employee identities.",
+      "definition_fr": "Dossiers ouverts, non résolus, dont l'échéance est strictement antérieure à la date de référence. Le détail affiché exclut l'identité des collaborateurs.",
+      "id": "overdue_cases",
+      "label_en": "Overdue cases",
+      "label_fr": "Dossiers hors délai",
+      "source": "validation/reference_query.sql",
+      "unit": "cases"
+    },
+    {
+      "definition_en": "Entirely synthetic data. Workday, Lucca, Greenhouse, SAP SuccessFactors and ServiceNow HR Service Delivery are examples; customer tools are not confirmed. Volumes count generated events, not live connections.",
+      "definition_fr": "Données entièrement synthétiques. Workday, Lucca, Greenhouse, SAP SuccessFactors et ServiceNow HR Service Delivery sont des exemples ; les outils du client ne sont pas confirmés. Les volumes comptent les événements générés, pas des connexions actives.",
+      "id": "synthetic_sources",
+      "label_en": "Illustrative systems",
+      "label_fr": "Systèmes illustratifs",
+      "source": "fixtures/hero_scenario.yaml",
+      "unit": "events"
+    }
+  ],
+  "provenance": {
+    "generated_at": "2026-09-14T08:32:28Z",
+    "inputs": [
+      {
+        "path": "demo/app/tools/build_demo_data.py",
+        "sha256": "d89f7e8cf04a03669229ee8f757b7efd6f766179673a7c55e6427b0712edb960"
+      },
+      {
+        "path": "fixtures/hero_scenario.yaml",
+        "sha256": "454b414e7223fb64d7a9ad85cb646604f5a64c9c50181aff07ed51f170981dc5"
+      },
+      {
+        "path": "scripts/schema_checks.py",
+        "sha256": "84096d7aa6512ae126c7974ecd5427f490cd8e4c1b72c68ad375ac37cf085aba"
+      },
+      {
+        "path": "src/__init__.py",
+        "sha256": "ad5f373ef24b0b879ce46269f54c53267b7b3790e9a1b0a6c806438aab287c1b"
+      },
+      {
+        "path": "src/contracts/__init__.py",
+        "sha256": "fd4fdb34f8e2d9bcac2c5f7d49832d399feb3cd59168a9c810eee26fa500e614"
+      },
+      {
+        "path": "src/contracts/catalog.py",
+        "sha256": "48c117b8e5d1269e053bc8d94be6b4196467729dfd1f8c0f1a92b38483e5ff06"
+      },
+      {
+        "path": "src/contracts/validation.py",
+        "sha256": "fe4c093f072beed599540f6daf7f6a9cb3a7bf46fc396e0c8ed2b4a72086b957"
+      },
+      {
+        "path": "src/fixtures/__init__.py",
+        "sha256": "90097174c39724fc87fb9a71783e26dc805aec47ddf1cddec1c314d06cd14e2c"
+      },
+      {
+        "path": "src/fixtures/generator.py",
+        "sha256": "15d8ca58718974ba1bcaa24b6dae31f1bfc6c82a4442482e1d2e70c4fde7aafa"
+      },
+      {
+        "path": "src/fixtures/validation.py",
+        "sha256": "d0da26a6e50bb28daa85dbf28cb35874c2c3a206f5eb41a05dabcfcefd164403"
+      },
+      {
+        "path": "src/reference/__init__.py",
+        "sha256": "1fbd74e78463c254b8b3ebf040013990d6ddc902d7072f94583d8e9f90a58b3c"
+      },
+      {
+        "path": "src/reference/runner.py",
+        "sha256": "d78e5d7cb1a83311df0f1d46e9606e6c7eafe89de7ba4ed328251d0530e9e9fb"
+      },
+      {
+        "path": "validation/expected_result.json",
+        "sha256": "ee6f0b018e91b374e70208ee6e7b63dcf042e4ce740ec254780c703789a93424"
+      },
+      {
+        "path": "validation/reference_query.sql",
+        "sha256": "e440f65f8de890cc28d814f570f82901f32ed653336a2e5d1e2c93c0a6458752"
+      }
+    ],
+    "source_commit": "f5066b5033a188424e8d5f405df6848184a4c236"
+  },
+  "reference": {
+    "as_of": "2026-09-14T00:00:00Z",
+    "calculation_kind": "local_sql_reference",
+    "model_status": "not_evaluated",
+    "options": [
+      {
+        "budget_eur_cents": 45000000,
+        "cost_eur_cents": 39000000,
+        "display": {
+          "gross_gap_milli": "13.500",
+          "residual_gap_milli": "4.300"
+        },
+        "gross_gap_milli": 13500,
+        "hire": 4,
+        "hire_cost_cents": 28000000,
+        "initial_state": "proposed",
+        "option_id": "blended",
+        "redeploy": 2,
+        "redeploy_cost_cents": 6000000,
+        "residual_gap_milli": 4300,
+        "retain": 5,
+        "retain_cost_cents": 5000000,
+        "within_budget": true
+      },
+      {
+        "budget_eur_cents": 45000000,
+        "cost_eur_cents": 0,
+        "display": {
+          "gross_gap_milli": "13.500",
+          "residual_gap_milli": "13.500"
+        },
+        "gross_gap_milli": 13500,
+        "hire": 0,
+        "hire_cost_cents": 0,
+        "initial_state": "proposed",
+        "option_id": "do_nothing",
+        "redeploy": 0,
+        "redeploy_cost_cents": 0,
+        "residual_gap_milli": 13500,
+        "retain": 0,
+        "retain_cost_cents": 0,
+        "within_budget": true
+      },
+      {
+        "budget_eur_cents": 45000000,
+        "cost_eur_cents": 42000000,
+        "display": {
+          "gross_gap_milli": "13.500",
+          "residual_gap_milli": "7.500"
+        },
+        "gross_gap_milli": 13500,
+        "hire": 6,
+        "hire_cost_cents": 42000000,
+        "initial_state": "proposed",
+        "option_id": "recruit_only",
+        "redeploy": 0,
+        "redeploy_cost_cents": 0,
+        "residual_gap_milli": 7500,
+        "retain": 0,
+        "retain_cost_cents": 0,
+        "within_budget": true
+      }
+    ],
+    "scenario_id": "DL-HR-2026-09-CCP",
+    "scopes": {
+      "company": {
+        "active_fte_milli": 1512000,
+        "attrition_numerator": 4745000,
+        "capacity_at_risk_index": null,
+        "capacity_ratio_denominator": 94500000000,
+        "capacity_ratio_numerator": 94500000000,
+        "critical_open_roles": 11,
+        "display": {
+          "assumed_capacity_ratio": "1.0",
+          "attrition_percent": "8.1",
+          "median_time_to_fill_days": "48.0"
+        },
+        "eligible_candidates": 4,
+        "engineering_roles": 7,
+        "fill_median_denominator": 1,
+        "fill_median_numerator": 48,
+        "headcount": 1512,
+        "membership": {
+          "cohort_id": null,
+          "country_codes": [
+            "DE",
+            "FR",
+            "IT",
+            "NL"
+          ],
+          "organization_ids": [
+            "org-background-de",
+            "org-background-fr",
+            "org-background-it",
+            "org-background-nl",
+            "org-hero-de",
+            "org-hero-fr"
+          ],
+          "scope_id": "efbc91ab835c6c37a9eb2b040436b6a9c0b6b3aafa9372a4aed820df90177d2c"
+        },
+        "mobility_cases": 2,
+        "onboarding_cases": 2,
+        "overdue_cases": 6,
+        "pay_compression_exposure": null,
+        "pay_unavailable_reason": "incomplete_payroll_or_peers",
+        "payroll_cases": 2,
+        "people_roles": 1,
+        "person_days": 584000,
+        "product_roles": 3,
+        "scope_available": true,
+        "voluntary_exits": 130
+      },
+      "hero": {
+        "active_fte_milli": 84000,
+        "attrition_numerator": 474500,
+        "capacity_at_risk_index": null,
+        "capacity_ratio_denominator": 5250000000,
+        "capacity_ratio_numerator": 9450000000,
+        "critical_open_roles": 11,
+        "display": {
+          "assumed_capacity_ratio": "1.8",
+          "attrition_percent": "14.2",
+          "median_time_to_fill_days": "72.0"
+        },
+        "eligible_candidates": 4,
+        "engineering_roles": 7,
+        "fill_median_denominator": 1,
+        "fill_median_numerator": 72,
+        "headcount": 84,
+        "membership": {
+          "cohort_id": "care-coordination-platform",
+          "country_codes": [
+            "DE",
+            "FR"
+          ],
+          "organization_ids": [
+            "org-hero-de",
+            "org-hero-fr"
+          ],
+          "scope_id": "570ad3d650a532699fb296707fec817312b0effa629fbaaf55a71ea56902ae74"
+        },
+        "mobility_cases": 2,
+        "onboarding_cases": 2,
+        "overdue_cases": 6,
+        "pay_compression_exposure": 18,
+        "pay_unavailable_reason": null,
+        "payroll_cases": 2,
+        "people_roles": 1,
+        "person_days": 33395,
+        "product_roles": 3,
+        "scope_available": true,
+        "voluntary_exits": 13
+      }
+    },
+    "synthetic": true
+  },
+  "scenario_id": "DL-HR-2026-09-CCP",
+  "sources": [
+    {
+      "event_count": 56,
+      "id": "greenhouse",
+      "label": "Greenhouse"
+    },
+    {
+      "event_count": 84,
+      "id": "lucca",
+      "label": "Lucca"
+    },
+    {
+      "event_count": 9,
+      "id": "servicenow_hr",
+      "label": "ServiceNow HR Service Delivery"
+    },
+    {
+      "event_count": 6,
+      "id": "successfactors",
+      "label": "SAP SuccessFactors"
+    },
+    {
+      "event_count": 3414,
+      "id": "workday",
+      "label": "Workday"
+    }
+  ],
+  "synthetic": true
+}

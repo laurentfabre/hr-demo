@@ -1,0 +1,191 @@
+{
+  "manifest": {
+    "snapshot_sha256": "a805dbdd0e1d26d21ac82504d011322f85184943db359d60b80083a96a48dbb9",
+    "supervisor_endpoint": "mas-10659eec-endpoint",
+    "genie_space_id": "01f1b02aec3a16c4ab8ed67771f10fe7",
+    "source_tables": [
+      "gdpr2_catalog.hr_demo.genie_scope_metrics",
+      "gdpr2_catalog.hr_demo.genie_scenario_options",
+      "gdpr2_catalog.hr_demo.genie_metric_definitions",
+      "gdpr2_catalog.hr_demo.genie_source_inventory"
+    ],
+    "answers": {
+      "cpo:fr": {
+        "capture_path": "validation/agents/generation-07/cpo-fr.json",
+        "capture_sha256": "a26f33bb149bc6f3aacd2b3d06c3c8ab5dddcbb4b019826578722c70b83a7fcb",
+        "answer_sha256": "d6a9e753421359ae5d27e2c877913531266fc85aad58338b6326a3035c39c83e",
+        "prompt_sha256": "df52f4fc3dd89d6223d73c803fca217704426a6adcb9746cacea512dd0c267cc",
+        "lineage_sha256": "e0f908afda2201486ce302867f59cb579ba98e0076bd9e0b58e255286868400a",
+        "citations": [
+          "gdpr2_catalog.hr_demo.genie_scenario_options",
+          "gdpr2_catalog.hr_demo.genie_scope_metrics"
+        ],
+        "generated_at": "2026-09-14T11:17:29.275580+00:00",
+        "response_id": "resp_1cf3e3ca0bf94136a18538ef81442035"
+      },
+      "cpo:en": {
+        "capture_path": "validation/agents/generation-07/cpo-en.json",
+        "capture_sha256": "80816a018d0d9e57ab4d92908bc925337c78a8d3019126173cc83891345e39c8",
+        "answer_sha256": "3c96dff32f7dc05a5ca34de94a1d5963584977a3056cf88e6880a9fc94f867fd",
+        "prompt_sha256": "09da570b06fb00a1ddf89f6a4353c550e5564a3bf109d2329df36fffa5fac5de",
+        "lineage_sha256": "6da27f70a7a185a3986b25874fbd401fe1b52231c1f5d69ba1b2ffc5484eedc6",
+        "citations": [
+          "gdpr2_catalog.hr_demo.genie_scenario_options",
+          "gdpr2_catalog.hr_demo.genie_scope_metrics"
+        ],
+        "generated_at": "2026-09-14T11:18:11.969718+00:00",
+        "response_id": "resp_34b494b162bc42a996fff9e92c964291"
+      },
+      "hrbp:fr": {
+        "capture_path": "validation/agents/generation-10/hrbp-fr.json",
+        "capture_sha256": "13e2156b2f391a230e108f3ead25a7180dee5519fba500f2ccc136840b3d3eb8",
+        "answer_sha256": "c6567d16af0bd2763c57b4e111dd66a96c71387f7e9a8e2241a28c32e65098e9",
+        "prompt_sha256": "5dd672f0c35f933d91733ca288a25a823c2a7a8461520373a684063d2714ee6c",
+        "lineage_sha256": "53a9ab4f6b431d535b01884ba11b6d302cb402c40e3683647364ebaf98a178af",
+        "citations": [
+          "gdpr2_catalog.hr_demo.genie_scenario_options",
+          "gdpr2_catalog.hr_demo.genie_scope_metrics"
+        ],
+        "generated_at": "2026-09-14T11:45:15.706746+00:00",
+        "response_id": "resp_25b86cd232ee4f8a94344d7a50a2e904"
+      },
+      "hrbp:en": {
+        "capture_path": "validation/agents/generation-08/hrbp-en.json",
+        "capture_sha256": "ec4c8df66332231c206afd4874db83f8376871895c8a0ebc3c096acd0be6433b",
+        "answer_sha256": "2d176e076f40f1e33986e294c00d11c30c489260568dc6ad94591e227672c195",
+        "prompt_sha256": "24af4c9ac8209c454232fcc766e735b1630ac41370d7340053e9b9f294fd5ced",
+        "lineage_sha256": "ebf322194a0b05c4f5450cc9f1ae47b41066486edc517ce7aa0907d3a1185701",
+        "citations": [
+          "gdpr2_catalog.hr_demo.genie_scenario_options",
+          "gdpr2_catalog.hr_demo.genie_scope_metrics"
+        ],
+        "generated_at": "2026-09-14T11:25:07.898955+00:00",
+        "response_id": "resp_229c531e36624ec8a92d0d3a486806e1"
+      },
+      "ta:fr": {
+        "capture_path": "validation/agents/generation-08/ta-fr.json",
+        "capture_sha256": "7f977a8c6ebcef529f2085172989e459c37a3ea4f6a19577866313157a836c8e",
+        "answer_sha256": "188e9ba5bf673aa93d0f6deefb18fab2795cf6532febdf3a5331cf4ada50d0fd",
+        "prompt_sha256": "74ab8933188c181b60fcf737c439f8e851b232c73d7094e449e6b50f30e73283",
+        "lineage_sha256": "f2efd774178ffd5763f77e767cf0d2f8e68f770edf4b3c6658ef472fc67f02a4",
+        "citations": [
+          "gdpr2_catalog.hr_demo.genie_scenario_options",
+          "gdpr2_catalog.hr_demo.genie_scope_metrics"
+        ],
+        "generated_at": "2026-09-14T11:25:50.312803+00:00",
+        "response_id": "resp_53930412f17e4eeeaaaf4fcec27a4d94"
+      },
+      "ta:en": {
+        "capture_path": "validation/agents/generation-08/ta-en.json",
+        "capture_sha256": "3921c9f2edb19a801b6440572fc5d6ed7f18a0696c50897a5f7ecaaf2de844f0",
+        "answer_sha256": "986ae2ec142039cd3c3dc7c30354353e6807ca0f151afd6fa85eac38b4157567",
+        "prompt_sha256": "b3c163456f01dfd6a59140f2c071ded34aba538c5ad7147eca5e5e9d3bc5f830",
+        "lineage_sha256": "2712817386a023f433864fd46df4d81efa14bb949d3161b80d0dcf016bcd67bc",
+        "citations": [
+          "gdpr2_catalog.hr_demo.genie_scenario_options",
+          "gdpr2_catalog.hr_demo.genie_scope_metrics"
+        ],
+        "generated_at": "2026-09-14T11:26:30.046638+00:00",
+        "response_id": "resp_c800a52be20c4dd0b0c950f9e4a4c69b"
+      },
+      "analyst:fr": {
+        "capture_path": "validation/agents/generation-09/analyst-fr.json",
+        "capture_sha256": "27eebce0ba162f56f0e931616d816cc871338b86c6d2b277f881dae0221eb1a0",
+        "answer_sha256": "6553c022c15f2db7e8987661b36c4b41de6b6bacf655b82be97569a92fa96bde",
+        "prompt_sha256": "685df533287104910d6fcc0787707a370851a20144e1f92a8dac7e07981a2626",
+        "lineage_sha256": "9c076d24085f80470e22c1af3740e48c59cc361578802cee836b1cfb3e976885",
+        "citations": [
+          "gdpr2_catalog.hr_demo.genie_scenario_options",
+          "gdpr2_catalog.hr_demo.genie_scope_metrics"
+        ],
+        "generated_at": "2026-09-14T11:36:15.824321+00:00",
+        "response_id": "resp_523cc0cefafa40a5ad3921e69562a766"
+      },
+      "analyst:en": {
+        "capture_path": "validation/agents/generation-07/analyst-en.json",
+        "capture_sha256": "09474fd6aa2f5b9e794a1db6a366185a101e3b292224ef9c798969436b324fc4",
+        "answer_sha256": "116003dbb86c9161231243d4637925742f462502b904910d5ab4816f6e58d1df",
+        "prompt_sha256": "c1bc7edef14e705227477d690edcc0a62df6400dfa134f238049d51d91804bbc",
+        "lineage_sha256": "94b00b37046326076b3b010e8cff29ae2f1288f4567dde736ab95f34179b6ede",
+        "citations": [
+          "gdpr2_catalog.hr_demo.genie_scenario_options",
+          "gdpr2_catalog.hr_demo.genie_scope_metrics"
+        ],
+        "generated_at": "2026-09-14T11:22:40.410032+00:00",
+        "response_id": "resp_fb39e8fd8d9f4c0482f9a6ee9aa5eec8"
+      }
+    }
+  },
+  "briefings": {
+    "cpo:fr": {
+      "answer": "• La cohorte Care Coordination Platform (84 collaborateurs, 84 ETP actifs) présente un écart brut de capacité de 13,5 ETP-mois sur six mois ; le plan mixte (retenir 5, recruter 4, redéployer 2) réduit l'écart résiduel à 4,3 ETP-mois pour 390 000 € modélisés, contre 420 000 € (recruter uniquement 6 personnes, écart résiduel 7,5) ou zéro coût (ne rien faire, écart résiduel 13,5).\n\n• Le ratio de capacité 1,8 est une hypothèse de scénario, non une prédiction validée ; l'attrition historique de la cohorte hero est de 14,2 % (13 départs volontaires / 33 395 personnes-jours × 365 × 100), contre 8,1 % pour l'ensemble synthétique (1 512 collaborateurs incluant hero).\n\n• Décision humaine requise : quel compromis entre coût modélisé, écart résiduel et budget de 450 000 € correspond aux priorités stratégiques de cette cohorte synthétique ?\n\n**Sources :** genie_scope_metrics, genie_scenario_options (données synthétiques, scénario DL-HR-2026-09-CCP, 2026-09-14)."
+    },
+    "cpo:en": {
+      "answer": "**CPO Briefing – Scenario DL-HR-2026-09-CCP (2026-09-14)**\n\nThe Care Coordination Platform cohort (84 employees, 84.0 active FTE) faces a 13.5 FTE-month capacity gap over six months. The blended option—retain 5, hire 4, redeploy 2—costs €390,000 and reduces the residual gap to 4.3 FTE-months, fitting within the €450,000 budget. Recruit-only (hire 6) costs €420,000 with 7.5 FTE-months residual; do-nothing costs zero but leaves the full 13.5 FTE-month gap. Historical attrition in the hero cohort is 14.2% (13 voluntary exits / 33,395 person-days × 365 × 100); the assumed 1.8× capacity ratio is a scenario parameter, not a validated prediction. Human decision required: does the blended plan's €390,000 investment and remaining 4.3 FTE-month gap align with platform priorities and acceptable service risk?\n\n*Synthetic data. Sources: genie_scope_metrics, genie_scenario_options.*"
+    },
+    "hrbp:fr": {
+      "answer": "• La cohorte Care Coordination Platform (84 collaborateurs, 84,0 ETP) présente un taux d'attrition historique de 14,2 % (13 départs volontaires, dénominateur : effectif quotidien moyen sur les 365 jours précédents) contre 8,1 % pour l'entreprise synthétique (130 départs, 1 512 collaborateurs). Le délai médian de recrutement est de 72 jours pour la cohorte contre 48 jours pour l'entreprise. Six dossiers de support sont en retard (accueil, mobilité, paie). La cohorte compte 18 expositions agrégées à la compression salariale ; la couverture entreprise est indisponible. Le ratio de capacité assumé de 1,8 sur 90 jours reflète l'intensité du besoin, pas une prédiction validée.\n\n• Trois scénarios d'intervention sur six mois : option mixte (retenir 5 + recruter 4 + redéployer 2) coûte 390 000 € et laisse 4,3 ETP-mois de besoin résiduel ; recrutement seul coûte 420 000 € (résiduel 7,5) ; ne rien faire coûte zéro (résiduel 13,5).\n\n• Question pratique : quelles priorités collectives de rétention et d'accueil pour cette cohorte ? Données synthétiques ; hypothèses de scénario non validées.\n\n**Sources :** genie_scope_metrics, genie_scenario_options (validation/reference_query.sql)."
+    },
+    "hrbp:en": {
+      "answer": "The Care Coordination Platform cohort (84 employees) recorded 14.2% historical attrition versus 8.1% company-wide, calculated as voluntary exits divided by person-days over 365 then multiplied by 100. The hero cohort shows 18 aggregate pay-compression exposures; company coverage is unavailable. Six overdue cases span onboarding, mobility and payroll support. The assumed 90-day capacity ratio of 1.8 versus company baseline reflects scenario intensity, not a validated prediction. A blended option (retain 5, hire 4, redeploy 2) would cost €390,000 and leave 4.3 FTE-months residual gap over six months; do-nothing costs zero but leaves the full 13.5 FTE-month gap. Should we prioritize collective retention and redeploy pathways, or focus support capacity on the overdue case backlog?\n\nSource: genie_scope_metrics, genie_scenario_options (synthetic data, scenario assumptions as of 2026-09-14)."
+    },
+    "ta:fr": {
+      "answer": "**Briefing Talent Acquisition – Scénario DL-HR-2026-09-CCP au 2026-09-14**\n\nLa cohorte Care Coordination Platform compte 11 postes critiques vacants : 7 ingénierie, 3 produit, 1 manager d'équipe. Le délai médian historique de recrutement est de 72 jours pour la cohorte hero, 48 jours pour l'ensemble de l'entreprise (tous postes pourvus confondus). L'option panachée modélise 4 recrutements, 5 rétentions et 2 redéploiements pour 390 000 euros, laissant 4,3 ETP-mois d'écart résiduel. Les tables agrégées ne contiennent pas les dossiers individuels de candidats, le suivi de pipeline ou l'analyse causale des délais. Question suivante : quelles preuves sont nécessaires pour évaluer les QUATRE recrutements hypothétiques de l'option panachée ? Données synthétiques ; le ratio de capacité 1,8 est une hypothèse de scénario, non une prédiction validée.\n\n**Sources :** genie_scope_metrics, genie_scenario_options."
+    },
+    "ta:en": {
+      "answer": "The Care Coordination Platform hero cohort carries 11 critical open roles (7 engineering, 3 product, 1 people manager) against 84 headcount; historical median time-to-fill across all filled roles is 72 days versus company 48 days. The blended option assumes retaining 5, hiring 4 and redeploying 2 at €390,000 cost; candidate pipeline evidence, individual qualifications and hiring-capacity analysis for the four hypothetical hires lie outside these aggregate tables. The 1.8× capacity ratio and residual-gap reduction are scenario assumptions, not validated predictions; no target exists to fill all eleven roles within six months.\n\nWhich candidate evidence—skills match, interview scores, availability, offer-acceptance likelihood—is needed to assess feasibility of the four hires in the blended option?\n\nSource: genie_scope_metrics, genie_scenario_options (synthetic data, scenario DL-HR-2026-09-CCP, 2026-09-14)."
+    },
+    "analyst:fr": {
+      "answer": "**Briefing Analyste People – Scénario DL-HR-2026-09-CCP au 2026-09-14**\n\nLa cohorte héros (84 collaborateurs, 84,0 ETP) affiche une attrition historique de 14,2 % (13 départs volontaires divisés par la moyenne quotidienne des effectifs sur les 365 jours précédents), contre 8,1 % pour l'entreprise (1 512 collaborateurs, 130 départs). Le délai médian de recrutement atteint 72 jours (héros) versus 48 jours (entreprise, tous postes pourvus confondus). Le ratio de capacité assumé de 1,8× compare l'intensité d'écart sur 90 jours ; les scénarios modélisés couvrent six mois. L'option mixte (retenir 5 + recruter 4 + redéployer 2) coûte 390 000 € et laisse 4,3 ETP-mois d'écart résiduel ; recruter seul coûte 420 000 € (7,5 résiduel) ; ne rien faire coûte zéro (13,5 résiduel). La compression salariale entreprise reste indisponible (couverture de paie ou des pairs incomplète) ; la cohorte héros présente 18 expositions agrégées. Données synthétiques ; ratio et interventions non entraînés. Question : faut-il enrichir la couverture entreprise avant de généraliser les scénarios ?\n\n**Sources :** genie_scope_metrics, genie_scenario_options."
+    },
+    "analyst:en": {
+      "answer": "The hero cohort (84 people, 84.0 active FTE) recorded 13 voluntary exits and 33,395 person-days over the preceding year; historical attrition of 14.2 percent uses voluntary exits divided by average daily headcount over the preceding 365 days, then multiplied by 100. Company scope (1,512 people, 1,512.0 FTE, overlapping with hero) shows 8.1 percent attrition; pay-compression exposure is NULL for company (incomplete payroll or peers) but shows 18 aggregate exposures for hero. The blended scenario (retain 5, hire 4, redeploy 2) costs €390,000 and leaves 4.3 residual FTE-months versus recruit-only at €420,000 (7.5 residual) and do-nothing at €0 (13.5 residual); the assumed 1.8× capacity ratio reflects 90-day gap intensity, and scenarios span six months—these are untrained assumptions, not validated predictions. Should we reconcile the NULL coverage differences between scopes or define the person-days collection window for stakeholders?\n\nSource: genie_scope_metrics, genie_scenario_options. Synthetic data, scenario DL-HR-2026-09-CCP, 2026-09-14."
+    }
+  },
+  "review": {
+    "session_id": "01a09fbe-492b-7cb0-9ba6-97c3d4488005",
+    "model": "gpt-6-astra",
+    "effort": "low",
+    "report": {
+      "verdict": "PASS",
+      "reviewed_commit": "104e000d474304db89152e43decea2a858e6598c",
+      "accepted_manifest_sha256": "2750738755156b369c7526f4c066d86b45664b0ddda12d983a78fd157e741fba",
+      "findings": [
+        {
+          "id": "HRAG-R2-004",
+          "severity": "low",
+          "file": "validation/agents/manifest-03.json",
+          "line": 1,
+          "finding": "Presentation limitation persists: selected answers include paragraphs, Markdown and answers exceeding 130 words. This does not block the explicitly bounded factual/provenance acceptance.",
+          "correction": "Retain the disclosed limitation. Any future formatting-compliant replacement requires fresh capture and independent review; preserve original answer bytes."
+        }
+      ],
+      "independently_checked_facts": [
+        "Computed the accepted canonical manifest hash using hr_demo.backend.store.digest.",
+        "Verified all eight capture byte hashes, answer and prompt hashes, current prompt equality, snapshot binding, response hashes, lineage hashes, response IDs, timestamps and exact native final-answer extraction.",
+        "Verified each capture's agents.py source hash against its recorded Git commit. Seven manifest selections remain identical to manifest-02; only HRBP French changed to generation-10.",
+        "Checked all 16 SQL statements and matching native Genie questions/tool outputs. Statement IDs match, results succeeded, and complete single-chunk results are not truncated.",
+        "Compared 832 selected lineage cells against contracts-07 results and reconciled native Supervisor tool-table rows with those SQL results. Independently compared all 244 contracts-07 expected/actual cells.",
+        "HRBP French now describes average daily headcount over the preceding 365 days and contains no incomplete numeric attrition formula.",
+        "Supported facts include 84 people within the overlapping 1512-person company scope, historical attrition of 14.2%/8.1%, 18 aggregate compression exposures versus six overdue support cases, and unavailable company compression coverage.",
+        "The assumed 1.8 capacity ratio concerns 90-day intensity; intervention scenarios span six months. Eleven vacancies comprise seven engineering, three product and one people-manager role; four hypothetical blended-option hires are distinct.",
+        "Blended retains five, hires four and redeploys two. Modeled costs are EUR 390000/420000/0, residual gaps are 4.3/7.5/13.5 FTE-months, and budget is EUR 450000. Historical fill medians are 72/48 days across all filled roles.",
+        "No selected answer makes an individual employment decision, ranks candidates, assigns individual departure risk, claims executed actions or asserts customer approval.",
+        "Production attestation checks one original direct-exec session, one context and completed turn, matching turn IDs, exact normalized prompt equality in the sole completed UserMessage, original final/completion equality, and chronological public command/output reconciliation. Commands use shlex parsing and ordered start/completion pairing. Unsupported finalized item projections fail closed.",
+        "Executed the corrected verifier read-only against original review-03 session 01a09fb8-5b6f-7800-bf42-15ac0488149b; its original FAIL was successfully revalidated. Packaging requires PASS and exact manifest acceptance.",
+        "Inspected the disclosed synthetic packaging tests covering context, origin, resumed history, prompt, completion and public transcript integrity.",
+        "Server aggregate:read authorization precedes capture access. Synchronous audit precedes answer disclosure. GET and POST reload paths do not invoke a model.",
+        "UI identifies saved summaries, independent AI technical review, required human decision approval and exact queried tables."
+      ],
+      "limitations": [
+        "Acceptance covers only the eight selected captured demo answers and the reviewed publication implementation; it grants no gate promotion or G9 grade.",
+        "contracts-07 records 77 passing App tests and successful Python/TypeScript checks. These executions were inspected, not rerun. The demo implementation has no changes between that contract source commit and reviewed HEAD.",
+        "Original-session provenance relies on the trusted local Codex session store. Private reasoning and injected context were not exported; the recognized startup skill-budget diagnostic contributes no review proof.",
+        "No package or new feature deployment was performed or accepted.",
+        "Full Genie benchmarks, Gateway/inference-table evidence, App-identity model execution, customer authority, public portability and A00–A15/G0–G9 certification remain pending.",
+        "No fixes, exploit reproduction, cloud operations, delegation or nested review were performed. No .env or private target configuration was read."
+      ]
+    },
+    "report_sha256": "f6461325d1be44b7d29bbc8043e0c3a113b0246928a8498e00b808aec1e85199"
+  }
+}

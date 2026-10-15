@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HR Demo — Field guide — Databricks</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231B3139'/%3E%3Ctext x='16' y='22' font-size='11' font-family='monospace' font-weight='700' fill='%23FF3621' text-anchor='middle'%3EHR%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,800&display=swap">
+<style>
+  :root{
+    /* Databricks FY27 deck palette */
+    --navy:#1B3139; --deep:#0B2026; --ink:#1B3139; --orange:#FF3621; --coral:#FF5F46;
+    --pink:#FABFBA; --steel:#9EB7BF; --amber:#B7791F;
+    --paper:#ffffff; --oat:#F9F7F4; --mist:#F9F7F4; --line:#e7e2d9; --muted:#5a6b73;
+    --n1:#2272b4; --n1bg:#e8f1fe; --n2:#B7791F; --n2bg:#fdf6e7; --n3:#6b7b83; --n3bg:#f1f4f5;
+    --proof:#00A972; --proof-bg:#e9f7f1;
+    --crit:#c23824; --crit-bg:#fdece9; --warn:#B7791F; --warn-bg:#fdf6e7; --ok:#00A972; --ok-bg:#e9f7f1;
+    --grid:#e7e2d9; --axis:#8a97a0;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{margin:0;font-family:"DM Sans","Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--oat);line-height:1.55;-webkit-font-smoothing:antialiased}
+  img{max-width:100%}
+  .em{color:var(--orange)}
+  h2 .em,.hero h1 .em{color:var(--orange)}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  a{color:var(--n1)}
+
+  /* logo lockup */
+  .brandbar{display:flex;align-items:center;gap:18px;margin:0 0 26px;flex-wrap:wrap}
+  .brandbar img{height:30px;width:auto;display:block}
+  .brandbar .dbx{opacity:.98}
+  .brandbar .sic{height:40px}
+  .brandbar .x{color:rgba(255,255,255,.45);font-size:20px;font-weight:300}
+  .footlogos{display:flex;align-items:center;gap:16px}
+  .footlogos img{height:22px;width:auto;opacity:.9}
+  .footlogos .sic{height:30px}
+
+  /* hero */
+  header.hero{background:linear-gradient(135deg,#0B2026 0%,#12242b 45%,#1B3139 100%);color:#fff;
+    padding:56px 0 64px;position:relative;overflow:hidden}
+  header.hero .arc{position:absolute;border-radius:50%;pointer-events:none;z-index:0}
+  header.hero .arc.a1{right:-180px;top:-140px;width:460px;height:460px;background:radial-gradient(circle at 30% 30%,rgba(255,95,70,.30),rgba(255,54,33,.05) 70%)}
+  header.hero .arc.a2{right:-80px;bottom:-220px;width:420px;height:420px;background:radial-gradient(circle,rgba(158,183,191,.18),transparent 68%)}
+  header.hero .arc.a3{right:180px;top:60px;width:200px;height:200px;background:radial-gradient(circle,rgba(250,191,186,.16),transparent 70%)}
+  .spark{position:absolute;z-index:0;pointer-events:none;opacity:.9}
+  header.hero .wrap{position:relative;z-index:2}
+  .eyebrow{letter-spacing:.16em;text-transform:uppercase;font-size:12px;font-weight:700;color:#ff9a86;margin:0 0 14px}
+  .hero h1{font-size:clamp(28px,4.4vw,46px);line-height:1.08;margin:0 0 16px;font-weight:800;max-width:20ch}
+  .hero p{font-size:18px;color:#cfe0e6;max-width:64ch;margin:0}
+  .hero .meta{margin-top:28px;display:flex;flex-wrap:wrap;gap:12px}
+  .chip{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);border-radius:999px;
+    padding:8px 16px;font-size:13px;font-weight:600;color:#eaf2f5}
+  .chip b{color:#fff}
+
+  /* sticky sub-nav */
+  nav.subnav{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line)}
+  nav.subnav .wrap{display:flex;gap:4px;overflow-x:auto;padding:10px 24px}
+  nav.subnav a{font-size:13px;font-weight:700;color:var(--muted);text-decoration:none;white-space:nowrap;
+    padding:8px 14px;border-radius:999px;transition:.15s}
+  nav.subnav a:hover{color:var(--navy);background:var(--oat)}
+  nav.subnav a.active{background:var(--navy);color:#fff}
+
+  /* sections — alternate oat / white like deck */
+  section{padding:60px 0;position:relative;overflow:hidden;scroll-margin-top:60px}
+  section:nth-of-type(even){background:var(--paper)}
+  section::before{content:"";position:absolute;right:-160px;top:-120px;width:360px;height:360px;
+    border-radius:50%;background:var(--oat);opacity:.7;z-index:0;pointer-events:none}
+  section:nth-of-type(even)::before{background:#efece6}
+  section:nth-of-type(3n)::after{content:"";position:absolute;right:-120px;bottom:-160px;width:300px;height:300px;
+    border-radius:50%;background:#fdf1ee;opacity:.6;z-index:0;pointer-events:none}
+  section .wrap{position:relative;z-index:1}
+  h2{font-size:clamp(22px,3vw,30px);margin:0 0 8px;font-weight:800;color:var(--navy)}
+  h3{font-size:18px;margin:26px 0 8px;font-weight:800;color:var(--navy)}
+  .lead{color:var(--muted);font-size:16px;margin:0 0 30px;max-width:74ch}
+  .kicker{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--orange);margin:0 0 10px}
+  p{max-width:74ch}
+
+  /* stat band */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin:8px 0}
+  .stat{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px 20px;
+    box-shadow:0 1px 2px rgba(16,28,34,.04)}
+  section:nth-of-type(even) .stat{background:var(--mist)}
+  .stat .num{font-size:26px;font-weight:800;color:var(--navy);line-height:1.1}
+  .stat .num.orange{color:var(--orange)} .stat .num.proof{color:var(--proof)}
+  .stat .lbl{margin-top:8px;font-size:13px;color:var(--muted);font-weight:600}
+
+  /* option cards */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin:8px 0}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:20px;
+    box-shadow:0 1px 2px rgba(16,28,34,.04);position:relative;transition:transform .15s,box-shadow .15s;border-left:4px solid var(--line)}
+  section:nth-of-type(even) .card{background:var(--mist)}
+  .card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(16,28,34,.10)}
+  .card.lake{border-left-color:var(--proof)} .card.core{border-left-color:var(--n3)} .card.cloud{border-left-color:var(--amber)}
+  .card h3{margin:0 0 2px;font-size:17px}
+  .card .sub{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+  .card p{font-size:13.5px;color:#42535b;margin:0}
+  .card .best{font-size:13px;color:var(--ink);background:var(--oat);border-radius:10px;padding:12px 14px;margin-top:14px}
+  section:nth-of-type(even) .card .best{background:var(--paper)}
+  .card .best b{color:var(--orange);font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:4px}
+
+  /* callout */
+  .callout{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--orange);border-radius:14px;
+    padding:20px 22px;margin:22px 0;box-shadow:0 1px 2px rgba(16,28,34,.04)}
+  section:nth-of-type(even) .callout{background:var(--mist)}
+  .callout.ok{border-left-color:var(--proof)}
+  .callout .tag{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:8px}
+  .callout.ok .tag{color:var(--proof)}
+  .callout p{margin:0;font-size:14.5px;max-width:none}
+
+  /* tables */
+  .legend{display:flex;flex-wrap:wrap;gap:16px;font-size:13px;color:var(--muted);font-weight:600;margin:0 0 12px}
+  .legend b{font-weight:800}
+  .mk{font-weight:800;margin-right:6px}
+  .mk.y{color:var(--proof)} .mk.p{color:var(--warn)} .mk.n{color:var(--crit)}
+  .lab{font-weight:400;font-size:12.5px;color:var(--muted)}
+  .filterbar{display:flex;align-items:center;gap:12px;margin:0 0 14px}
+  .filterbar input{flex:1;max-width:340px;padding:9px 14px;border:1.5px solid var(--line);border-radius:999px;
+    font:inherit;font-size:14px;background:var(--paper);color:var(--ink);outline:none}
+  .filterbar input:focus{border-color:var(--n1)}
+  .filterbar .cnt{font-size:12.5px;color:var(--muted);font-weight:600}
+  .table-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:16px;background:var(--paper);
+    box-shadow:0 1px 2px rgba(16,28,34,.04);margin:8px 0 20px}
+  section:nth-of-type(even) .table-scroll{background:var(--mist)}
+  table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:760px}
+  th{text-align:left;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:800;
+    padding:14px 16px;border-bottom:2px solid var(--line);background:var(--oat)}
+  section:nth-of-type(even) th{background:#efece6}
+  th small{display:block;font-weight:600;text-transform:none;letter-spacing:0;color:var(--axis);margin-top:2px}
+  td{padding:12px 16px;border-bottom:1px solid var(--line);vertical-align:top;color:#42535b}
+  tr:last-child td{border-bottom:0}
+  td strong{color:var(--ink)}
+  td.num{white-space:nowrap;font-variant-numeric:tabular-nums}
+  .feat td:first-child{color:var(--ink);font-weight:700;width:24%}
+  tr.hide{display:none}
+  code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.86em;background:var(--oat);
+    padding:.1em .4em;border-radius:5px;border:1px solid var(--line)}
+
+  /* pros/cons */
+  .pc{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:16px;overflow:hidden;
+    margin:10px 0 8px;background:var(--paper)}
+  section:nth-of-type(even) .pc{background:var(--mist)}
+  @media (max-width:640px){.pc{grid-template-columns:1fr}}
+  .pc .col{padding:18px 20px}
+  .pc .col.pros{border-right:1px solid var(--line)}
+  @media (max-width:640px){.pc .col.pros{border-right:0;border-bottom:1px solid var(--line)}}
+  .pc h5{margin:0 0 10px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:800}
+  .pc .pros h5{color:var(--proof)} .pc .cons h5{color:var(--crit)}
+  .pc ul{margin:0;padding:0;list-style:none;display:grid;gap:9px}
+  .pc li{font-size:13.5px;color:#42535b;padding-left:20px;position:relative}
+  .pc .pros li::before{content:"+";position:absolute;left:0;color:var(--proof);font-weight:800}
+  .pc .cons li::before{content:"\2212";position:absolute;left:0;color:var(--crit);font-weight:800}
+  .pc li b{color:var(--ink);font-weight:700}
+  .opt-title{display:flex;align-items:center;gap:10px;margin:28px 0 0}
+  .pill{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:4px 11px;border-radius:999px}
+  .pill.lake{background:var(--proof-bg);color:var(--proof)} .pill.core{background:var(--n3bg);color:var(--n3)} .pill.cloud{background:var(--warn-bg);color:var(--warn)}
+
+  /* latency spectrum */
+  .lat{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:26px 28px 40px;margin:14px 0;box-shadow:0 1px 2px rgba(16,28,34,.04)}
+  section:nth-of-type(even) .lat{background:var(--mist)}
+  .lat .spec{position:relative;height:12px;border-radius:8px;background:linear-gradient(90deg,#dfe7ea,#9EB7BF,var(--orange));margin:58px 0 48px}
+  .lat .tick{position:absolute;top:-44px;transform:translateX(-50%);font-size:12px;line-height:1.25;color:var(--muted);text-align:center;font-weight:600}
+  .lat .tick::after{content:"";position:absolute;left:50%;top:30px;width:1px;height:12px;background:var(--axis)}
+  .lat .badge2{position:absolute;top:24px;transform:translateX(-50%);font-size:12px;font-weight:800;padding:5px 12px;border-radius:999px;white-space:nowrap}
+  .lat .badge2.dbt{color:var(--warn);background:var(--warn-bg);border:1px solid var(--warn)}
+  .lat .badge2.sdp{color:var(--proof);background:var(--proof-bg);border:1px solid var(--proof)}
+
+  /* reference / doc cards */
+  .refs{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin:12px 0 6px}
+  .ref-card{display:block;text-decoration:none;background:var(--paper);border:1px solid var(--line);border-radius:14px;
+    padding:16px 18px;box-shadow:0 1px 2px rgba(16,28,34,.04);transition:transform .15s,box-shadow .15s}
+  section:nth-of-type(even) .ref-card{background:var(--mist)}
+  .ref-card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(16,28,34,.10)}
+  .ref-card .co{font-size:16px;font-weight:800;color:var(--navy);display:flex;justify-content:space-between;gap:8px}
+  .ref-card .co .ar{color:var(--orange)}
+  .ref-card .rr{font-size:13px;color:#42535b;margin-top:6px}
+  .res{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin:8px 0}
+  .res-card{display:flex;gap:12px;align-items:center;text-decoration:none;background:var(--paper);border:1px solid var(--line);
+    border-radius:12px;padding:14px 16px;transition:transform .15s,border-color .15s}
+  section:nth-of-type(even) .res-card{background:var(--mist)}
+  .res-card:hover{transform:translateY(-2px);border-color:var(--axis)}
+  .res-card .ei{flex:none;width:34px;height:34px;border-radius:9px;background:var(--n1bg);color:var(--n1);display:flex;align-items:center;justify-content:center;font-size:16px}
+  .res-card .rt{font-weight:700;font-size:14px;color:var(--ink)}
+
+  /* footer */
+  footer{background:var(--deep);color:#cfe0e6;padding:34px 0}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:16px 30px;align-items:center;justify-content:space-between}
+  footer .fnote{font-size:12.5px;color:#8fa6ad}
+
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.3,1)}
+  .reveal-in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+  /* video / demo cards */
+  .vids{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin:12px 0}
+  .vid{display:block;text-decoration:none;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--paper);box-shadow:0 1px 2px rgba(16,28,34,.04);transition:transform .15s,box-shadow .15s}
+  section:nth-of-type(even) .vid{background:var(--mist)}
+  .vid:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(16,28,34,.10)}
+  .vid .thumb{position:relative;aspect-ratio:16/9;background:linear-gradient(135deg,var(--navy),#0B2026);display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .vid .thumb::after{content:"";position:absolute;right:-40px;top:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(255,95,70,.5),transparent 70%)}
+  .vid .play{position:relative;z-index:1;width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.95);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+  .vid .play::before{content:"";border-style:solid;border-width:9px 0 9px 15px;border-color:transparent transparent transparent var(--orange);margin-left:3px}
+  .vid .tl{position:absolute;left:12px;bottom:10px;z-index:1;color:#fff;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;opacity:.92}
+  .vid .vb{padding:14px 16px}
+  .vid .vt{font-weight:800;font-size:14px;color:var(--ink);line-height:1.3}
+  .vid .vd{font-size:12.5px;color:var(--muted);margin-top:3px}
+
+  
+  /* guide additions */
+  .shots{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px;margin:22px 0 4px}
+  .shots figure{margin:0;background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 1px 2px rgba(16,28,34,.04);transition:transform .15s,box-shadow .15s}
+  section:nth-of-type(even) .shots figure{background:var(--mist)}
+  .shots figure:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(16,28,34,.10)}
+  .shots img{display:block;width:100%;height:220px;object-fit:cover;object-position:top;cursor:zoom-in;border-bottom:1px solid var(--line)}
+  .shots figure.tall img{height:320px}
+  .shots figcaption{font-size:12.5px;color:var(--muted);padding:10px 14px}
+  .shots figcaption b{color:var(--ink)}
+  #lightbox{position:fixed;inset:0;z-index:100;background:rgba(11,32,38,.88);display:none;overflow:auto;padding:30px;cursor:zoom-out}
+  #lightbox.on{display:block}
+  #lightbox img{display:block;margin:0 auto;max-width:min(1400px,100%);border-radius:10px;box-shadow:0 24px 60px rgba(0,0,0,.5)}
+  .flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;gap:10px;align-items:stretch;margin:8px 0 26px}
+  @media (max-width:900px){.flow{grid-template-columns:1fr}.flow .arrow{transform:rotate(90deg);justify-self:center}}
+  .flow .lane{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:14px;display:grid;gap:10px;align-content:start}
+  section:nth-of-type(even) .flow .lane{background:var(--mist)}
+  .flow .lh{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .flow .node{border-radius:12px;padding:10px 12px;font-weight:800;font-size:13.5px;color:var(--ink);background:var(--n3bg);border-left:4px solid var(--n3)}
+  .flow .node small{display:block;font-weight:500;font-size:12px;color:var(--muted);margin-top:3px}
+  .flow .node.sim{background:var(--warn-bg);border-left-color:var(--warn)}
+  .flow .node.core2{background:var(--n1bg);border-left-color:var(--n1)}
+  .flow .node.lakeb{background:var(--proof-bg);border-left-color:var(--proof)}
+  .flow .node.ai{background:#fdece9;border-left-color:var(--orange)}
+  .flow .arrow{align-self:center;color:var(--orange);font-size:22px;font-weight:800}
+  ol.steps{list-style:none;padding:0;margin:10px 0 18px;display:grid;gap:10px;counter-reset:s}
+  ol.steps li{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px 14px 62px;position:relative;font-size:14.5px;color:#42535b;counter-increment:s}
+  section:nth-of-type(even) ol.steps li{background:var(--mist)}
+  ol.steps li::before{content:counter(s);position:absolute;left:16px;top:13px;width:30px;height:30px;border-radius:50%;background:var(--navy);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:14px}
+  ol.steps li b{color:var(--ink)}
+  ol.steps .t{display:inline-block;font-size:11px;font-weight:800;color:var(--orange);letter-spacing:.06em;margin-right:8px}
+  ul.checks{padding-left:20px;margin:0 0 10px}
+  ul.checks li{margin:5px 0;font-size:14.5px;color:#42535b}
+  pre.code{background:var(--deep);color:#e5eef1;border-radius:14px;padding:18px 20px;overflow-x:auto;font-size:12.8px;line-height:1.6;margin:10px 0 22px}
+  pre.code .c{color:#8fa6ad}
+</style>
+</head>
+<body>
+<div id="doc">
+<header class="hero">
+  <div class="arc a1"></div><div class="arc a2"></div><div class="arc a3"></div>
+  <svg class="spark" style="top:52px;right:340px;width:34px;height:34px" viewBox="0 0 100 100"><path d="M50 0 C54 34 66 46 100 50 C66 54 54 66 50 100 C46 66 34 54 0 50 C34 46 46 34 50 0Z" fill="#FF3621" opacity=".85"/></svg>
+  <svg class="spark" style="top:150px;right:120px;width:20px;height:20px" viewBox="0 0 100 100"><path d="M50 0 C54 34 66 46 100 50 C66 54 54 66 50 100 C46 66 34 54 0 50 C34 46 46 34 50 0Z" fill="#FABFBA"/></svg>
+  <svg class="spark" style="top:96px;right:470px;width:16px;height:16px" viewBox="0 0 100 100"><path d="M50 0 C54 34 66 46 100 50 C66 54 54 66 50 100 C46 66 34 54 0 50 C34 46 46 34 50 0Z" fill="#FF5F46" opacity=".7"/></svg>
+  <div class="wrap">
+    <div class="brandbar">
+      <span class="sic" style="font-weight:800;font-size:26px;letter-spacing:.04em;color:#fff">HR Demo</span>
+      <span class="x">×</span>
+      <img class="dbx" alt="Databricks" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTU0IiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMTU0IDI0IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cGF0aCBkPSJNNDQuOTEzNyAyMC40NDY4VjEuMzQwNDJINDEuOTg1MVY4LjQ4OTM2QzQxLjk4NTEgOC41OTU3NCA0MS45MjE0IDguNjgwODUgNDEuODE1MyA4LjcyMzRDNDEuNzA5MiA4Ljc2NTk1IDQxLjYwMzEgOC43MjM0IDQxLjUzOTQgOC42NTk1N0M0MC41NDIgNy40ODkzNiAzOC45OTI4IDYuODI5NzkgMzcuMjk1MSA2LjgyOTc5QzMzLjY2NjIgNi44Mjk3OSAzMC44MjI1IDkuODkzNjEgMzAuODIyNSAxMy44MDg1QzMwLjgyMjUgMTUuNzIzNCAzMS40ODA0IDE3LjQ4OTQgMzIuNjkgMTguNzg3MkMzMy44OTk2IDIwLjA4NTEgMzUuNTMzNyAyMC43ODcyIDM3LjI5NTEgMjAuNzg3MkMzOC45NzE2IDIwLjc4NzIgNDAuNTIwOCAyMC4wODUxIDQxLjUzOTQgMTguODcyM0M0MS42MDMxIDE4Ljc4NzIgNDEuNzMwNCAxOC43NjYgNDEuODE1MyAxOC43ODcyQzQxLjkyMTQgMTguODI5OCA0MS45ODUxIDE4LjkxNDkgNDEuOTg1MSAxOS4wMjEzVjIwLjQ0NjhINDQuOTEzN1pNMzcuOTMxOCAxOC4xMjc3QzM1LjU5NzQgMTguMTI3NyAzMy43NzIzIDE2LjIzNCAzMy43NzIzIDEzLjgwODVDMzMuNzcyMyAxMS4zODMgMzUuNTk3NCA5LjQ4OTM2IDM3LjkzMTggOS40ODkzNkM0MC4yNjYxIDkuNDg5MzYgNDIuMDkxMiAxMS4zODMgNDIuMDkxMiAxMy44MDg1QzQyLjA5MTIgMTYuMjM0IDQwLjI2NjEgMTguMTI3NyAzNy45MzE4IDE4LjEyNzdaIiBmaWxsPSIjRkZGRkZGIi8+CjxwYXRoIGQ9Ik02MC41NzUyIDIwLjQ0NjhWNy4xNDg5M0g1Ny42Njc5VjguNDg5MzVDNTcuNjY3OSA4LjU5NTc0IDU3LjYwNDIgOC42ODA4NCA1Ny40OTgxIDguNzIzNEM1Ny4zOTIgOC43NjU5NSA1Ny4yODU5IDguNzIzNCA1Ny4yMjIyIDguNjM4MjlDNTYuMjQ2IDcuNDY4MDggNTQuNzE4MSA2LjgwODUgNTIuOTc3OSA2LjgwODVDNDkuMzQ5IDYuODA4NSA0Ni41MDUzIDkuODcyMzMgNDYuNTA1MyAxMy43ODcyQzQ2LjUwNTMgMTcuNzAyMSA0OS4zNDkgMjAuNzY1OSA1Mi45Nzc5IDIwLjc2NTlDNTQuNjU0NCAyMC43NjU5IDU2LjIwMzYgMjAuMDYzOCA1Ny4yMjIyIDE4LjgyOThDNTcuMjg1OSAxOC43NDQ3IDU3LjQxMzIgMTguNzIzNCA1Ny40OTgxIDE4Ljc0NDdDNTcuNjA0MiAxOC43ODcyIDU3LjY2NzkgMTguODcyMyA1Ny42Njc5IDE4Ljk3ODdWMjAuNDI1NUg2MC41NzUyVjIwLjQ0NjhaTTUzLjYzNTggMTguMTI3N0M1MS4zMDE0IDE4LjEyNzcgNDkuNDc2MyAxNi4yMzQgNDkuNDc2MyAxMy44MDg1QzQ5LjQ3NjMgMTEuMzgzIDUxLjMwMTQgOS40ODkzNSA1My42MzU4IDkuNDg5MzVDNTUuOTcwMSA5LjQ4OTM1IDU3Ljc5NTIgMTEuMzgzIDU3Ljc5NTIgMTMuODA4NUM1Ny43OTUyIDE2LjIzNCA1NS45NzAxIDE4LjEyNzcgNTMuNjM1OCAxOC4xMjc3WiIgZmlsbD0iI0ZGRkZGRiIvPgo8cGF0aCBkPSJNODUuNDY4MiAyMC40NDY4VjcuMTQ4OTNIODIuNTYwOFY4LjQ4OTM1QzgyLjU2MDggOC41OTU3NCA4Mi40OTcyIDguNjgwODQgODIuMzkxMSA4LjcyMzRDODIuMjg0OSA4Ljc2NTk1IDgyLjE3ODggOC43MjM0IDgyLjExNTIgOC42MzgyOUM4MS4xMzkgNy40NjgwOCA3OS42MTEgNi44MDg1IDc3Ljg3MDggNi44MDg1Qzc0LjIyMDcgNi44MDg1IDcxLjM5ODMgOS44NzIzMyA3MS4zOTgzIDEzLjgwODVDNzEuMzk4MyAxNy43NDQ3IDc0LjI0MiAyMC43ODcyIDc3Ljg3MDggMjAuNzg3MkM3OS41NDc0IDIwLjc4NzIgODEuMDk2NSAyMC4wODUxIDgyLjExNTIgMTguODUxMUM4Mi4xNzg4IDE4Ljc2NTkgODIuMzA2MiAxOC43NDQ3IDgyLjM5MTEgMTguNzY1OUM4Mi40OTcyIDE4LjgwODUgODIuNTYwOCAxOC44OTM2IDgyLjU2MDggMTlWMjAuNDQ2OEg4NS40NjgyWk03OC41Mjg3IDE4LjEyNzdDNzYuMTk0MyAxOC4xMjc3IDc0LjM2OTMgMTYuMjM0IDc0LjM2OTMgMTMuODA4NUM3NC4zNjkzIDExLjM4MyA3Ni4xOTQzIDkuNDg5MzUgNzguNTI4NyA5LjQ4OTM1QzgwLjg2MzEgOS40ODkzNSA4Mi42ODgyIDExLjM4MyA4Mi42ODgyIDEzLjgwODVDODIuNjg4MiAxNi4yMzQgODAuODYzMSAxOC4xMjc3IDc4LjUyODcgMTguMTI3N1oiIGZpbGw9IiNGRkZGRkYiLz4KPHBhdGggZD0iTTkwLjc5NDggMTguODcyM0M5MC44MTYgMTguODcyMyA5MC44NTg1IDE4Ljg1MTEgOTAuODc5NyAxOC44NTExQzkwLjk0MzQgMTguODUxMSA5MS4wMjgzIDE4Ljg5MzYgOTEuMDcwNyAxOC45MzYyQzkyLjA2ODEgMjAuMTA2NCA5My42MTczIDIwLjc2NiA5NS4zMTUgMjAuNzY2Qzk4Ljk0MzkgMjAuNzY2IDEwMS43ODggMTcuNzAyMSAxMDEuNzg4IDEzLjc4NzJDMTAxLjc4OCAxMS44NzIzIDEwMS4xMyAxMC4xMDY0IDk5LjkyMDEgOC44MDg1MUM5OC43MTA1IDcuNTEwNjQgOTcuMDc2NCA2LjgwODUxIDk1LjMxNSA2LjgwODUxQzkzLjYzODUgNi44MDg1MSA5Mi4wODkzIDcuNTEwNjQgOTEuMDcwNyA4LjcyMzRDOTEuMDA3IDguODA4NTEgOTAuOTAwOSA4LjgyOTc4IDkwLjc5NDggOC44MDg1MUM5MC42ODg3IDguNzY1OTUgOTAuNjI1IDguNjgwODUgOTAuNjI1IDguNTc0NDdWMS4zNDA0Mkg4Ny42OTY1VjIwLjQ0NjhIOTAuNjI1VjE5LjEwNjRDOTAuNjI1IDE5IDkwLjY4ODcgMTguOTE0OSA5MC43OTQ4IDE4Ljg3MjNaTTkwLjQ5NzcgMTMuODA4NUM5MC40OTc3IDExLjM4MyA5Mi4zMjI4IDkuNDg5MzYgOTQuNjU3MiA5LjQ4OTM2Qzk2Ljk5MTUgOS40ODkzNiA5OC44MTY2IDExLjM4MyA5OC44MTY2IDEzLjgwODVDOTguODE2NiAxNi4yMzQgOTYuOTkxNSAxOC4xMjc3IDk0LjY1NzIgMTguMTI3N0M5Mi4zMjI4IDE4LjEyNzcgOTAuNDk3NyAxNi4yMTI4IDkwLjQ5NzcgMTMuODA4NVoiIGZpbGw9IiNGRkZGRkYiLz4KPHBhdGggZD0iTTExMC4yNTUgOS44NzIzNEMxMTAuNTMxIDkuODcyMzQgMTEwLjc4NiA5Ljg5MzYxIDExMC45NTUgOS45MzYxN1Y2LjkxNDg5QzExMC44NDkgNi44OTM2MSAxMTAuNjU4IDYuODcyMzQgMTEwLjQ2NyA2Ljg3MjM0QzEwOC45MzkgNi44NzIzNCAxMDcuNTM5IDcuNjU5NTcgMTA2Ljc5NiA4LjkxNDg5QzEwNi43MzIgOS4wMjEyNyAxMDYuNjI2IDkuMDYzODMgMTA2LjUyIDkuMDIxMjdDMTA2LjQxNCA5IDEwNi4zMjkgOC44OTM2MSAxMDYuMzI5IDguNzg3MjNWNy4xNDg5M0gxMDMuNDIyVjIwLjQ2ODFIMTA2LjM1VjE0LjU5NTdDMTA2LjM1IDExLjY4MDggMTA3LjgzNiA5Ljg3MjM0IDExMC4yNTUgOS44NzIzNFoiIGZpbGw9IiNGRkZGRkYiLz4KPHBhdGggZD0iTTExNS43NzMgNy4xNDg5M0gxMTIuODAyVjIwLjQ2ODFIMTE1Ljc3M1Y3LjE0ODkzWiIgZmlsbD0iI0ZGRkZGRiIvPgo8cGF0aCBkPSJNMTE0LjI0NSAxLjM2MTdDMTEzLjI0NyAxLjM2MTcgMTEyLjQ0MSAyLjE3MDIxIDExMi40NDEgMy4xNzAyMUMxMTIuNDQxIDQuMTcwMjEgMTEzLjI0NyA0Ljk3ODcyIDExNC4yNDUgNC45Nzg3MkMxMTUuMjQyIDQuOTc4NzIgMTE2LjA0OSA0LjE3MDIxIDExNi4wNDkgMy4xNzAyMUMxMTYuMDQ5IDIuMTcwMjEgMTE1LjI0MiAxLjM2MTcgMTE0LjI0NSAxLjM2MTdaIiBmaWxsPSIjRkZGRkZGIi8+CjxwYXRoIGQ9Ik0xMjQuNDc0IDYuODA4NUMxMjAuMzk5IDYuODA4NSAxMTcuNDQ5IDkuNzQ0NjcgMTE3LjQ0OSAxMy44MDg1QzExNy40NDkgMTUuNzg3MiAxMTguMTQ5IDE3LjU1MzIgMTE5LjQwMiAxOC44Mjk4QzEyMC42NzUgMjAuMTA2NCAxMjIuNDU3IDIwLjgwODUgMTI0LjQ1MiAyMC44MDg1QzEyNi4xMDggMjAuODA4NSAxMjcuMzgxIDIwLjQ4OTQgMTI5LjggMTguNzAyMUwxMjguMTI0IDE2LjkzNjJDMTI2LjkzNSAxNy43MjM0IDEyNS44MzIgMTguMTA2NCAxMjQuNzQ5IDE4LjEwNjRDMTIyLjI4OCAxOC4xMDY0IDEyMC40NDEgMTYuMjU1MyAxMjAuNDQxIDEzLjgwODVDMTIwLjQ0MSAxMS4zNjE3IDEyMi4yODggOS41MTA2MyAxMjQuNzQ5IDkuNTEwNjNDMTI1LjkxNyA5LjUxMDYzIDEyNi45OTkgOS44OTM2MSAxMjguMDgxIDEwLjY4MDhMMTI5Ljk0OSA4LjkxNDg5QzEyNy43NjMgNy4wNDI1NSAxMjUuNzg5IDYuODA4NSAxMjQuNDc0IDYuODA4NVoiIGZpbGw9IiNGRkZGRkYiLz4KPHBhdGggZD0iTTEzNC45NTcgMTQuNTk1N0MxMzQuOTk5IDE0LjU1MzIgMTM1LjA2MyAxNC41MzE5IDEzNS4xMjcgMTQuNTMxOUgxMzUuMTQ4QzEzNS4yMTIgMTQuNTMxOSAxMzUuMjc1IDE0LjU3NDUgMTM1LjMzOSAxNC42MTdMMTQwLjAyOSAyMC40NDY4SDE0My42MzdMMTM3LjU2NyAxMy4wODUxQzEzNy40ODIgMTIuOTc4NyAxMzcuNDgyIDEyLjgyOTggMTM3LjU4OSAxMi43NDQ3TDE0My4xNyA3LjE0ODk0SDEzOS41ODNMMTM0Ljc2NiAxMkMxMzQuNzAyIDEyLjA2MzggMTM0LjU5NiAxMi4wODUxIDEzNC40OSAxMi4wNjM4QzEzNC40MDUgMTIuMDIxMyAxMzQuMzQyIDExLjkzNjIgMTM0LjM0MiAxMS44Mjk4VjEuMzYxN0gxMzEuMzkyVjIwLjQ2ODFIMTM0LjMyVjE1LjI3NjZDMTM0LjMyIDE1LjIxMjggMTM0LjM0MiAxNS4xMjc3IDEzNC40MDUgMTUuMDg1MUwxMzQuOTU3IDE0LjU5NTdaIiBmaWxsPSIjRkZGRkZGIi8+CjxwYXRoIGQ9Ik0xNDguNDEyIDIwLjc4NzJDMTUwLjgxIDIwLjc4NzIgMTUzLjI1IDE5LjMxOTEgMTUzLjI1IDE2LjUzMTlDMTUzLjI1IDE0LjcwMjEgMTUyLjEwNCAxMy40NDY4IDE0OS43NyAxMi42ODA4TDE0OC4xNzggMTIuMTQ4OUMxNDcuMDk2IDExLjc4NzIgMTQ2LjU4NiAxMS4yNzY2IDE0Ni41ODYgMTAuNTc0NUMxNDYuNTg2IDkuNzY1OTUgMTQ3LjMwOCA5LjIxMjc2IDE0OC4zMjcgOS4yMTI3NkMxNDkuMzAzIDkuMjEyNzYgMTUwLjE3MyA5Ljg1MTA2IDE1MC43MjUgMTAuOTU3NEwxNTMuMDggOS42ODA4NUMxNTIuMjEgNy44OTM2MSAxNTAuNDA2IDYuNzg3MjMgMTQ4LjMyNyA2Ljc4NzIzQzE0NS42OTUgNi43ODcyMyAxNDMuNzg1IDguNDg5MzYgMTQzLjc4NSAxMC44MDg1QzE0My43ODUgMTIuNjU5NiAxNDQuODg5IDEzLjg5MzYgMTQ3LjE1OSAxNC42MTdMMTQ4Ljc5NCAxNS4xNDg5QzE0OS45MzkgMTUuNTEwNiAxNTAuNDI4IDE1Ljk3ODcgMTUwLjQyOCAxNi43MjM0QzE1MC40MjggMTcuODUxMSAxNDkuMzg4IDE4LjI1NTMgMTQ4LjQ5NiAxOC4yNTUzQzE0Ny4zMDggMTguMjU1MyAxNDYuMjQ3IDE3LjQ4OTQgMTQ1LjczOCAxNi4yMzRMMTQzLjM0IDE3LjUxMDZDMTQ0LjEyNSAxOS41MzE5IDE0Ni4wNTYgMjAuNzg3MiAxNDguNDEyIDIwLjc4NzJaIiBmaWxsPSIjRkZGRkZGIi8+CjxwYXRoIGQ9Ik02OC43MjQzIDIwLjY1OTZDNjkuNjU4MSAyMC42NTk2IDcwLjQ4NTcgMjAuNTc0NSA3MC45NTI2IDIwLjUxMDZWMTcuOTU3NEM3MC41NzA2IDE4IDY5Ljg5MTUgMTguMDQyNSA2OS40ODgzIDE4LjA0MjVDNjguMjk5OSAxOC4wNDI1IDY3LjM4NzQgMTcuODI5OCA2Ny4zODc0IDE1LjI1NTNWOS43ODcyM0M2Ny4zODc0IDkuNjM4MjkgNjcuNDkzNSA5LjUzMTkxIDY3LjY0MiA5LjUzMTkxSDcwLjUwN1Y3LjEyNzY2SDY3LjY0MkM2Ny40OTM1IDcuMTI3NjYgNjcuMzg3NCA3LjAyMTI3IDY3LjM4NzQgNi44NzIzNFYzLjA0MjU1SDY0LjQ1ODhWNi44OTM2MUM2NC40NTg4IDcuMDQyNTUgNjQuMzUyNyA3LjE0ODkzIDY0LjIwNDEgNy4xNDg5M0g2Mi4xNjY5VjkuNTUzMTlINjQuMjA0MUM2NC4zNTI3IDkuNTUzMTkgNjQuNDU4OCA5LjY1OTU3IDY0LjQ1ODggOS44MDg1MVYxNkM2NC40NTg4IDIwLjY1OTYgNjcuNTU3MSAyMC42NTk2IDY4LjcyNDMgMjAuNjU5NloiIGZpbGw9IiNGRkZGRkYiLz4KPHBhdGggZD0iTTIwLjk4ODIgOS44OTM2MkwxMS4wOTg5IDE1LjQ4OTRMMC41MDkzMTkgOS41MTA2NEwwIDkuNzg3MjNWMTQuMTI3N0wxMS4wOTg5IDIwLjM4M0wyMC45ODgyIDE0LjgwODVWMTcuMTA2NEwxMS4wOTg5IDIyLjcwMjFMMC41MDkzMTkgMTYuNzIzNEwwIDE3VjE3Ljc0NDdMMTEuMDk4OSAyNEwyMi4xNzY2IDE3Ljc0NDdWMTMuNDA0M0wyMS42NjczIDEzLjEyNzdMMTEuMDk4OSAxOS4wODUxTDEuMTg4NDEgMTMuNTEwNlYxMS4yMTI4TDExLjA5ODkgMTYuNzg3MkwyMi4xNzY2IDEwLjUzMTlWNi4yNTUzMkwyMS42MjQ4IDUuOTM2MTdMMTEuMDk4OSAxMS44NzIzTDEuNjk3NzMgNi41OTU3NEwxMS4wOTg5IDEuMjk3ODdMMTguODIzNiA1LjY1OTU3TDE5LjUwMjcgNS4yNzY2VjQuNzQ0NjhMMTEuMDk4OSAwTDAgNi4yNTUzMlY2LjkzNjE3TDExLjA5ODkgMTMuMTkxNUwyMC45ODgyIDcuNTk1NzRWOS44OTM2MloiIGZpbGw9IiNGRjM2MjEiLz4KPC9zdmc+Cg==">
+    </div>
+    <p class="eyebrow">Field guide · People Intelligence on Databricks</p>
+    <h1>The HR demo: <span class="em">every detail</span>, and how to present it</h1>
+    <p>A bilingual (FR/EN) Databricks App for HR leaders. It covers governed self-service, workforce capacity decisions, group reconciliation after an acquisition, Genie agents and an audited, human-reviewed action loop. All data is synthetic, and you can deploy it to your own workspace in about 30 minutes.</p>
+    <div class="meta">
+      <span class="chip"><b>Databricks Apps</b>&nbsp; FastAPI + React (APX)</span>
+      <span class="chip"><b>Lakebase</b>&nbsp; revisions · decisions · audit</span>
+      <span class="chip"><b>Genie + Supervisor</b>&nbsp; Agent Bricks</span>
+      <span class="chip"><b>FR / EN</b>&nbsp; light &amp; dark</span>
+      <span class="chip"><b>100% synthetic</b>&nbsp; no real PII</span>
+    </div>
+  </div>
+</header>
+
+<nav class="subnav">
+  <div class="wrap">
+    <a href="#overview">Overview</a>
+    <a href="#architecture">Architecture</a>
+    <a href="#tour">App tour</a>
+    <a href="#enterprise">Enterprise story</a>
+    <a href="#cockpit">Cockpit flow</a>
+    <a href="#agents">Genie &amp; DNB</a>
+    <a href="#studio">Studio</a>
+    <a href="#talk">Talk track</a>
+    <a href="#objections">Objections</a>
+    <a href="#deploy">Deploy</a>
+    <a href="#recovery">Reset &amp; fallback</a>
+    <a href="#limits">Limits</a>
+  </div>
+</nav>
+
+<!-- 01 -->
+<section id="overview">
+  <div class="wrap">
+    <span class="kicker">01 — Overview</span>
+    <h2>One app, <span class="em">six experiences</span>, one honest story</h2>
+    <p class="lead">The core message: <b>“An HR question, a useful answer, and only the data you are authorized to see.”</b> Every experience shows the same pattern: governed data, then an explainable answer, then a human-reviewed decision with an audit trail. Pick the entry point that matches your buyer.</p>
+    <div class="stats reveal">
+      <div class="stat"><div class="num orange">3</div><div class="lbl">Enterprise buyer stories (CFO/CHRO/CIO)</div></div>
+      <div class="stat"><div class="num">20</div><div class="lbl">DNB HR questions on 4 Genie agents + 1 Supervisor</div></div>
+      <div class="stat"><div class="num">4</div><div class="lbl">Fictional personas: CPO, HRBP, TA lead, People Analytics</div></div>
+      <div class="stat"><div class="num">12</div><div class="lbl">Routes, all in FR and EN, with guided tours</div></div>
+      <div class="stat"><div class="num proof">0</div><div class="lbl">Real employee records or writes to an HR system</div></div>
+    </div>
+    <div class="grid reveal" style="margin-top:22px">
+      <div class="card lake"><div class="sub">Default · /enterprise</div><h3>Enterprise &amp; Global</h3><p>Aster Group (fictional), 6 entities (DE FR GB IN JP US). Three decision stories on one Lakebase dataset: ingest a source revision, reconcile, explain with a live model, review and commit a capacity plan, then model value and TCO.</p></div>
+      <div class="card lake"><div class="sub">/agent-workspace</div><h3>Simulated agent workspace</h3><p>A Dust-style interface that makes <b>real</b> authenticated HTTP calls to the app's read-only tool contract. Use it to answer “we already have an agent UI”.</p></div>
+      <div class="card cloud"><div class="sub">/dnb</div><h3>DNB Top 20 &amp; Agents</h3><p>20 curated questions for Digital Natives. Each one routes to one of 4 dedicated Genie spaces on UC Metric Views. A native Supervisor handles cross-domain questions.</p></div>
+      <div class="card cloud"><div class="sub">/studio</div><h3>Demo Studio</h3><p>20 FR/EN playbooks, 5 fictional industry presets, a capacity/cost lab, a presenter playlist and JSON/Markdown exports. Use it to tailor the story to an account.</p></div>
+      <div class="card core"><div class="sub">/briefing · /retention · /talent · /workforce · /people-ops</div><h3>Historical four-domain cockpit</h3><p>“Care Coordination Platform”: 84 fictional employees and 11 roles. Retention, hiring, workforce planning and HR operations, with an approve → commit → audit loop.</p></div>
+      <div class="card core"><div class="sub">/ask · /trust</div><h3>Genie Agent &amp; Trust</h3><p>Live Genie questions with follow-ups, Markdown tables and source queries. Trust shows the real session identity, denied requests and the audit log.</p></div>
+    </div>
+    <div class="callout">
+      <span class="tag">Golden rule</span>
+      <p>The persona picker (Claire/Sofia/Mehdi/Alex) is a <b>presentation preview only</b> and never grants permissions. Authorization comes from the real Databricks Apps identity. Say this out loud: it is the most important trust moment in the demo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 02 -->
+<section id="architecture">
+  <div class="wrap">
+    <span class="kicker">02 — Architecture</span>
+    <h2>What actually runs, and <span class="em">what is simulated</span></h2>
+    <p class="lead">Everything you click is executed for real: SQL, Lakebase transactions, model calls, Genie and the audit trail. Only two inputs are simulated, and both are labeled in the app: the GCP source export and the Dust-style interface.</p>
+    <div class="flow reveal">
+      <div class="lane"><div class="lh">Sources</div>
+        <div class="node sim">Simulated GCP export<small>delivery/simulate_sources.py → JSON upload</small></div>
+        <div class="node">Packaged synthetic snapshot<small>deterministic generator + reference SQL</small></div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="lane"><div class="lh">Databricks App</div>
+        <div class="node core2">FastAPI backend<small>server-side scope, contract validation, idempotent upsert</small></div>
+        <div class="node core2">React UI (shadcn)<small>12 routes · FR/EN · tours · dark mode</small></div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="lane"><div class="lh">Data &amp; state</div>
+        <div class="node lakeb">Lakebase Postgres<small>source revisions, rejected batches, proposals, decisions, audit</small></div>
+        <div class="node lakeb">Unity Catalog + SQL warehouse<small>4 Metric Views, synthetic cohort tables</small></div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="lane"><div class="lh">AI</div>
+        <div class="node ai">FMAPI chat model<small>grounded explanation of the current revision</small></div>
+        <div class="node ai">Genie spaces + Supervisor<small>DNB specialists · historical Genie</small></div>
+      </div>
+    </div>
+    <div class="table-scroll reveal">
+      <table>
+        <thead><tr><th>Concern</th><th>How the demo handles it</th></tr></thead>
+        <tbody class="feat">
+          <tr><td>Identity</td><td>Databricks Apps authenticates the caller. A deployment-owned binding maps the presenter's IdP email to their workspace user ID, and unmatched identities are denied. There is no email-domain wildcard.</td></tr>
+          <tr><td>Scope</td><td><code>enterprise.access</code> assigns entities, a reader/editor role and a tenant per identity. Queries run as the <b>App service principal</b> with server-side entity filtering. This is not Genie OBO or database row-level security.</td></tr>
+          <tr><td>Actions</td><td>Propose → explicit review (expires after 15 min) → commit to the <b>synthetic queue</b> → read back. Nothing is ever written to Workday, GCP, Dust or another HR system.</td></tr>
+          <tr><td>Source ingestion</td><td>Payload hash binding, contract validation and a transactional upsert create a new revision. Bad batches are recorded without changing accepted rows, and a new revision invalidates uncommitted approvals.</td></tr>
+          <tr><td>Evidence</td><td>The <b>Technical evidence</b> tab shows the executed SQL and parameters, revision hash, lineage, p50/p95 latency, tokens and the identity audit.</td></tr>
+          <tr><td>Tool contract</td><td><code>GET /api/enterprise/tools/manifest</code> and <code>POST /api/enterprise/tools/query</code> form a read-only contract with no arbitrary SQL and no write path. OpenAPI is published at <code>/api/openapi.json</code>.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 03 -->
+<section id="tour">
+  <div class="wrap">
+    <span class="kicker">03 — App tour</span>
+    <h2>Every route, <span class="em">what to show</span></h2>
+    <p class="lead">Present on a desktop viewport. Mobile has no horizontal overflow, but floating controls can overlap content. Use FR/EN and the theme toggle in the top bar, and click <b>Guide me / Me guider</b> for the current persona's tour.</p>
+    <div class="table-scroll reveal">
+      <table>
+        <thead><tr><th>Route</th><th>What it is</th><th>Show this</th><th>Needs</th></tr></thead>
+        <tbody class="feat">
+          <tr><td><code>/enterprise</code> (also <code>/</code>)</td><td>Enterprise &amp; Global, 3 stories</td><td>New rehearsal → France / 2026-09 → ingest demand increase → ask the data → propose, review and commit → Value &amp; costs</td><td>Lakebase + chat model</td></tr>
+          <tr><td><code>/agent-workspace</code></td><td>Dust-style simulated interface</td><td>Pick Aster France SAS and ask “What needs local HR review?”, then open the tool trace</td><td>Lakebase + model</td></tr>
+          <tr><td><code>/dnb</code></td><td>DNB Top 20 &amp; Agents</td><td>Pick a scenario, region and month, open a question card, then ask the Supervisor a cross-domain question</td><td>4 Genie spaces + Supervisor</td></tr>
+          <tr><td><code>/studio</code></td><td>Demo Studio</td><td>My studio → industry preset → reorder playbooks → Present my story</td><td>Nothing (local only)</td></tr>
+          <tr><td><code>/briefing</code></td><td>Cockpit overview</td><td>84 employees, 11 roles, 6 overdue cases, and the saved Genie/Supervisor briefing per persona with sources</td><td>Packaged data</td></tr>
+          <tr><td><code>/retention</code></td><td>Retention</td><td>Attrition of 14.2% vs 8.1% and 18 aggregate pay-compression exposures. These are cohort signals, never individual predictions.</td><td>Packaged data</td></tr>
+          <tr><td><code>/talent</code></td><td>Talent acquisition</td><td>11 roles, 72-day vs 48-day median fill, and 4 fictional profiles with cited evidence and gaps. There is no ranking.</td><td>Packaged data</td></tr>
+          <tr><td><code>/workforce</code></td><td>Scenario planning</td><td>Retain 5 / hire 4 / redeploy 2: €390k within a €450k budget closes the gap from 13.5 to 4.3 FTE-months. Then approve and commit.</td><td>Lakebase</td></tr>
+          <tr><td><code>/people-ops</code></td><td>HR operations</td><td>6 overdue cases (2 onboarding, 2 mobility, 2 payroll) and the reflected action state</td><td>Lakebase</td></tr>
+          <tr><td><code>/ask</code></td><td>Historical Genie agent</td><td>“Compare les trois options et leur coût.” → Markdown table, sources and the recommended next action</td><td>Genie space</td></tr>
+          <tr><td><code>/trust</code></td><td>Trust &amp; sources</td><td>Real session identity, persona preview vs permissions, and a test refusal that shows up in the audit</td><td>Lakebase</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="shots reveal">
+      <figure><img loading="lazy" src="img/cockpit-trust.jpg" alt="Trust and sources page"><figcaption><b>/trust</b>: authenticated presenter, persona preview disclaimer, test refusals</figcaption></figure>
+      <figure><img loading="lazy" src="img/ent-dark.jpg" alt="Enterprise dark mode"><figcaption><b>Dark mode</b>: every route supports both themes</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 04 -->
+<section id="enterprise">
+  <div class="wrap">
+    <span class="kicker">04 — Enterprise &amp; Global (default)</span>
+    <h2>Three buyer stories on <span class="em">one connected workflow</span></h2>
+    <p class="lead">All three stories share the same synthetic dataset and API. Before you click anything, choose the story that matches the person in the room.</p>
+    <div class="table-scroll reveal">
+      <table>
+        <thead><tr><th>Story</th><th>Buyer &amp; trigger</th><th>Decision</th><th>Measurable evaluation</th></tr></thead>
+        <tbody class="feat">
+          <tr><td>Fund the capacity that protects delivery</td><td>CFO, CHRO, COO. Committed delivery exceeds capacity.</td><td>Hire vs redeploy budget trade-off</td><td>Reconciled gap, agreed cost/effect assumptions, reviewed action readback</td></tr>
+          <tr><td>Reconcile the group after an acquisition</td><td>CHRO, CFO, data platform. An acquisition or reorganization.</td><td>Common group definitions with local continuity</td><td>Employee/contractor bridge, FX, fiscal calendar, effective-dated rollup</td></tr>
+          <tr><td>Answer in the employee's existing workspace</td><td>CIO, CHRO, security. HR depends on data specialists.</td><td>Governed tools in the existing agent interface</td><td>Two authenticated scopes, cited policy, source availability, latency, maintenance effort</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>The 5-minute executive path</h3>
+    <ol class="steps reveal">
+      <li><span class="t">0:00–0:45</span><b>Confirm the decision.</b> Ask for the buyer's decision and one measurable baseline. Then click <b>New rehearsal</b>, which preserves all prior history.</li>
+      <li><span class="t">0:45–1:30</span><b>Scope.</b> Select France and 2026-09. Point at the capacity gap (FTE-months) and the “Revision 1 · lakebase” badge.</li>
+      <li><span class="t">1:30–2:30</span><b>Change the data.</b> Click <b>Ingest France demand increase</b>. The revision increments and the FR gap moves from 43 to 73 FTE-months. For the Group story, open <b>Group &amp; sources</b> and show the definition bridge instead.</li>
+      <li><span class="t">2:30–3:45</span><b>Explain and decide.</b> Click <b>Ask the data</b> for a live, revision-grounded answer. Then fill the capacity proposal and its rationale, review it explicitly, commit it, and show the readback.</li>
+      <li><span class="t">3:45–5:00</span><b>Value.</b> On <b>Value &amp; costs</b>, compare four alternatives and show the low/high range. Staff time is never counted as cash. Agree the next decision.</li>
+    </ol>
+    <div class="callout ok"><span class="tag">10 and 20 minutes</span><p><b>10 min:</b> also show source rejection and recovery on <b>Group &amp; sources</b> (upload a bad batch, then <b>Recover baseline source</b>) and an external-tool read on <code>/agent-workspace</code>. <b>20 min:</b> also show the HQ vs local identity proof (FR reader cannot read DE or write), the <b>Technical evidence</b> tab, the day-two ownership table and an evaluation plan you fill in together on the <b>Account brief</b> tab.</p></div>
+
+    <div class="shots reveal">
+      <figure class="tall"><img loading="lazy" src="img/ent-enterprise-overview-en.jpg" alt="Enterprise overview"><figcaption><b>Decision tab</b>: 6,960 employees, capacity gap by entity/team, explanation and capacity proposal</figcaption></figure>
+      <figure><img loading="lazy" src="img/ent-reviewed-decision.jpg" alt="Reviewed decision"><figcaption><b>Reviewed decision</b>: proposal → explicit review → commit → readback</figcaption></figure>
+      <figure><img loading="lazy" src="img/ent-live-explanation.jpg" alt="Live explanation"><figcaption><b>Live explanation</b> grounded in the current revision and scope</figcaption></figure>
+      <figure><img loading="lazy" src="img/ent-global-reconciliation.jpg" alt="Global reconciliation"><figcaption><b>Group &amp; sources</b>: reconciliation, FX, fiscal calendar, simulated GCP upload</figcaption></figure>
+      <figure><img loading="lazy" src="img/ent-value-case.jpg" alt="Value case"><figcaption><b>Value &amp; costs</b>: four alternatives, realization range, staff time ≠ cash</figcaption></figure>
+      <figure><img loading="lazy" src="img/ent-account-brief.jpg" alt="Account brief"><figcaption><b>Account brief</b>: discovery, evaluation plan, public references, export</figcaption></figure>
+      <figure class="tall"><img loading="lazy" src="img/ent-technical-evidence.jpg" alt="Technical evidence"><figcaption><b>Technical evidence</b>: executed SQL, revision hash, lineage, latency/tokens, identity audit</figcaption></figure>
+      <figure><img loading="lazy" src="img/ent-simulated-agent.jpg" alt="Simulated agent workspace"><figcaption><b>/agent-workspace</b>: Dust-style simulation with real tool calls and a tool trace</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 05 -->
+<section id="cockpit">
+  <div class="wrap">
+    <span class="kicker">05 — Historical four-domain cockpit</span>
+    <h2>The <span class="em">20-minute</span> HR leadership flow</h2>
+    <p class="lead">This is the original People Ops / HR storyline. Personas switch in this order: Claire (CPO) → Sofia (HRBP France) → Mehdi (TA lead) → Claire → Alex (People Analytics). It opens with a useful aggregate answer, then shows a <b>denied, audited</b> unauthorized request.</p>
+    <div class="table-scroll reveal">
+      <table>
+        <thead><tr><th>Time</th><th>Route</th><th>Show</th></tr></thead>
+        <tbody class="feat">
+          <tr><td>0–2 min</td><td><code>/briefing</code></td><td>84 fictional employees, 11 roles and 6 overdue cases. Then show the saved Genie/Supervisor summary for the persona, expand its sources, and explain the AI review and the required human approval.</td></tr>
+          <tr><td>2–4 min</td><td><code>/trust</code></td><td>Inspect the real session, switch the persona preview, request an individual-risk detail and show the <b>denial in the audit</b>.</td></tr>
+          <tr><td>4–7 min</td><td><code>/retention</code></td><td>Historical attrition of 14.2% vs 8.1% and 18 aggregate pay-compression exposures. The 1.8× capacity ratio is an <b>assumption</b>, not a prediction.</td></tr>
+          <tr><td>7–10 min</td><td><code>/talent</code></td><td>11 roles and a 72-day median fill vs 48. Open the 4 fictional profiles' cited evidence and visible gaps. There is <b>no ranking</b>.</td></tr>
+          <tr><td>10–15 min</td><td><code>/workforce</code></td><td>Compare the 3 options. The blended plan (retain 5 / hire 4 / redeploy 2) costs €390k against a €450k budget and cuts the gap from 13.5 to 4.3 FTE-months. Enter a rationale, review, approve and commit, then refresh to show state and audit.</td></tr>
+          <tr><td>15–17 min</td><td><code>/people-ops</code></td><td>Six overdue cases (2 onboarding, 2 mobility, 2 payroll). Filter the queue.</td></tr>
+          <tr><td>17–20 min</td><td><code>/ask</code> → <code>/trust</code></td><td>Compare the options in Genie and inspect its sources. Close with the workshop ask (see Talk track).</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13.5px;color:var(--muted)">UI limits: proposal rationale 10–600 characters, review notes 4–600. Approvals expire after 15 minutes, after which you need a fresh proposal and review. Rehearsal notes must say <code>AUTOMATED TEST - no actual human approval</code> when automated.</p>
+    <div class="shots reveal">
+      <figure><img loading="lazy" src="img/cockpit-briefing.jpg" alt="Briefing"><figcaption><b>/briefing</b>: capacity alert and per-persona saved briefing</figcaption></figure>
+      <figure><img loading="lazy" src="img/cockpit-retention.jpg" alt="Retention"><figcaption><b>/retention</b>: cohort-level signals only</figcaption></figure>
+      <figure><img loading="lazy" src="img/cockpit-talent.jpg" alt="Talent"><figcaption><b>/talent</b>: cited evidence and gaps, no score</figcaption></figure>
+      <figure><img loading="lazy" src="img/cockpit-workforce.jpg" alt="Workforce"><figcaption><b>/workforce</b>: 3-option comparison and approval</figcaption></figure>
+      <figure><img loading="lazy" src="img/cockpit-people-ops.jpg" alt="People ops"><figcaption><b>/people-ops</b>: overdue queue and reflected action</figcaption></figure>
+      <figure><img loading="lazy" src="img/cockpit-ask.jpg" alt="Ask"><figcaption><b>/ask</b>: questions and insights</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 06 -->
+<section id="agents">
+  <div class="wrap">
+    <span class="kicker">06 — Genie agents &amp; DNB Top 20</span>
+    <h2>Four specialists, <span class="em">one Supervisor</span></h2>
+    <p class="lead">The 20 questions are curated from Logfood research on Digital Native Businesses: 9 field themes, 10 adaptations and 1 editorial extension. They are <b>not</b> adoption rankings. Each Genie space sits on one UC Metric View over a 216-row synthetic cohort table (scenario × region × department × month, Jan–Jun 2026).</p>
+    <div class="table-scroll reveal">
+      <table>
+        <thead><tr><th>Genie specialist</th><th>Questions</th><th>Governed source</th><th>Covers</th></tr></thead>
+        <tbody class="feat">
+          <tr><td>Workforce &amp; costs</td><td>DNB01–05</td><td><code>dnb_workforce_metrics</code></td><td>Capacity gaps, headcount plan, distribution, aggregate personnel cost</td></tr>
+          <tr><td>Talent acquisition</td><td>DNB06–10</td><td><code>dnb_talent_metrics</code></td><td>Funnels, time-to-fill, offers, sourcing cost, internal mobility. Never candidate ranking.</td></tr>
+          <tr><td>Retention &amp; experience</td><td>DNB11–15</td><td><code>dnb_retention_metrics</code></td><td>Cohort attrition, survey participation, manager span, learning. No individual risk.</td></tr>
+          <tr><td>People operations</td><td>DNB16–20</td><td><code>dnb_operations_metrics</code></td><td>Support SLAs, onboarding, payroll exceptions, policy self-service, reconciliation</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout"><span class="tag">Smoking gun</span><p>The Engineering / EMEA hotspot begins in <b>April</b>. In the baseline scenario, the Supervisor calls all four tools and returns a <b>30 FTE gap, 66 days mean fill, 2.79% monthly attrition and 13 overdue cases</b>. Present it as an association, not a cause. Genie answers come with the actual SQL, rows and statement/conversation IDs. The Supervisor exposes the specialists' returned tables.</p></div>
+    <div class="shots reveal">
+      <figure class="tall"><img loading="lazy" src="img/dnb-desktop-fr.jpg" alt="DNB top 20"><figcaption><b>/dnb</b>: 20 questions, filters sent to the live agents</figcaption></figure>
+      <figure><img loading="lazy" src="img/dnb-supervisor-fr.jpg" alt="Supervisor answer"><figcaption><b>Supervisor</b>: cross-domain answer with specialist evidence</figcaption></figure>
+      <figure><img loading="lazy" src="img/genie-answer-en.jpg" alt="Genie answer"><figcaption><b>/ask</b>: live Genie answer with a table, sources and next action (loading can take about a minute)</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 07 -->
+<section id="studio">
+  <div class="wrap">
+    <span class="kicker">07 — Demo Studio</span>
+    <h2>Tailor the story <span class="em">before the meeting</span></h2>
+    <p class="lead">On <b>My studio / Mon studio</b>, pick a fictional industry and name, reorder the playbooks and choose a 5, 10 or 20-minute format. <b>Present my story</b> opens a five-beat presentation (Escape exits). The capacity lab lets you edit retain/hire/redeploy counts, unit costs, effects and budget. A simulation is an option for discussion and never an approval. Export to JSON to reuse a configuration, or to a Markdown presenter brief.</p>
+    <div class="shots reveal">
+      <figure><img loading="lazy" src="img/studio-library.jpg" alt="Studio library"><figcaption><b>20 playbooks</b>, filterable by domain, source, product and depth</figcaption></figure>
+      <figure><img loading="lazy" src="img/studio-configure.jpg" alt="Studio configure"><figcaption><b>My studio</b>: preset, playlist and capacity lab</figcaption></figure>
+      <figure><img loading="lazy" src="img/studio-experience.jpg" alt="Studio experience"><figcaption><b>Present my story</b>: five-beat presenter mode</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 08 -->
+<section id="talk">
+  <div class="wrap">
+    <span class="kicker">08 — Talk track</span>
+    <h2>Lines that <span class="em">keep you honest</span></h2>
+    <p class="lead">These sentences were reviewed for the HR audience. Use them verbatim on sensitive moments. Each one is available in FR and EN.</p>
+    <div class="table-scroll reveal">
+      <table>
+        <thead><tr><th>Moment</th><th>English</th><th>Français</th></tr></thead>
+        <tbody class="feat">
+          <tr><td>Opening</td><td>“An HR question, a useful answer, only the data you are authorized to see.”</td><td>« Une question RH, une réponse utile, uniquement les données autorisées. »</td></tr>
+          <tr><td>Sources</td><td>“These systems are examples; the data is synthetic and the customer's actual tools are unconfirmed.”</td><td>« Ces systèmes sont des exemples ; les données sont synthétiques et les outils du client ne sont pas confirmés. »</td></tr>
+          <tr><td>Denied detail</td><td>“This identity cannot access those details. The request was denied and recorded in the audit trail.”</td><td>« Cette identité n'a pas accès à ces détails ; la demande est refusée et tracée. »</td></tr>
+          <tr><td>Retention</td><td>“This signal concerns a team; it does not predict whether an individual will leave.”</td><td>« Ce signal concerne une équipe ; il ne prédit pas le départ d'une personne. »</td></tr>
+          <tr><td>Pay compression</td><td>“A signal to investigate, not a demonstrated cause of departures.”</td><td>« C'est un signal à examiner, pas une cause démontrée des départs. »</td></tr>
+          <tr><td>Candidates</td><td>“Here are the documented skills and the gaps to check; the recruiter makes the decision.”</td><td>« Voici les compétences documentées et les points à vérifier ; la décision reste au recruteur. »</td></tr>
+          <tr><td>Action</td><td>“This approval updates the demo's action queue and preserves its audit trail; it does not change any external HR system.”</td><td>« Cette validation met à jour la file d'actions de la démonstration et conserve sa trace ; elle ne modifie aucun système RH externe. »</td></tr>
+          <tr><td>Closing ask</td><td>“Shall we agree on a follow-up workshop to define the HR access matrix and validate its mapping to source-system permissions?”</td><td>« Convenons-nous d'un atelier de suivi pour définir la matrice d'accès RH et valider la correspondance avec les permissions des systèmes sources ? »</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="pc reveal">
+      <div class="col pros"><h5>Always</h5><ul>
+        <li>Say <b>“synthetic”</b> early. The banner stays visible on every page.</li>
+        <li>Keep retention signals at <b>team/cohort</b> level.</li>
+        <li>Label modeled results as <b>modeled</b>: ROI, FX and capacity effects are assumptions.</li>
+        <li>Say <b>live</b> vs <b>recorded</b> explicitly when you switch to a fallback.</li>
+        <li>Remind the room that a human approves, and that the approval expires.</li>
+      </ul></div>
+      <div class="col cons"><h5>Never</h5><ul>
+        <li>Claim that the persona picker grants access.</li>
+        <li>Show individual flight-risk scores, candidate rankings or personal salary comparisons.</li>
+        <li>Call it a Dust or GCP integration. Both are simulated; only the HTTP contract is real.</li>
+        <li>Present a vendor name (Workday, Lucca, Greenhouse…) as the customer's actual stack.</li>
+        <li>Treat country filters as proof of data residency or legal compliance.</li>
+      </ul></div>
+    </div>
+    <h3>Discovery questions</h3>
+    <div class="grid reveal">
+      <div class="card"><p>What business event makes this urgent? · Which data is missing, versus already available? · Which source or metric definitions disagree?</p></div>
+      <div class="card"><p>Which interface must remain (HRIS, Dust, Slack…)? · What is the current cost and maintenance effort?</p></div>
+      <div class="card"><p>Who owns the budget, metric, source, access and run? · What result would justify moving forward, and by when?</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 -->
+<section id="objections">
+  <div class="wrap">
+    <span class="kicker">09 — Objections</span>
+    <h2>Evidence-based <span class="em">answers</span></h2>
+    <div class="table-scroll reveal">
+      <table>
+        <thead><tr><th>Concern</th><th>Response</th></tr></thead>
+        <tbody class="feat">
+          <tr><td>Our HR suite already reports this</td><td>Keep the suite when one source and standard definitions are enough. Demonstrate the incremental cross-system or operational requirement before adding a platform.</td></tr>
+          <tr><td>We already have BI</td><td>Compare on the same dataset and metric. Test missing source data, shared definitions, permissions and action readback, not aesthetics.</td></tr>
+          <tr><td>We built an MCP</td><td>Keep the working tool if it meets the need. Measure maintenance, cross-source semantics, rights and cost on the same bounded case.</td></tr>
+          <tr><td>We use Dust</td><td>Keep the chosen interface. The demo simulates Dust; the authenticated HTTP tool contract is real. Validate actual tenant compatibility before claiming an integration.</td></tr>
+          <tr><td>What about run effort?</td><td>Walk through one new table, a failed batch, a metric change and an access update. Name the owner and record the actual minutes. Do not promise zero engineering.</td></tr>
+          <tr><td>Is the ROI real?</td><td>All demo benefits are modeled. Replace the estimates with the customer's baseline, show low/high realization and delay, and separate staff capacity from cash.</td></tr>
+          <tr><td>Is it globally compliant?</td><td>Show the actual execution location and assigned access. Country filters and synthetic policies do not prove residency or employment-law compliance.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>Public references (link them, don't over-claim)</h3>
+    <div class="refs reveal">
+      <a class="ref-card" href="https://www.databricks.com/customers/dxc/lakebase" target="_blank" rel="noopener"><div class="co">DXC · Lakebase <span class="ar">↗</span></div><div class="rr">130,000 consultants. Processing went from about 2 hours to 7 minutes per 1,000 consultants. Competency workflow with reviewed Workday updates.</div></a>
+      <a class="ref-card" href="https://www.databricks.com/customers/la-county" target="_blank" rel="noopener"><div class="co">LA County <span class="ar">↗</span></div><div class="rr">Over 112,000 employees. Pipelines feed reporting in 10 minutes or less, down from weeks. Do not invent a hiring-time reduction.</div></a>
+    </div>
+  </div>
+</section>
+
+<!-- 10 -->
+<section id="deploy">
+  <div class="wrap">
+    <span class="kicker">10 — Deploy it in your workspace</span>
+    <h2>From clone to <span class="em">live demo</span></h2>
+    <p class="lead">The repo ships the prebuilt wheel and frontend, so deployment needs no Node, no APX and no access to the authoring repository. Use an FEVM or another non-production workspace with a <b>dedicated</b> Lakebase database. Never use a production HR database.</p>
+    <h3>Prerequisites</h3>
+    <ul class="checks">
+      <li>Python 3.11+, <code>uv</code>, Databricks CLI ≥ 1.19, and an explicitly selected, authenticated profile (<code>databricks auth login --profile &lt;p&gt;</code>)</li>
+      <li>A Lakebase project, branch, endpoint and dedicated database (for example <code>hr_demo</code>)</li>
+      <li>A READY chat endpoint on FMAPI for the live explanation, for example <code>databricks-claude-opus-4-7</code></li>
+      <li>Optional: a SQL warehouse, Genie spaces and a Supervisor for <code>/ask</code>, <code>/dnb</code> and live briefings (see below)</li>
+    </ul>
+    <h3>Steps</h3>
+<pre class="code"><span class="c"># 1. Install</span>
+git clone &lt;this-repo&gt; hr-demo &amp;&amp; cd hr-demo
+uv sync --project app
+
+<span class="c"># 2. Target config (never commit it: *.local.json is gitignored, never store a token)</span>
+cp target.example.json target.local.json
+<span class="c">#   profile, app_name (lowercase, &lt;=26 chars), presenter_user_id + presenter_user_name</span>
+<span class="c">#   (from: databricks current-user me --profile &lt;p&gt;), lakebase_resource, lakebase_connection,</span>
+<span class="c">#   enterprise.model_endpoint. PGUSER is filled in by "provision".</span>
+
+<span class="c"># 3. Lifecycle (use a NEW --out file for each run: prior evidence is never overwritten)</span>
+PY=app/.venv/bin/python; P=&lt;profile&gt;; C=target.local.json
+$PY delivery/manage.py preflight --profile $P --config $C --out runs/01-preflight.json
+$PY delivery/manage.py provision --profile $P --config $C --out runs/02-provision.json
+$PY delivery/manage.py deploy    --profile $P --config $C --out runs/03-deploy.json
+$PY delivery/manage.py verify    --profile $P --config $C --out runs/04-verify.json</pre>
+    <div class="table-scroll reveal">
+      <table>
+        <thead><tr><th>Command</th><th>What it does</th></tr></thead>
+        <tbody class="feat">
+          <tr><td><code>preflight</code></td><td>Checks that the authenticated user matches the configured presenter, that the Lakebase endpoint exists and that the model endpoint is READY.</td></tr>
+          <tr><td><code>provision</code></td><td>Creates the App if it is absent, then binds the Lakebase database (CAN_CONNECT_AND_CREATE) and the model (CAN_QUERY) and writes the App service principal into <code>PGUSER</code>. It never creates or deletes a Lakebase project.</td></tr>
+          <tr><td><code>deploy</code></td><td>Renders <code>app.yml</code> env from the config, uploads the wheel, requirements and config to your workspace folder, and deploys the App.</td></tr>
+          <tr><td><code>verify</code></td><td>Calls <code>/api/enterprise/catalog</code> as you and expects 3 stories and the configured scope.</td></tr>
+          <tr><td><code>reset</code></td><td>Creates a new rehearsal run through the API. Previous runs, approvals and audit are kept.</td></tr>
+          <tr><td><code>stop</code> / <code>teardown --confirm-app &lt;name&gt;</code></td><td>Stops the App's compute (data kept), or deletes only an App that this workflow created. Shared databases, warehouses and models are never touched.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>Optional: turn on Genie, DNB and live briefings</h3>
+    <p>Without these keys, <code>/enterprise</code>, <code>/agent-workspace</code>, <code>/studio</code> and the cockpit routes work fully. <code>/briefing</code> shows the packaged, reviewed summaries. Add these blocks to <code>target.local.json</code> and re-run <code>deploy</code>:</p>
+<pre class="code">"agents": {
+  "genie_space_id": "&lt;32-hex historical Genie space&gt;",
+  "genie_url": "https://&lt;host&gt;/genie/rooms/&lt;id&gt;",
+  "supervisor_endpoint": "&lt;supervisor serving endpoint&gt;",
+  "tables": ["catalog.schema.table", "..."]
+},
+"dnb_agents": {
+  "supervisor_endpoint": "&lt;DNB supervisor endpoint&gt;",
+  "specialists": {
+    "workforce":  {"space_id": "&lt;32-hex&gt;", "tables": ["cat.schema.dnb_workforce_metrics"]},
+    "talent":     {"space_id": "&lt;32-hex&gt;", "tables": ["cat.schema.dnb_talent_metrics"]},
+    "retention":  {"space_id": "&lt;32-hex&gt;", "tables": ["cat.schema.dnb_retention_metrics"]},
+    "operations": {"space_id": "&lt;32-hex&gt;", "tables": ["cat.schema.dnb_operations_metrics"]}
+  }
+}</pre>
+    <div class="callout"><span class="tag">Provisioning scripts</span><p><code>platform/dnb_setup.py</code> (metric views, 4 Genie spaces, Supervisor) and <code>platform/genie_setup.py</code> (historical aggregate Genie + Supervisor) are the <b>original authoring scripts</b>. They are hardcoded to the author's FEVM profile, catalog/schema and repo layout, so read <code>platform/README.md</code> and adapt them before running. Grant the App service principal CAN_RUN on each Genie space, CAN_QUERY on the Supervisor endpoints and SELECT on the tables.</p></div>
+    <h3>More identities (HQ vs local proof)</h3>
+    <p>Map extra users in <code>presenter_bindings</code> (IdP email → workspace ID) and give them a scope in <code>enterprise.access</code>, keyed by workspace user ID. For example: <code>{"&lt;id&gt;": {"entities": ["FR"], "role": "reader", "tenant": "aster"}}</code>. Entities are DE, FR, GB, IN, JP and US. The presenter defaults to editor on all entities. Sign in as the FR reader to show that DE is denied and that writes are refused.</p>
+    <h3>Rebuild from source (optional)</h3>
+    <p>Install Node 24+ and <a href="https://github.com/databricks-solutions/apx" target="_blank" rel="noopener">APX</a>, then run <code>npm install &amp;&amp; apx build</code> in <code>app/</code> and run <code>deploy</code> again. Lockfiles are deliberately excluded, so dependencies resolve from your registry.</p>
+  </div>
+</section>
+
+<!-- 11 -->
+<section id="recovery">
+  <div class="wrap">
+    <span class="kicker">11 — Before, during and after</span>
+    <h2>Rehearse, reset, <span class="em">fall back</span></h2>
+    <div class="grid reveal">
+      <div class="card lake"><div class="sub">T-30 min</div><h3>Pre-flight</h3><p>Start the App (FEVM Apps compute may be stopped), run <code>verify</code>, open <code>/enterprise</code> and click <b>New rehearsal</b>. Ask one Genie question to warm it up (the first answer can take about a minute). Use a desktop viewport and pick the language.</p></div>
+      <div class="card cloud"><div class="sub">During</div><h3>If something breaks</h3><p>If the model is unavailable, the SQL stays inspectable and the failure is explicit, so retry. If the session is lost, switch to the recorded walkthrough and say: “I'm switching to a prerecorded capture of the synthetic demo.” Never present playback as live.</p></div>
+      <div class="card core"><div class="sub">After</div><h3>Reset &amp; cost</h3><p><code>manage.py reset</code> creates a fresh run for the next demo, and <code>manage.py stop</code> stops App compute. Keep Lakebase autoscaling small (the reference instance uses 0.5–1 CU). Delete the App with <code>teardown</code> when you are done.</p></div>
+    </div>
+    <div class="vids reveal">
+      <a class="vid" href="enterprise-walkthrough-recorded-2026-10-08.webm" target="_blank" rel="noopener"><div class="thumb"><div class="play"></div><div class="tl">Recorded mode · 2026-10-08</div></div><div class="vb"><div class="vt">Enterprise walkthrough (automated run)</div><div class="vd">Fallback recording from a real deployed run. Its approvals are automated tests, not human approvals.</div></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- 12 -->
+<section id="limits">
+  <div class="wrap">
+    <span class="kicker">12 — Limits &amp; repo map</span>
+    <h2>What this demo <span class="em">does not prove</span></h2>
+    <div class="pc reveal">
+      <div class="col pros"><h5>Proven by execution</h5><ul>
+        <li>Clean install, tests and the full preflight → teardown lifecycle from the packaged runtime wheel, in an isolated workspace App/database</li>
+        <li>HQ vs FR scoped identities, denial audit, rejected-batch recovery</li>
+        <li>Bounded load test: 7,200 rows, concurrency 4, HTTP p50 295 ms / p95 312 ms</li>
+        <li>All 20 DNB benchmarks match the reference SQL. The Supervisor uses all 4 tools.</li>
+      </ul></div>
+      <div class="col cons"><h5>Not proven / out of scope</h5><ul>
+        <li>Any customer's data, HRIS, Dust tenant or GCP connection</li>
+        <li>Data residency, legal compliance, or source-permission propagation</li>
+        <li>Measured ROI. All value figures are modeled.</li>
+        <li>Full mobile usability. Arbitrary Genie wordings are answered correctly only probabilistically.</li>
+      </ul></div>
+    </div>
+    <div class="table-scroll reveal">
+      <table>
+        <thead><tr><th>Path</th><th>Contents</th></tr></thead>
+        <tbody class="feat">
+          <tr><td><code>docs/index.html</code></td><td>This guide, with screenshots in <code>docs/img/</code> and the recorded fallback video</td></tr>
+          <tr><td><code>app/</code></td><td>APX app: <code>src/hr_demo/backend</code> (FastAPI), <code>src/hr_demo/ui</code> (React), <code>src/hr_demo/data</code> (synthetic data), <code>.build/</code> (prebuilt wheel), <code>tools/deploy.py</code></td></tr>
+          <tr><td><code>delivery/</code></td><td><code>manage.py</code> lifecycle, <code>simulate_sources.py</code> (GCP export), <code>tool_client.py</code> (external agent), <code>FIELD_GUIDE.md</code>, <code>README.md</code></td></tr>
+          <tr><td><code>platform/</code></td><td>Reference Genie/DNB provisioning scripts (adapt before use)</td></tr>
+          <tr><td><code>target.example.json</code></td><td>Target configuration template</td></tr>
+          <tr><td><code>MANIFEST.json</code></td><td>SHA-256 of every packaged file and the source commit</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footlogos">
+      <span style="font-weight:800;color:#fff">HR Demo</span>
+      <span style="color:rgba(255,255,255,.4)">×</span>
+      <img class="dbx" alt="Databricks" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTU0IiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMTU0IDI0IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cGF0aCBkPSJNNDQuOTEzNyAyMC40NDY4VjEuMzQwNDJINDEuOTg1MVY4LjQ4OTM2QzQxLjk4NTEgOC41OTU3NCA0MS45MjE0IDguNjgwODUgNDEuODE1MyA4LjcyMzRDNDEuNzA5MiA4Ljc2NTk1IDQxLjYwMzEgOC43MjM0IDQxLjUzOTQgOC42NTk1N0M0MC41NDIgNy40ODkzNiAzOC45OTI4IDYuODI5NzkgMzcuMjk1MSA2LjgyOTc5QzMzLjY2NjIgNi44Mjk3OSAzMC44MjI1IDkuODkzNjEgMzAuODIyNSAxMy44MDg1QzMwLjgyMjUgMTUuNzIzNCAzMS40ODA0IDE3LjQ4OTQgMzIuNjkgMTguNzg3MkMzMy44OTk2IDIwLjA4NTEgMzUuNTMzNyAyMC43ODcyIDM3LjI5NTEgMjAuNzg3MkMzOC45NzE2IDIwLjc4NzIgNDAuNTIwOCAyMC4wODUxIDQxLjUzOTQgMTguODcyM0M0MS42MDMxIDE4Ljc4NzIgNDEuNzMwNCAxOC43NjYgNDEuODE1MyAxOC43ODcyQzQxLjkyMTQgMTguODI5OCA0MS45ODUxIDE4LjkxNDkgNDEuOTg1MSAxOS4wMjEzVjIwLjQ0NjhINDQuOTEzN1pNMzcuOTMxOCAxOC4xMjc3QzM1LjU5NzQgMTguMTI3NyAzMy43NzIzIDE2LjIzNCAzMy43NzIzIDEzLjgwODVDMzMuNzcyMyAxMS4zODMgMzUuNTk3NCA5LjQ4OTM2IDM3LjkzMTggOS40ODkzNkM0MC4yNjYxIDkuNDg5MzYgNDIuMDkxMiAxMS4zODMgNDIuMDkxMiAxMy44MDg1QzQyLjA5MTIgMTYuMjM0IDQwLjI2NjEgMTguMTI3NyAzNy45MzE4IDE4LjEyNzdaIiBmaWxsPSIjRkZGRkZGIi8+CjxwYXRoIGQ9Ik02MC41NzUyIDIwLjQ0NjhWNy4xNDg5M0g1Ny42Njc5VjguNDg5MzVDNTcuNjY3OSA4LjU5NTc0IDU3LjYwNDIgOC42ODA4NCA1Ny40OTgxIDguNzIzNEM1Ny4zOTIgOC43NjU5NSA1Ny4yODU5IDguNzIzNCA1Ny4yMjIyIDguNjM4MjlDNTYuMjQ2IDcuNDY4MDggNTQuNzE4MSA2LjgwODUgNTIuOTc3OSA2LjgwODVDNDkuMzQ5IDYuODA4NSA0Ni41MDUzIDkuODcyMzMgNDYuNTA1MyAxMy43ODcyQzQ2LjUwNTMgMTcuNzAyMSA0OS4zNDkgMjAuNzY1OSA1Mi45Nzc5IDIwLjc2NTlDNTQuNjU0NCAyMC43NjU5IDU2LjIwMzYgMjAuMDYzOCA1Ny4yMjIyIDE4LjgyOThDNTcuMjg1OSAxOC43NDQ3IDU3LjQxMzIgMTguNzIzNCA1Ny40OTgxIDE4Ljc0NDdDNTcuNjA0MiAxOC43ODcyIDU3LjY2NzkgMTguODcyMyA1Ny42Njc5IDE4Ljk3ODdWMjAuNDI1NUg2MC41NzUyVjIwLjQ0NjhaTTUzLjYzNTggMTguMTI3N0M1MS4zMDE0IDE4LjEyNzcgNDkuNDc2MyAxNi4yMzQgNDkuNDc2MyAxMy44MDg1QzQ5LjQ3NjMgMTEuMzgzIDUxLjMwMTQgOS40ODkzNSA1My42MzU4IDkuNDg5MzVDNTUuOTcwMSA5LjQ4OTM1IDU3Ljc5NTIgMTEuMzgzIDU3Ljc5NTIgMTMuODA4NUM1Ny43OTUyIDE2LjIzNCA1NS45NzAxIDE4LjEyNzcgNTMuNjM1OCAxOC4xMjc3WiIgZmlsbD0iI0ZGRkZGRiIvPgo8cGF0aCBkPSJNODUuNDY4MiAyMC40NDY4VjcuMTQ4OTNIODIuNTYwOFY4LjQ4OTM1QzgyLjU2MDggOC41OTU3NCA4Mi40OTcyIDguNjgwODQgODIuMzkxMSA4LjcyMzRDODIuMjg0OSA4Ljc2NTk1IDgyLjE3ODggOC43MjM0IDgyLjExNTIgOC42MzgyOUM4MS4xMzkgNy40NjgwOCA3OS42MTEgNi44MDg1IDc3Ljg3MDggNi44MDg1Qzc0LjIyMDcgNi44MDg1IDcxLjM5ODMgOS44NzIzMyA3MS4zOTgzIDEzLjgwODVDNzEuMzk4MyAxNy43NDQ3IDc0LjI0MiAyMC43ODcyIDc3Ljg3MDggMjAuNzg3MkM3OS41NDc0IDIwLjc4NzIgODEuMDk2NSAyMC4wODUxIDgyLjExNTIgMTguODUxMUM4Mi4xNzg4IDE4Ljc2NTkgODIuMzA2MiAxOC43NDQ3IDgyLjM5MTEgMTguNzY1OUM4Mi40OTcyIDE4LjgwODUgODIuNTYwOCAxOC44OTM2IDgyLjU2MDggMTlWMjAuNDQ2OEg4NS40NjgyWk03OC41Mjg3IDE4LjEyNzdDNzYuMTk0MyAxOC4xMjc3IDc0LjM2OTMgMTYuMjM0IDc0LjM2OTMgMTMuODA4NUM3NC4zNjkzIDExLjM4MyA3Ni4xOTQzIDkuNDg5MzUgNzguNTI4NyA5LjQ4OTM1QzgwLjg2MzEgOS40ODkzNSA4Mi42ODgyIDExLjM4MyA4Mi42ODgyIDEzLjgwODVDODIuNjg4MiAxNi4yMzQgODAuODYzMSAxOC4xMjc3IDc4LjUyODcgMTguMTI3N1oiIGZpbGw9IiNGRkZGRkYiLz4KPHBhdGggZD0iTTkwLjc5NDggMTguODcyM0M5MC44MTYgMTguODcyMyA5MC44NTg1IDE4Ljg1MTEgOTAuODc5NyAxOC44NTExQzkwLjk0MzQgMTguODUxMSA5MS4wMjgzIDE4Ljg5MzYgOTEuMDcwNyAxOC45MzYyQzkyLjA2ODEgMjAuMTA2NCA5My42MTczIDIwLjc2NiA5NS4zMTUgMjAuNzY2Qzk4Ljk0MzkgMjAuNzY2IDEwMS43ODggMTcuNzAyMSAxMDEuNzg4IDEzLjc4NzJDMTAxLjc4OCAxMS44NzIzIDEwMS4xMyAxMC4xMDY0IDk5LjkyMDEgOC44MDg1MUM5OC43MTA1IDcuNTEwNjQgOTcuMDc2NCA2LjgwODUxIDk1LjMxNSA2LjgwODUxQzkzLjYzODUgNi44MDg1MSA5Mi4wODkzIDcuNTEwNjQgOTEuMDcwNyA4LjcyMzRDOTEuMDA3IDguODA4NTEgOTAuOTAwOSA4LjgyOTc4IDkwLjc5NDggOC44MDg1MUM5MC42ODg3IDguNzY1OTUgOTAuNjI1IDguNjgwODUgOTAuNjI1IDguNTc0NDdWMS4zNDA0Mkg4Ny42OTY1VjIwLjQ0NjhIOTAuNjI1VjE5LjEwNjRDOTAuNjI1IDE5IDkwLjY4ODcgMTguOTE0OSA5MC43OTQ4IDE4Ljg3MjNaTTkwLjQ5NzcgMTMuODA4NUM5MC40OTc3IDExLjM4MyA5Mi4zMjI4IDkuNDg5MzYgOTQuNjU3MiA5LjQ4OTM2Qzk2Ljk5MTUgOS40ODkzNiA5OC44MTY2IDExLjM4MyA5OC44MTY2IDEzLjgwODVDOTguODE2NiAxNi4yMzQgOTYuOTkxNSAxOC4xMjc3IDk0LjY1NzIgMTguMTI3N0M5Mi4zMjI4IDE4LjEyNzcgOTAuNDk3NyAxNi4yMTI4IDkwLjQ5NzcgMTMuODA4NVoiIGZpbGw9IiNGRkZGRkYiLz4KPHBhdGggZD0iTTExMC4yNTUgOS44NzIzNEMxMTAuNTMxIDkuODcyMzQgMTEwLjc4NiA5Ljg5MzYxIDExMC45NTUgOS45MzYxN1Y2LjkxNDg5QzExMC44NDkgNi44OTM2MSAxMTAuNjU4IDYuODcyMzQgMTEwLjQ2NyA2Ljg3MjM0QzEwOC45MzkgNi44NzIzNCAxMDcuNTM5IDcuNjU5NTcgMTA2Ljc5NiA4LjkxNDg5QzEwNi43MzIgOS4wMjEyNyAxMDYuNjI2IDkuMDYzODMgMTA2LjUyIDkuMDIxMjdDMTA2LjQxNCA5IDEwNi4zMjkgOC44OTM2MSAxMDYuMzI5IDguNzg3MjNWNy4xNDg5M0gxMDMuNDIyVjIwLjQ2ODFIMTA2LjM1VjE0LjU5NTdDMTA2LjM1IDExLjY4MDggMTA3LjgzNiA5Ljg3MjM0IDExMC4yNTUgOS44NzIzNFoiIGZpbGw9IiNGRkZGRkYiLz4KPHBhdGggZD0iTTExNS43NzMgNy4xNDg5M0gxMTIuODAyVjIwLjQ2ODFIMTE1Ljc3M1Y3LjE0ODkzWiIgZmlsbD0iI0ZGRkZGRiIvPgo8cGF0aCBkPSJNMTE0LjI0NSAxLjM2MTdDMTEzLjI0NyAxLjM2MTcgMTEyLjQ0MSAyLjE3MDIxIDExMi40NDEgMy4xNzAyMUMxMTIuNDQxIDQuMTcwMjEgMTEzLjI0NyA0Ljk3ODcyIDExNC4yNDUgNC45Nzg3MkMxMTUuMjQyIDQuOTc4NzIgMTE2LjA0OSA0LjE3MDIxIDExNi4wNDkgMy4xNzAyMUMxMTYuMDQ5IDIuMTcwMjEgMTE1LjI0MiAxLjM2MTcgMTE0LjI0NSAxLjM2MTdaIiBmaWxsPSIjRkZGRkZGIi8+CjxwYXRoIGQ9Ik0xMjQuNDc0IDYuODA4NUMxMjAuMzk5IDYuODA4NSAxMTcuNDQ5IDkuNzQ0NjcgMTE3LjQ0OSAxMy44MDg1QzExNy40NDkgMTUuNzg3MiAxMTguMTQ5IDE3LjU1MzIgMTE5LjQwMiAxOC44Mjk4QzEyMC42NzUgMjAuMTA2NCAxMjIuNDU3IDIwLjgwODUgMTI0LjQ1MiAyMC44MDg1QzEyNi4xMDggMjAuODA4NSAxMjcuMzgxIDIwLjQ4OTQgMTI5LjggMTguNzAyMUwxMjguMTI0IDE2LjkzNjJDMTI2LjkzNSAxNy43MjM0IDEyNS44MzIgMTguMTA2NCAxMjQuNzQ5IDE4LjEwNjRDMTIyLjI4OCAxOC4xMDY0IDEyMC40NDEgMTYuMjU1MyAxMjAuNDQxIDEzLjgwODVDMTIwLjQ0MSAxMS4zNjE3IDEyMi4yODggOS41MTA2MyAxMjQuNzQ5IDkuNTEwNjNDMTI1LjkxNyA5LjUxMDYzIDEyNi45OTkgOS44OTM2MSAxMjguMDgxIDEwLjY4MDhMMTI5Ljk0OSA4LjkxNDg5QzEyNy43NjMgNy4wNDI1NSAxMjUuNzg5IDYuODA4NSAxMjQuNDc0IDYuODA4NVoiIGZpbGw9IiNGRkZGRkYiLz4KPHBhdGggZD0iTTEzNC45NTcgMTQuNTk1N0MxMzQuOTk5IDE0LjU1MzIgMTM1LjA2MyAxNC41MzE5IDEzNS4xMjcgMTQuNTMxOUgxMzUuMTQ4QzEzNS4yMTIgMTQuNTMxOSAxMzUuMjc1IDE0LjU3NDUgMTM1LjMzOSAxNC42MTdMMTQwLjAyOSAyMC40NDY4SDE0My42MzdMMTM3LjU2NyAxMy4wODUxQzEzNy40ODIgMTIuOTc4NyAxMzcuNDgyIDEyLjgyOTggMTM3LjU4OSAxMi43NDQ3TDE0My4xNyA3LjE0ODk0SDEzOS41ODNMMTM0Ljc2NiAxMkMxMzQuNzAyIDEyLjA2MzggMTM0LjU5NiAxMi4wODUxIDEzNC40OSAxMi4wNjM4QzEzNC40MDUgMTIuMDIxMyAxMzQuMzQyIDExLjkzNjIgMTM0LjM0MiAxMS44Mjk4VjEuMzYxN0gxMzEuMzkyVjIwLjQ2ODFIMTM0LjMyVjE1LjI3NjZDMTM0LjMyIDE1LjIxMjggMTM0LjM0MiAxNS4xMjc3IDEzNC40MDUgMTUuMDg1MUwxMzQuOTU3IDE0LjU5NTdaIiBmaWxsPSIjRkZGRkZGIi8+CjxwYXRoIGQ9Ik0xNDguNDEyIDIwLjc4NzJDMTUwLjgxIDIwLjc4NzIgMTUzLjI1IDE5LjMxOTEgMTUzLjI1IDE2LjUzMTlDMTUzLjI1IDE0LjcwMjEgMTUyLjEwNCAxMy40NDY4IDE0OS43NyAxMi42ODA4TDE0OC4xNzggMTIuMTQ4OUMxNDcuMDk2IDExLjc4NzIgMTQ2LjU4NiAxMS4yNzY2IDE0Ni41ODYgMTAuNTc0NUMxNDYuNTg2IDkuNzY1OTUgMTQ3LjMwOCA5LjIxMjc2IDE0OC4zMjcgOS4yMTI3NkMxNDkuMzAzIDkuMjEyNzYgMTUwLjE3MyA5Ljg1MTA2IDE1MC43MjUgMTAuOTU3NEwxNTMuMDggOS42ODA4NUMxNTIuMjEgNy44OTM2MSAxNTAuNDA2IDYuNzg3MjMgMTQ4LjMyNyA2Ljc4NzIzQzE0NS42OTUgNi43ODcyMyAxNDMuNzg1IDguNDg5MzYgMTQzLjc4NSAxMC44MDg1QzE0My43ODUgMTIuNjU5NiAxNDQuODg5IDEzLjg5MzYgMTQ3LjE1OSAxNC42MTdMMTQ4Ljc5NCAxNS4xNDg5QzE0OS45MzkgMTUuNTEwNiAxNTAuNDI4IDE1Ljk3ODcgMTUwLjQyOCAxNi43MjM0QzE1MC40MjggMTcuODUxMSAxNDkuMzg4IDE4LjI1NTMgMTQ4LjQ5NiAxOC4yNTUzQzE0Ny4zMDggMTguMjU1MyAxNDYuMjQ3IDE3LjQ4OTQgMTQ1LjczOCAxNi4yMzRMMTQzLjM0IDE3LjUxMDZDMTQ0LjEyNSAxOS41MzE5IDE0Ni4wNTYgMjAuNzg3MiAxNDguNDEyIDIwLjc4NzJaIiBmaWxsPSIjRkZGRkZGIi8+CjxwYXRoIGQ9Ik02OC43MjQzIDIwLjY1OTZDNjkuNjU4MSAyMC42NTk2IDcwLjQ4NTcgMjAuNTc0NSA3MC45NTI2IDIwLjUxMDZWMTcuOTU3NEM3MC41NzA2IDE4IDY5Ljg5MTUgMTguMDQyNSA2OS40ODgzIDE4LjA0MjVDNjguMjk5OSAxOC4wNDI1IDY3LjM4NzQgMTcuODI5OCA2Ny4zODc0IDE1LjI1NTNWOS43ODcyM0M2Ny4zODc0IDkuNjM4MjkgNjcuNDkzNSA5LjUzMTkxIDY3LjY0MiA5LjUzMTkxSDcwLjUwN1Y3LjEyNzY2SDY3LjY0MkM2Ny40OTM1IDcuMTI3NjYgNjcuMzg3NCA3LjAyMTI3IDY3LjM4NzQgNi44NzIzNFYzLjA0MjU1SDY0LjQ1ODhWNi44OTM2MUM2NC40NTg4IDcuMDQyNTUgNjQuMzUyNyA3LjE0ODkzIDY0LjIwNDEgNy4xNDg5M0g2Mi4xNjY5VjkuNTUzMTlINjQuMjA0MUM2NC4zNTI3IDkuNTUzMTkgNjQuNDU4OCA5LjY1OTU3IDY0LjQ1ODggOS44MDg1MVYxNkM2NC40NTg4IDIwLjY1OTYgNjcuNTU3MSAyMC42NTk2IDY4LjcyNDMgMjAuNjU5NloiIGZpbGw9IiNGRkZGRkYiLz4KPHBhdGggZD0iTTIwLjk4ODIgOS44OTM2MkwxMS4wOTg5IDE1LjQ4OTRMMC41MDkzMTkgOS41MTA2NEwwIDkuNzg3MjNWMTQuMTI3N0wxMS4wOTg5IDIwLjM4M0wyMC45ODgyIDE0LjgwODVWMTcuMTA2NEwxMS4wOTg5IDIyLjcwMjFMMC41MDkzMTkgMTYuNzIzNEwwIDE3VjE3Ljc0NDdMMTEuMDk4OSAyNEwyMi4xNzY2IDE3Ljc0NDdWMTMuNDA0M0wyMS42NjczIDEzLjEyNzdMMTEuMDk4OSAxOS4wODUxTDEuMTg4NDEgMTMuNTEwNlYxMS4yMTI4TDExLjA5ODkgMTYuNzg3MkwyMi4xNzY2IDEwLjUzMTlWNi4yNTUzMkwyMS42MjQ4IDUuOTM2MTdMMTEuMDk4OSAxMS44NzIzTDEuNjk3NzMgNi41OTU3NEwxMS4wOTg5IDEuMjk3ODdMMTguODIzNiA1LjY1OTU3TDE5LjUwMjcgNS4yNzY2VjQuNzQ0NjhMMTEuMDk4OSAwTDAgNi4yNTUzMlY2LjkzNjE3TDExLjA5ODkgMTMuMTkxNUwyMC45ODgyIDcuNTk1NzRWOS44OTM2MloiIGZpbGw9IiNGRjM2MjEiLz4KPC9zdmc+Cg==">
+    </div>
+    <div class="fnote">Databricks internal · Synthetic data only · Questions: Laurent Fabre · 2026</div>
+  </div>
+</footer>
+</div>
+<div id="lightbox"><img alt=""></div>
+<script>
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('reveal-in')});}
+  else{var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('reveal-in');io.unobserve(e.target)}})},{threshold:.08});els.forEach(function(e){io.observe(e)});}
+  var navlinks={};document.querySelectorAll('nav.subnav a').forEach(function(a){navlinks[a.getAttribute('href').slice(1)]=a;});
+  var secs=document.querySelectorAll('section[id]');
+  if('IntersectionObserver' in window){var spy=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){
+    Object.keys(navlinks).forEach(function(k){navlinks[k].classList.remove('active')});
+    if(navlinks[e.target.id])navlinks[e.target.id].classList.add('active');}})},{rootMargin:"-45% 0px -50% 0px"});
+    secs.forEach(function(s){spy.observe(s)});}
+  var lb=document.getElementById('lightbox'),li=lb.querySelector('img');
+  document.querySelectorAll('.shots img').forEach(function(img){img.addEventListener('click',function(){li.src=img.src;li.alt=img.alt;lb.classList.add('on');lb.scrollTop=0;});});
+  lb.addEventListener('click',function(){lb.classList.remove('on')});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')lb.classList.remove('on')});
+})();
+</script>
+
+</body>
+</html>
